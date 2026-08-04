@@ -56,9 +56,9 @@ export default function AccountingOutsourcing() {
         <li><strong>Seamless Audits:</strong> Since accounts are compiled under professional CA oversight, your year-end statutory and tax audits proceed smoothly and quickly.</li>
       </ol>
 
-      <div style={{ marginTop: "40px" }}>
+      <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">Enquire About Accounting Services</Link>
-        <Link href="/contact" className="btn btn-outline" style={{ marginLeft: "15px" }}>Contact Office</Link>
+        <Link href="/contact" className="btn btn-outline">Contact Office</Link>
       </div>
     </InnerPageLayout>
   );

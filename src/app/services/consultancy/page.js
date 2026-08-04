@@ -57,9 +57,9 @@ export default function Consultancy() {
         <li><strong>Total Legal Protection:</strong> Early registration of intellectual property, MSME shields, and tax registrations shields your personal assets.</li>
       </ol>
 
-      <div style={{ marginTop: "40px" }}>
+      <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">Book Setup Consultation</Link>
-        <Link href="/contact" className="btn btn-outline" style={{ marginLeft: "15px" }}>Office Details</Link>
+        <Link href="/contact" className="btn btn-outline">Office Details</Link>
       </div>
     </InnerPageLayout>
   );

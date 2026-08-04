@@ -85,7 +85,15 @@ export default function Footer() {
         <div className={styles.bottomBar}>
           <div className={styles.bottomBarInner}>
             <p className={styles.copyright}>
-              © {currentYear} C S Kakkad & Associates. All rights reserved.
+              © {currentYear} C S Kakkad & Associates. All rights reserved. | Developed by{" "}
+              <a 
+                href="https://kushangacharya.vercel.app" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.creditLink}
+              >
+                Kushang Acharya
+              </a>
             </p>
             <div className={styles.legalLinks}>
               <Link href="/privacy-policy">Privacy Policy</Link>

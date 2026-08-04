@@ -56,9 +56,9 @@ export default function BusinessFinanceLoan() {
         <li><strong>Liaison & Sanctioning:</strong> Presenting the proposal to public sector, private sector, and cooperative banks and resolving audit queries for smooth disbursal.</li>
       </ol>
 
-      <div style={{ marginTop: "40px" }}>
+      <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">Enquire About Business Loan Advisory</Link>
-        <Link href="/contact" className="btn btn-outline" style={{ marginLeft: "15px" }}>Office Details</Link>
+        <Link href="/contact" className="btn btn-outline">Office Details</Link>
       </div>
     </InnerPageLayout>
   );

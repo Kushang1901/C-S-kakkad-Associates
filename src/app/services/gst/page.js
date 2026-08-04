@@ -53,9 +53,9 @@ export default function GSTServices() {
         Failing to manage your GST records can lead to heavy interest penalties, credit blockages, or even cancellation of registration. Under our supervision, your tax records remain clean, reconciled, and completely aligned with the rules of the Central Board of Indirect Taxes and Customs (CBIC).
       </p>
 
-      <div style={{ marginTop: "40px" }}>
+      <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">Request GST Compliance Quote</Link>
-        <Link href="/contact" className="btn btn-outline" style={{ marginLeft: "15px" }}>Get Office Address</Link>
+        <Link href="/contact" className="btn btn-outline">Get Office Address</Link>
       </div>
     </InnerPageLayout>
   );

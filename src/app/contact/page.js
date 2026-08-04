@@ -141,7 +141,7 @@ ${line}
                   <p style={{ color: "var(--text-dark)", fontSize: "0.95rem" }}>
                     Your message draft is compiled. If WhatsApp did not open automatically, click the button below to send it to us.
                   </p>
-                  <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginTop: "20px" }}>
+                  <div className="btn-group" style={{ justifyContent: "center" }}>
                     <button 
                       onClick={() => {
                         window.open(`https://api.whatsapp.com/send?phone=919409207388&text=...`, "_blank");

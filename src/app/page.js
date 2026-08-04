@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import NewsModal from "@/components/NewsModal";
+import EnquiryModal from "@/components/EnquiryModal";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -11,6 +12,7 @@ export default function Home() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState(null);
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
   const slides = [
     {
@@ -160,7 +162,7 @@ export default function Home() {
             <h1 className={styles.heroTitle}>{slides[currentSlide].title}</h1>
             <p className={styles.heroDesc}>{slides[currentSlide].desc}</p>
             <div className={styles.heroButtons}>
-              <Link href="/enquiry" className="btn btn-secondary">Book Consultation</Link>
+              <button onClick={() => setIsEnquiryModalOpen(true)} className="btn btn-secondary">Book Consultation</button>
               <Link href="/about" className="btn btn-outline" style={{ color: '#fff', borderColor: '#fff' }}>Learn More</Link>
             </div>
           </div>
@@ -381,6 +383,9 @@ export default function Home() {
       {selectedNews && (
         <NewsModal item={selectedNews} onClose={() => setSelectedNews(null)} />
       )}
+
+      {/* Enquiry popup modal */}
+      <EnquiryModal isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
     </div>
   );
 }

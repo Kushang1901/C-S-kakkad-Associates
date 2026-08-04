@@ -55,9 +55,9 @@ export default function IncomeTaxServices() {
         Under our professional guidance, your tax filings are managed by qualified Fellows who crosscheck calculations, verify income against Form 26AS and AIS (Annual Information Statement), and implement tax optimization strategies within corporate limits.
       </p>
 
-      <div style={{ marginTop: "40px" }}>
+      <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">File Your ITR Now</Link>
-        <Link href="/contact" className="btn btn-outline" style={{ marginLeft: "15px" }}>Get In Touch</Link>
+        <Link href="/contact" className="btn btn-outline">Get In Touch</Link>
       </div>
     </InnerPageLayout>
   );

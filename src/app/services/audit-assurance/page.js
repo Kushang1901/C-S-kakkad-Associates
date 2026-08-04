@@ -58,9 +58,9 @@ export default function AuditAssurance() {
         <li><strong>Final Sign-off:</strong> Issuing the audit report with UDIN (Unique Document Identification Number) to comply with ICAI regulations.</li>
       </ol>
 
-      <div style={{ marginTop: "40px" }}>
+      <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">Request Audit Consultation</Link>
-        <Link href="/empanelment" className="btn btn-outline" style={{ marginLeft: "15px" }}>Empanelment Details</Link>
+        <Link href="/empanelment" className="btn btn-outline">Empanelment Details</Link>
       </div>
     </InnerPageLayout>
   );
