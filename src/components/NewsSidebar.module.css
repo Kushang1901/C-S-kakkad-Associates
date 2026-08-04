@@ -1,0 +1,139 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.widget {
+  background: var(--bg-white);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  overflow: hidden;
+}
+
+.widgetTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.widgetTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--secondary-color);
+}
+
+.marqueeContainer {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.marqueeList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  position: absolute;
+}
+
+.animateScroll {
+  animation: scrollVertical 30s linear infinite;
+}
+
+.marqueeContainer:hover .animateScroll {
+  animation-play-state: paused;
+}
+
+.tickerItem {
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--border-color);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tickerItem:last-child {
+  border-bottom: none;
+}
+
+.tickerItem:hover {
+  transform: translateX(4px);
+}
+
+.itemDate {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.itemTitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  line-height: 1.4;
+  margin: 0;
+  white-space: normal; /* Wrap text */
+  transition: var(--transition-fast);
+}
+
+.tickerItem:hover .itemTitle {
+  color: var(--secondary-color);
+}
+
+.emptyItem {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding-top: 50px;
+}
+
+/* Scroll Animation Keyframes */
+@keyframes scrollVertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    /* Scrolls exactly half of the duplicated list height for a seamless loop */
+    transform: translateY(-50%);
+  }
+}
+
+/* Skeleton Loading styles */
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 10px;
+}
+
+.skeletonLine {
+  height: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loadingPulse 1.5s infinite;
+  border-radius: var(--border-radius);
+}
+
+@keyframes loadingPulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
