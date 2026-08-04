@@ -115,7 +115,7 @@ ${line}
           <p style={{ color: "var(--text-dark)", margin: 0 }}>
             Your application message has been created. If the WhatsApp screen did not open automatically, please click the button below to send it to our desk.
           </p>
-          <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginTop: "24px" }}>
+          <div className="btn-group" style={{ justifyContent: "center" }}>
             <button 
               onClick={() => {
                 window.open(`https://api.whatsapp.com/send?phone=919409207388&text=...`, "_blank");

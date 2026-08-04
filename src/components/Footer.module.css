@@ -173,9 +173,9 @@
 }
 
 /* Responsiveness */
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
   .footerGrid {
-    grid-template-columns: 1.5fr 1.5fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
 }
@@ -191,4 +191,15 @@
     text-align: center;
     align-items: center;
   }
+}
+
+.creditLink {
+  color: var(--secondary-color);
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.creditLink:hover {
+  color: var(--secondary-light);
+  text-decoration: underline;
 }

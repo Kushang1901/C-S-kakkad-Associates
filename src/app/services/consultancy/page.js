@@ -57,9 +57,50 @@ export default function Consultancy() {
         <li><strong>Total Legal Protection:</strong> Early registration of intellectual property, MSME shields, and tax registrations shields your personal assets.</li>
       </ol>
 
-      <div style={{ marginTop: "40px" }}>
+      <div style={{
+        background: "var(--bg-light)",
+        border: "1px solid var(--border-color)",
+        borderRadius: "var(--border-radius-lg)",
+        padding: "24px",
+        margin: "30px 0"
+      }}>
+        <h3 style={{ 
+          color: "var(--primary-color)", 
+          fontSize: "1.2rem", 
+          marginTop: 0, 
+          marginBottom: "16px", 
+          display: "flex", 
+          alignItems: "center", 
+          gap: "8px" 
+        }}>
+          <svg style={{ width: "20px", height: "20px", color: "var(--secondary-color)" }} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Documents Required for Business Registration
+        </h3>
+        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", marginBottom: "16px" }}>
+          To initiate partnership drafting, company formation, or LLP registration, please provide the following details:
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "12px" }}>
+          {[
+            "PAN & Aadhaar of all proposed directors/partners",
+            "Address proof of promoters (Passport/Voter ID/Driving License)",
+            "Proposed Business Name (3-4 choices in preference order)",
+            "Registered Office address proof (Electricity Bill / Property Tax Receipt)",
+            "NOC (No Objection Certificate) from the landlord/property owner",
+            "Passport size photographs of all proposed promoters"
+          ].map((doc, idx) => (
+            <div key={idx} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem", color: "var(--text-dark)" }}>
+              <span style={{ color: "var(--secondary-color)", fontWeight: "bold" }}>✓</span>
+              {doc}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">Book Setup Consultation</Link>
-        <Link href="/contact" className="btn btn-outline" style={{ marginLeft: "15px" }}>Office Details</Link>
+        <Link href="/contact" className="btn btn-outline">Office Details</Link>
       </div>
     </InnerPageLayout>
   );

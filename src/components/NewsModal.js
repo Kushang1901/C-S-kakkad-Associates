@@ -1,7 +1,8 @@
 import styles from "./NewsModal.module.css";
 
-export default function NewsModal({ newsItem, onClose }) {
-  if (!newsItem) return null;
+export default function NewsModal({ newsItem, item, onClose }) {
+  const activeItem = newsItem || item;
+  if (!activeItem) return null;
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
@@ -11,20 +12,20 @@ export default function NewsModal({ newsItem, onClose }) {
         </button>
         
         <div className={styles.modalHeader}>
-          <span className={styles.categoryBadge}>{newsItem.category}</span>
-          <span className={styles.date}>{newsItem.date}</span>
+          <span className={styles.categoryBadge}>{activeItem.category}</span>
+          <span className={styles.date}>{activeItem.date}</span>
         </div>
         
-        <h3 className={styles.title}>{newsItem.title}</h3>
+        <h3 className={styles.title}>{activeItem.title}</h3>
         
         <div className={styles.modalBody}>
-          <p className={styles.content}>{newsItem.content}</p>
+          <p className={styles.content}>{activeItem.content}</p>
         </div>
         
         <div className={styles.modalFooter}>
-          {newsItem.link && (
+          {activeItem.link && (
             <a 
-              href={newsItem.link} 
+              href={activeItem.link} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn btn-secondary"

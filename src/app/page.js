@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import NewsModal from "@/components/NewsModal";
+import EnquiryModal from "@/components/EnquiryModal";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -11,6 +12,8 @@ export default function Home() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState(null);
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const slides = [
     {
@@ -160,9 +163,30 @@ export default function Home() {
             <h1 className={styles.heroTitle}>{slides[currentSlide].title}</h1>
             <p className={styles.heroDesc}>{slides[currentSlide].desc}</p>
             <div className={styles.heroButtons}>
-              <Link href="/enquiry" className="btn btn-secondary">Book Consultation</Link>
+              <button onClick={() => setIsEnquiryModalOpen(true)} className="btn btn-secondary">Book Consultation</button>
               <Link href="/about" className="btn btn-outline" style={{ color: '#fff', borderColor: '#fff' }}>Learn More</Link>
             </div>
+          </div>
+
+          {/* Vertical Social Sidebar */}
+          <div className={styles.socialSidebar}>
+            <div className={styles.sidebarLine}></div>
+            <a href="#" className={styles.socialIconLink} aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+              </svg>
+            </a>
+            <a href="#" className={styles.socialIconLink} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="#" className={styles.socialIconLink} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+            </a>
+            <div className={styles.sidebarLine}></div>
           </div>
         </div>
 
@@ -364,6 +388,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Accordion Section */}
+      <section className="section" style={{ backgroundColor: "var(--bg-light)" }}>
+        <div className="container">
+          <div className="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Get answers to common taxation, auditing, and corporate compliance queries.</p>
+          </div>
+          
+          <div style={{ maxWidth: "800px", margin: "40px auto 0 auto", display: "flex", flexDirection: "column", gap: "16px" }}>
+            {[
+              {
+                q: "What tax services do you offer for businesses?",
+                a: "We offer a complete suite of business tax services including GST registration & return filing, Corporate Income Tax planning, Tax Deducted at Source (TDS) compliance, and tax representation for assessments or notices."
+              },
+              {
+                q: "Who is required to undergo a Tax Audit under Section 44AB?",
+                a: "Under Section 44AB of the Income Tax Act, a tax audit is mandatory for businesses with an annual turnover exceeding ₹1 Crore (or ₹10 Crore if cash transactions are less than 5%), and for professionals with gross receipts exceeding ₹50 Lakhs."
+              },
+              {
+                q: "How does the GST registration process work?",
+                a: "We handle the entire GST registration process digitally. We draft and upload all required documents (PAN, KYC, office address proof, bank details) to the GST portal and help you obtain your GSTIN within 3 to 7 working days."
+              },
+              {
+                q: "Can you help our business secure a corporate loan or bank finance?",
+                a: "Yes. We specialize in Business Finance & Loan Syndication. We prepare professional Project Reports, CMA data (Credit Monitoring Arrangement), and financial projections needed by commercial banks to evaluate and approve working capital or term loans."
+              },
+              {
+                q: "What is the difference between statutory audit and internal audit?",
+                a: "A statutory audit is legally mandated by law (like the Companies Act or Income Tax Act) to provide a true and fair view of financials to external authorities. An internal audit is conducted to review internal controls, process efficiency, and risk management for the company's internal management."
+              }
+            ].map((faq, idx) => (
+              <div 
+                key={idx} 
+                className={`${styles.faqCard} ${activeFaq === idx ? styles.faqActive : ""}`}
+              >
+                <button 
+                  className={styles.faqQuestion} 
+                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                  aria-expanded={activeFaq === idx}
+                >
+                  <span>{faq.q}</span>
+                  <span className={styles.faqChevron}>
+                    <svg style={{ width: "18px", height: "18px", transition: "transform var(--transition-normal)" }} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </span>
+                </button>
+                <div className={styles.faqAnswerWrapper}>
+                  <div className={styles.faqAnswerInner}>
+                    <div className={styles.faqAnswer}>
+                      <p>{faq.a}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA section */}
       <section className={styles.ctaSection}>
         <div className="container">
@@ -381,6 +465,9 @@ export default function Home() {
       {selectedNews && (
         <NewsModal item={selectedNews} onClose={() => setSelectedNews(null)} />
       )}
+
+      {/* Enquiry popup modal */}
+      <EnquiryModal isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
     </div>
   );
 }

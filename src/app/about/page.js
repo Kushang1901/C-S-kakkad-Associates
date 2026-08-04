@@ -41,9 +41,9 @@ export default function About() {
       <p>
         We offer single-window services for all compliance, auditing, taxation, and business setup needs. With dual offices in Dwarka and Surajkaradi, we provide localized support to businesses and individuals, ensuring easy access to tax professionals whenever needed.
       </p>
-      <div style={{ marginTop: "30px" }}>
+      <div className="btn-group">
         <Link href="/contact" className="btn btn-primary">Visit Our Office</Link>
-        <Link href="/enquiry" className="btn btn-outline" style={{ marginLeft: "15px" }}>Book Consultation</Link>
+        <Link href="/enquiry" className="btn btn-outline">Book Consultation</Link>
       </div>
     </InnerPageLayout>
   );

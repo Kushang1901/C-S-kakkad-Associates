@@ -238,10 +238,14 @@ textarea {
   gap: 24px;
 }
 
-@media (max-width: 992px) {
-
-  .grid-3,
+@media (max-width: 1150px) {
   .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -251,7 +255,6 @@ textarea {
 }
 
 @media (max-width: 768px) {
-
   .grid-2,
   .grid-3,
   .grid-4 {
@@ -369,6 +372,32 @@ textarea.form-control {
 .badge-success {
   background-color: var(--accent-green);
   color: var(--secondary-color);
+}
+
+.badge-info {
+  background-color: #E0F2FE;
+  color: #0369A1;
+}
+
+/* Button Group Wrapper */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+@media (max-width: 576px) {
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-group .btn,
+  .btn-group a,
+  .btn-group button {
+    width: 100%;
+    margin-left: 0 !important;
+  }
 }
 
 /* Micro-animations and Utilities */
