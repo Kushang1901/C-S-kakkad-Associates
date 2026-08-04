@@ -55,6 +55,47 @@ export default function IncomeTaxServices() {
         Under our professional guidance, your tax filings are managed by qualified Fellows who crosscheck calculations, verify income against Form 26AS and AIS (Annual Information Statement), and implement tax optimization strategies within corporate limits.
       </p>
 
+      <div style={{
+        background: "var(--bg-light)",
+        border: "1px solid var(--border-color)",
+        borderRadius: "var(--border-radius-lg)",
+        padding: "24px",
+        margin: "30px 0"
+      }}>
+        <h3 style={{ 
+          color: "var(--primary-color)", 
+          fontSize: "1.2rem", 
+          marginTop: 0, 
+          marginBottom: "16px", 
+          display: "flex", 
+          alignItems: "center", 
+          gap: "8px" 
+        }}>
+          <svg style={{ width: "20px", height: "20px", color: "var(--secondary-color)" }} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Documents Required for Income Tax Filing
+        </h3>
+        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", marginBottom: "16px" }}>
+          To file your Income Tax Return accurately, please compile and share the following records:
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "12px" }}>
+          {[
+            "PAN & Aadhaar Card copies",
+            "Form 16 (for salaries) / Form 16A (TDS certificates)",
+            "Bank Statements for the entire financial year",
+            "Investment Proofs (80C LIC/PPF, 80D Mediclaim, Housing Loan)",
+            "Form 26AS & AIS (Annual Information Statement) downloads",
+            "Capital Gains statements (Mutual funds, stocks, property deeds)"
+          ].map((doc, idx) => (
+            <div key={idx} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem", color: "var(--text-dark)" }}>
+              <span style={{ color: "var(--secondary-color)", fontWeight: "bold" }}>✓</span>
+              {doc}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">File Your ITR Now</Link>
         <Link href="/contact" className="btn btn-outline">Get In Touch</Link>

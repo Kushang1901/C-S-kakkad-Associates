@@ -55,6 +55,7 @@ export default function Header() {
         { name: "Acts & Rules", path: "/acts-rules" },
         { name: "Forms", path: "/forms" },
         { name: "CPE Status", path: "/cpe-status" },
+        { name: "Tax & EMI Calculators", path: "/calculators" },
       ],
     },
     {

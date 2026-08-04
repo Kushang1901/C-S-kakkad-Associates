@@ -56,6 +56,47 @@ export default function BusinessFinanceLoan() {
         <li><strong>Liaison & Sanctioning:</strong> Presenting the proposal to public sector, private sector, and cooperative banks and resolving audit queries for smooth disbursal.</li>
       </ol>
 
+      <div style={{
+        background: "var(--bg-light)",
+        border: "1px solid var(--border-color)",
+        borderRadius: "var(--border-radius-lg)",
+        padding: "24px",
+        margin: "30px 0"
+      }}>
+        <h3 style={{ 
+          color: "var(--primary-color)", 
+          fontSize: "1.2rem", 
+          marginTop: 0, 
+          marginBottom: "16px", 
+          display: "flex", 
+          alignItems: "center", 
+          gap: "8px" 
+        }}>
+          <svg style={{ width: "20px", height: "20px", color: "var(--secondary-color)" }} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Documents Required for Loan Proposals
+        </h3>
+        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", marginBottom: "16px" }}>
+          To structure your credit application and compile the CMA report, we require the following papers:
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "12px" }}>
+          {[
+            "3 Years Audited Financial Statements & ITRs",
+            "6 Months Bank Account statements (All business accounts)",
+            "Company/Firm Incorporation docs (KYC of partners/directors)",
+            "Detailed Project Report (DPR) / Business Plan",
+            "Provisional Financials & CMA data projections",
+            "Collateral property documents & ownership records"
+          ].map((doc, idx) => (
+            <div key={idx} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem", color: "var(--text-dark)" }}>
+              <span style={{ color: "var(--secondary-color)", fontWeight: "bold" }}>✓</span>
+              {doc}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="btn-group">
         <Link href="/enquiry" className="btn btn-primary">Enquire About Business Loan Advisory</Link>
         <Link href="/contact" className="btn btn-outline">Office Details</Link>
