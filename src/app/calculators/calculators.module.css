@@ -50,7 +50,7 @@
 
 .calcGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
   align-items: start;
 }
@@ -134,10 +134,32 @@
 
 @media (max-width: 992px) {
   .calcGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 30px;
   }
   .calculatorBlock {
     padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calculatorBlock {
+    padding: 20px 16px;
+  }
+  .calcResults {
+    padding: 20px 16px;
+  }
+  .tabBtn {
+    padding: 10px 16px;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .calculatorBlock {
+    padding: 16px 12px;
+  }
+  .calcResults {
+    padding: 16px 12px;
   }
 }

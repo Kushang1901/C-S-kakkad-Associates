@@ -206,7 +206,7 @@ export default function Calculators() {
               </div>
               <div className="form-group">
                 <label className="form-label">Action</label>
-                <div style={{ display: "flex", gap: "20px", marginTop: "8px" }}>
+                <div style={{ display: "flex", gap: "20px", marginTop: "8px", flexWrap: "wrap" }}>
                   <label style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}>
                     <input 
                       type="radio" 
@@ -306,7 +306,7 @@ export default function Calculators() {
               <h3 className={styles.calcSub}>Regime Comparison (AY 2027-28)</h3>
               {taxResult ? (
                 <div className={styles.resultsList}>
-                  <div className={styles.tableResponsive}>
+                  <div className="table-responsive">
                     <table className="table-custom">
                       <thead>
                         <tr>
@@ -438,7 +438,7 @@ export default function Calculators() {
                       <div style={{ width: `${emiResult.principalPercent}%`, backgroundColor: "var(--primary-color)" }} title={`Principal: ${emiResult.principalPercent}%`} />
                       <div style={{ width: `${emiResult.interestPercent}%`, backgroundColor: "var(--secondary-color)" }} title={`Interest: ${emiResult.interestPercent}%`} />
                     </div>
-                    <div style={{ display: "flex", gap: "16px", marginTop: "10px", fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                    <div style={{ display: "flex", gap: "16px", marginTop: "10px", fontSize: "0.8rem", color: "var(--text-muted)", flexWrap: "wrap" }}>
                       <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                         <span style={{ width: "10px", height: "10px", backgroundColor: "var(--primary-color)", borderRadius: "2px" }} />
                         Principal: {emiResult.principalPercent}%

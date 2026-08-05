@@ -34,7 +34,7 @@
 
 .layoutGrid {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
   gap: 40px;
   align-items: start;
 }
@@ -48,6 +48,8 @@
   line-height: 1.8;
   font-size: 1.05rem;
   color: var(--text-dark);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 /* Common text elements inside layout mainContent */
@@ -92,7 +94,7 @@
 
 @media (max-width: 992px) {
   .layoutGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 30px;
   }
 }
@@ -104,5 +106,11 @@
   }
   .bannerTitle {
     font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .mainContent {
+    padding: 16px;
   }
 }

@@ -84,14 +84,14 @@
 /* Specific component elements */
 .visionMissionGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
   margin-top: 30px;
 }
 
 @media (max-width: 768px) {
   .visionMissionGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .mainContent {
     padding: 24px;
@@ -122,7 +122,7 @@
 /* Team Section styles */
 .teamGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;
   margin-top: 30px;
 }
@@ -188,7 +188,7 @@
 
 @media (max-width: 992px) {
   .teamGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
 }
