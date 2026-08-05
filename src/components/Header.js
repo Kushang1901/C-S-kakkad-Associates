@@ -8,6 +8,7 @@ import styles from "./Header.module.css";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   // Close menus on path change
@@ -15,6 +16,25 @@ export default function Header() {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
   }, [pathname]);
+
+  // Track scroll position to hide top bar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > 80) {
+        setScrolled(true);
+      } else if (currentScrollY <= 10) {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleDropdown = (name) => {
     if (activeDropdown === name) {
@@ -71,7 +91,7 @@ export default function Header() {
   ];
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       {/* Top Bar */}
       <div className={styles.topbar}>
         <div className="container">

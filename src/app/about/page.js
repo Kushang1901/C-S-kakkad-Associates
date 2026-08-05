@@ -8,6 +8,9 @@ export default function About() {
       <p>
         Established with a commitment to integrity, efficiency, and high professional standards, <strong>C S Kakkad & Associates</strong> is a premier Chartered Accountancy firm rendering comprehensive services in India. We cater to the growing audit, tax, accounting, and business advisory needs of corporations, institutions, partnership firms, and individuals.
       </p>
+      <p>
+        Located in a bustling urban center, our firm is a distinguished financial consulting practice that specializes in providing comprehensive financial planning services for individuals and businesses. With a team of experienced professionals, we offer tailored solutions for wealth management, retirement planning, insurance services, and tax consulting. Our approach is centered on building long-lasting client relationships, ensuring each client's financial goals are met with personalized strategies and expert guidance.
+      </p>
       
       <div style={{
         backgroundColor: "var(--accent-blue)",
@@ -26,7 +29,7 @@ export default function About() {
 
       <h2>Our Philosophy</h2>
       <p>
-        We believe in building long-term advisory relationships with clients. By focusing on deep business understanding rather than just transaction-level processing, we provide advice that aids growth while maintaining 100% compliance with corporate and direct/indirect tax laws.
+        By focusing on deep business understanding rather than just transaction-level processing, we provide advice that aids growth while maintaining 100% compliance with corporate and direct/indirect tax laws.
       </p>
       <p>
         Our standards are centered around three core values:
