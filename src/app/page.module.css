@@ -139,17 +139,12 @@
     flex-direction: column;
   }
 
-  .marqueeSection {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    box-shadow: none;
-    border-bottom: 1px solid var(--border-color);
-  }
-
   .sliderIndicators {
     bottom: 20px;
+  }
+
+  .ticker {
+    animation-duration: 68s;
   }
 }
 
@@ -198,7 +193,7 @@
   display: flex;
   align-items: center;
   gap: 50px;
-  animation: ticker 80s linear infinite;
+  animation: ticker 76s linear infinite;
   white-space: nowrap;
 }
 
@@ -641,4 +636,15 @@
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .marqueeSection {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    box-shadow: none;
+    border-bottom: 1px solid var(--border-color);
+  }
 }

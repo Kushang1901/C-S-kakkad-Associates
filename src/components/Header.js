@@ -17,6 +17,18 @@ export default function Header() {
     setActiveDropdown(null);
   }, [pathname]);
 
+  // Lock scroll on body when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   // Track scroll position to hide top bar
   useEffect(() => {
     const handleScroll = () => {

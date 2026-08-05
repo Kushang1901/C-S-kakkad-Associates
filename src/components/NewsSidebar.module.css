@@ -50,7 +50,7 @@
 }
 
 .animateScroll {
-  animation: scrollVertical 30s linear infinite;
+  animation: scrollVertical 28.5s linear infinite;
 }
 
 .marqueeContainer:hover .animateScroll {
@@ -135,5 +135,11 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .animateScroll {
+    animation-duration: 25.5s;
   }
 }
