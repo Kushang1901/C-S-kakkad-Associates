@@ -1,5 +1,6 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
+import styles from "../content-page.module.css";
 
 export default function About() {
   return (
@@ -12,15 +13,28 @@ export default function About() {
         Located in a bustling urban center, our firm is a distinguished financial consulting practice that specializes in providing comprehensive financial planning services for individuals and businesses. With a team of experienced professionals, we offer tailored solutions for wealth management, retirement planning, insurance services, and tax consulting. Our approach is centered on building long-lasting client relationships, ensuring each client's financial goals are met with personalized strategies and expert guidance.
       </p>
       
-      <div style={{
-        backgroundColor: "var(--accent-blue)",
-        borderLeft: "4px solid var(--primary-color)",
-        padding: "20px",
-        borderRadius: "0 var(--border-radius) var(--border-radius) 0",
-        marginBottom: "24px",
-        fontStyle: "italic"
-      }}>
-        Our focus is to provide consistent, customized, and workable tax and financial solutions to our clients with the highest level of dedication, integrating advanced digital technologies and thorough regulatory research.
+      {/* Leadership Profile */}
+      <div className={styles.leaderCard}>
+        <div className={styles.leaderImgWrapper}>
+          <img 
+            src="/owner image-1.jpeg" 
+            alt="CA Chintan S. Kakkad" 
+            className={styles.leaderImg} 
+          />
+        </div>
+        <div className={styles.leaderDetails}>
+          <h3 className={styles.leaderName}>CA Chintan S. Kakkad</h3>
+          <span className={styles.leaderRole}>Founder & Managing Partner (F.C.A., B.Com)</span>
+          <p className={styles.leaderQuote}>
+            &ldquo;Our focus is to provide consistent, customized, and workable tax and financial solutions to our clients with the highest level of dedication, integrating advanced digital technologies and thorough regulatory research.&rdquo;
+          </p>
+          <div className={styles.leaderSpecialties}>
+            <span className={styles.leaderBadge}>Statutory & Tax Audits</span>
+            <span className={styles.leaderBadge}>Corporate Tax Advisory</span>
+            <span className={styles.leaderBadge}>Project Finance Syndication</span>
+            <span className={styles.leaderBadge}>GST & Regulatory Compliance</span>
+          </div>
+        </div>
       </div>
 
       <p>

@@ -168,26 +168,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Vertical Social Sidebar */}
-          <div className={styles.socialSidebar}>
-            <div className={styles.sidebarLine}></div>
-            <a href="#" className={styles.socialIconLink} aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
-              </svg>
-            </a>
-            <a href="#" className={styles.socialIconLink} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-              </svg>
-            </a>
-            <a href="#" className={styles.socialIconLink} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
-              </svg>
-            </a>
-            <div className={styles.sidebarLine}></div>
-          </div>
+
         </div>
 
         {/* Carousel indicators */}
@@ -284,40 +265,20 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.welcomeImgBlock}>
-              <div className={styles.cardMockup}>
-                <div className={styles.cardHead}>
-                  <img src="/logo.png" alt="CA Logo" className={styles.cardLogo} />
-                  <h3 className={styles.cardName}>C S Kakkad & Associates</h3>
-                  <span className={styles.cardSub}>Chartered Accountant</span>
+              <div className={styles.partnerShowcase}>
+                <div className={styles.partnerExpBadge}>
+                  <span className={styles.partnerExpVal}>15+</span>
+                  <span className={styles.partnerExpText}>Years Exp</span>
                 </div>
-                <div className={styles.cardDetails}>
-                  <div className={styles.cardDetailItem}>
-                    <svg className={styles.cardIcon} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path>
-                    </svg>
-                    <div>
-                      <strong>CA Chintan S. Kakkad</strong><br />
-                      <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>F.C.A., B.Com</span>
-                    </div>
-                  </div>
-                  <div className={styles.cardDetailItem}>
-                    <svg className={styles.cardIcon} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
-                    </svg>
-                    <div>
-                      <strong>Office (Dwarka):</strong><br />
-                      Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate, Dwarka - 361335
-                    </div>
-                  </div>
-                  <div className={styles.cardDetailItem}>
-                    <svg className={styles.cardIcon} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                    </svg>
-                    <div>
-                      <strong>Email:</strong><br />
-                      <a href="mailto:cachintankakkad@gmail.com" style={{ color: "var(--primary-color)" }}>cachintankakkad@gmail.com</a>
-                    </div>
+                <div className={styles.partnerFrame}>
+                  <img 
+                    src="/owner image-1.jpeg" 
+                    alt="CA Chintan S. Kakkad - Managing Partner" 
+                    className={styles.partnerImg} 
+                  />
+                  <div className={styles.partnerOverlay}>
+                    <h3 className={styles.partnerOverlayName}>CA Chintan S. Kakkad</h3>
+                    <span className={styles.partnerOverlayRole}>Founder & Managing Partner (F.C.A., B.Com)</span>
                   </div>
                 </div>
               </div>
