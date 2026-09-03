@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
+import LanguageTranslator from "./LanguageTranslator";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -109,14 +110,14 @@ export default function Header() {
         <div className="container">
           <div className={styles.topbarInner}>
             <div className={styles.topbarLeft}>
-              <span className={styles.topInfo}>
+              <span className={`${styles.topInfo} notranslate`}>
                 <svg className={styles.icon} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                 </svg>
                 <a href="mailto:cachintankakkad@gmail.com">cachintankakkad@gmail.com</a>
               </span>
-              <span className={styles.topInfo}>
+              <span className={`${styles.topInfo} notranslate`}>
                 <svg className={styles.icon} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                 </svg>
@@ -124,7 +125,8 @@ export default function Header() {
               </span>
             </div>
             <div className={styles.topbarRight}>
-              <span>Chartered Accountants</span>
+              <span>Language:</span>
+              <LanguageTranslator />
             </div>
           </div>
         </div>
@@ -134,7 +136,7 @@ export default function Header() {
       <div className={styles.navbar}>
         <div className="container">
           <div className={styles.navbarInner}>
-            <Link href="/" className={styles.logoContainer}>
+            <Link href="/" className={`${styles.logoContainer} notranslate`}>
               <img src="/logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} />
               <div className={styles.brandInfo}>
                 <span className={styles.brandName}>C S Kakkad & Associates</span>
@@ -149,7 +151,7 @@ export default function Header() {
                   <li key={idx} className={`${styles.navItem} ${link.dropdown ? styles.hasDropdown : ""}`}>
                     {link.dropdown ? (
                       <>
-                        <button 
+                        <button
                           className={`${styles.navButton} ${pathname.startsWith(link.path) && link.path !== "#" ? styles.active : ""}`}
                           onClick={() => toggleDropdown(link.name)}
                         >
@@ -161,8 +163,8 @@ export default function Header() {
                         <ul className={styles.dropdownMenu}>
                           {link.dropdown.map((sublink, subIdx) => (
                             <li key={subIdx}>
-                              <Link 
-                                href={sublink.path} 
+                              <Link
+                                href={sublink.path}
                                 className={`${styles.dropdownLink} ${pathname === sublink.path ? styles.activeDropdownLink : ""}`}
                               >
                                 {sublink.name}
@@ -172,8 +174,8 @@ export default function Header() {
                         </ul>
                       </>
                     ) : (
-                      <Link 
-                        href={link.path} 
+                      <Link
+                        href={link.path}
                         className={`${styles.navLink} ${pathname === link.path ? styles.active : ""}`}
                       >
                         {link.name}
@@ -185,8 +187,8 @@ export default function Header() {
             </nav>
 
             {/* Hamburger Menu Button */}
-            <button 
-              className={styles.hamburger} 
+            <button
+              className={styles.hamburger}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle navigation"
             >
@@ -200,8 +202,8 @@ export default function Header() {
 
       {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
-        <div 
-          className={styles.mobileOverlay} 
+        <div
+          className={styles.mobileOverlay}
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
@@ -210,20 +212,25 @@ export default function Header() {
       <div className={`${styles.mobileDrawer} ${mobileMenuOpen ? styles.drawerOpen : ""}`}>
         {/* Drawer Header */}
         <div className={styles.drawerHeader}>
-          <div className={styles.drawerLogoContainer}>
+          <div className={`${styles.drawerLogoContainer} notranslate`}>
             <img src="/logo.png" alt="Logo" className={styles.drawerLogo} />
             <div className={styles.drawerBrandInfo}>
               <span className={styles.drawerBrandName}>C S Kakkad & Associates</span>
               <span className={styles.drawerBrandTitle}>CHARTERED ACCOUNTANTS</span>
             </div>
           </div>
-          <button 
-            className={styles.drawerCloseBtn} 
+          <button
+            className={styles.drawerCloseBtn}
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
           >
             &times;
           </button>
+        </div>
+
+        {/* Mobile Language Selector */}
+        <div style={{ padding: "14px 20px 10px 20px", borderBottom: "1px solid var(--border-light)" }}>
+          <LanguageTranslator isMobile={true} />
         </div>
 
         {/* Drawer Body - Navigation Links */}
@@ -233,7 +240,7 @@ export default function Header() {
               <li key={idx} className={styles.mobileNavItem}>
                 {link.dropdown ? (
                   <>
-                    <button 
+                    <button
                       className={styles.mobileNavButton}
                       onClick={() => toggleDropdown(link.name)}
                     >
@@ -271,7 +278,7 @@ export default function Header() {
           <p className={styles.drawerFooterText}>
             <strong>Phone:</strong> <a href="tel:+919409207388">94092 07388</a>
           </p>
-          
+
           <h4 className={styles.drawerFooterTitle} style={{ marginTop: "14px" }}>Our Offices</h4>
           <p className={styles.drawerFooterText} style={{ fontSize: "0.75rem" }}>
             <strong>Dwarka:</strong> Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate

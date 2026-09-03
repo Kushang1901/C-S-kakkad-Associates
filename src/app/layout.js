@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import FloatingWidgets from "@/components/FloatingWidgets";
+import Script from "next/script";
 
 export const metadata = {
   title: "C S Kakkad & Associates | Chartered Accountants",
@@ -13,6 +14,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
+      <head>
+        {/* Preconnect to Google Translate CDN endpoints to minimize translation latency */}
+        <link rel="preconnect" href="https://translate.google.com" />
+        <link rel="preconnect" href="https://translate.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://translate.google.com" />
+        <link rel="dns-prefetch" href="https://translate.googleapis.com" />
+      </head>
       <body>
         {/* Global preloader shown on initial website load */}
         <Preloader />

@@ -14,6 +14,8 @@ export default function Home() {
   const [selectedNews, setSelectedNews] = useState(null);
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(null);
+  const [translatedSlides, setTranslatedSlides] = useState(null);
+  const [currentLang, setCurrentLang] = useState("en");
 
   const slides = [
     {
@@ -41,6 +43,46 @@ export default function Home() {
       desc: "Secure project finances, commercial loans, and working capital. Our consultants structure your business models for long-term growth."
     }
   ];
+
+  // Listen to language change to dynamically translate hero slides
+  useEffect(() => {
+    const handleLanguageChange = async (e) => {
+      const lang = e.detail || "en";
+      setCurrentLang(lang);
+      if (lang === "en") {
+        setTranslatedSlides(null);
+        return;
+      }
+
+      const allTexts = [];
+      slides.forEach((s) => {
+        allTexts.push(s.tag, s.title, s.desc);
+      });
+
+      try {
+        const res = await fetch("/api/translate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ texts: allTexts, targetLang: lang }),
+        });
+        if (res.ok) {
+          const { translations } = await res.json();
+          const newSlides = slides.map((s, idx) => ({
+            ...s,
+            tag: translations[idx * 3] || s.tag,
+            title: translations[idx * 3 + 1] || s.title,
+            desc: translations[idx * 3 + 2] || s.desc,
+          }));
+          setTranslatedSlides(newSlides);
+        }
+      } catch (err) {
+        console.error("Hero translation error:", err);
+      }
+    };
+
+    window.addEventListener("appLanguageChanged", handleLanguageChange);
+    return () => window.removeEventListener("appLanguageChanged", handleLanguageChange);
+  }, []);
 
   // Auto-advance slides every 6 seconds
   useEffect(() => {
@@ -158,17 +200,19 @@ export default function Home() {
 
         <div className="container" style={{ position: "relative", zIndex: 10 }}>
           {/* Animated Hero Content */}
-          <div className={`${styles.heroContent} ${isTransitioning ? styles.fadeText : ""}`}>
-            <span className={styles.heroTag}>{slides[currentSlide].tag}</span>
-            <h1 className={styles.heroTitle}>{slides[currentSlide].title}</h1>
-            <p className={styles.heroDesc}>{slides[currentSlide].desc}</p>
+          <div key={currentSlide} className={`${styles.heroContent} ${isTransitioning ? styles.fadeText : ""} notranslate`}>
+            <span className={styles.heroTag}>{(translatedSlides || slides)[currentSlide].tag}</span>
+            <h1 className={styles.heroTitle}>{(translatedSlides || slides)[currentSlide].title}</h1>
+            <p className={styles.heroDesc}>{(translatedSlides || slides)[currentSlide].desc}</p>
             <div className={styles.heroButtons}>
-              <button onClick={() => setIsEnquiryModalOpen(true)} className="btn btn-secondary">Book Consultation</button>
-              <Link href="/about" className="btn btn-outline" style={{ color: '#fff', borderColor: '#fff' }}>Learn More</Link>
+              <button onClick={() => setIsEnquiryModalOpen(true)} className="btn btn-secondary">
+                {currentLang === "hi" ? "पुस्तक परामर्श" : currentLang === "gu" ? "પુસ્તક પરામર્શ" : "Book Consultation"}
+              </button>
+              <Link href="/about" className="btn btn-outline" style={{ color: '#fff', borderColor: '#fff' }}>
+                {currentLang === "hi" ? "और अधिक जानें" : currentLang === "gu" ? "વધુ જાણો" : "Learn More"}
+              </Link>
             </div>
           </div>
-
-
         </div>
 
         {/* Carousel indicators */}
