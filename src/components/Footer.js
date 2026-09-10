@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Company Info column */}
           <div className={styles.columnLogo}>
             <div className={styles.logoRow}>
-              <img src="/logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} />
+              <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} />
               <div className={styles.logoText}>
                 <span className={styles.firmName}>C S Kakkad & Associates</span>
                 <span className={styles.firmTag}>Chartered Accountants</span>
@@ -70,13 +70,14 @@ export default function Footer() {
 
           {/* Utilities Column */}
           <div className={styles.columnLinks}>
-            <h4 className={styles.title}>Utilities</h4>
+            <h4 className={styles.title}>Utilities & Portals</h4>
             <ul className={styles.links}>
+              <li><Link href="/compliance-calendar">Compliance Calendar</Link></li>
+              <li><Link href="/calculators">Tax & EMI Calculators</Link></li>
+              <li><Link href="/useful-links">Government Portals</Link></li>
               <li><Link href="/acts-rules">Acts & Rules</Link></li>
               <li><Link href="/forms">Download Forms</Link></li>
               <li><Link href="/cpe-status">CPE Status Check</Link></li>
-              <li><Link href="/enquiry">Submit Enquiry</Link></li>
-              <li><Link href="/empanelment">Empanelment Info</Link></li>
             </ul>
           </div>
         </div>

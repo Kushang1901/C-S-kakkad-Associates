@@ -85,10 +85,12 @@ export default function Header() {
       name: "Utilities",
       path: "#",
       dropdown: [
+        { name: "Compliance Calendar", path: "/compliance-calendar" },
+        { name: "Tax & Financial Calculators", path: "/calculators" },
+        { name: "Useful Government Links", path: "/useful-links" },
         { name: "Acts & Rules", path: "/acts-rules" },
         { name: "Forms", path: "/forms" },
         { name: "CPE Status", path: "/cpe-status" },
-        { name: "Tax & EMI Calculators", path: "/calculators" },
       ],
     },
     {
@@ -137,7 +139,7 @@ export default function Header() {
         <div className="container">
           <div className={styles.navbarInner}>
             <Link href="/" className={`${styles.logoContainer} notranslate`}>
-              <img src="/logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} />
+              <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} />
               <div className={styles.brandInfo}>
                 <span className={styles.brandName}>C S Kakkad & Associates</span>
                 <span className={styles.brandTitle}>Chartered Accountants</span>
@@ -213,7 +215,7 @@ export default function Header() {
         {/* Drawer Header */}
         <div className={styles.drawerHeader}>
           <div className={`${styles.drawerLogoContainer} notranslate`}>
-            <img src="/logo.png" alt="Logo" className={styles.drawerLogo} />
+            <img src="/cs-kakkad-logo.png" alt="Logo" className={styles.drawerLogo} />
             <div className={styles.drawerBrandInfo}>
               <span className={styles.drawerBrandName}>C S Kakkad & Associates</span>
               <span className={styles.drawerBrandTitle}>CHARTERED ACCOUNTANTS</span>

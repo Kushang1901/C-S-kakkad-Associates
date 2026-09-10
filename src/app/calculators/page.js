@@ -13,16 +13,16 @@ export default function Calculators() {
   const [gstAction, setGstAction] = useState("add");
   const [gstResult, setGstResult] = useState(null);
 
-  // Income Tax Calculator State
+  // Income Tax / Old vs New Regime Comparison State
   const [taxIncome, setTaxIncome] = useState("");
-  const [taxDeductions, setTaxDeductions] = useState("");
+  const [sec80C, setSec80C] = useState("");
+  const [sec80D, setSec80D] = useState("");
+  const [homeLoan24b, setHomeLoan24b] = useState("");
+  const [hraExemption, setHraExemption] = useState("");
+  const [nps80CCD, setNps80CCD] = useState("");
+  const [otherDeductions, setOtherDeductions] = useState("");
+  const [showDetailedDeductions, setShowDetailedDeductions] = useState(false);
   const [taxResult, setTaxResult] = useState(null);
-
-  // Loan EMI Calculator State
-  const [loanPrincipal, setLoanPrincipal] = useState("");
-  const [loanInterest, setLoanInterest] = useState("");
-  const [loanTenure, setLoanTenure] = useState("");
-  const [emiResult, setEmiResult] = useState(null);
 
   // 1. GST Calculation
   const calculateGst = (e) => {
@@ -52,71 +52,89 @@ export default function Calculators() {
     });
   };
 
-  // 2. Income Tax Calculation (FY 2026-27 / AY 2027-28 slabs)
+  // 2. Comprehensive Old vs New Tax Regime Calculation (Finance Act 2024 / AY 2025-26 & AY 2026-27)
   const calculateIncomeTax = (e) => {
     e.preventDefault();
     const grossIncome = parseFloat(taxIncome);
     if (isNaN(grossIncome) || grossIncome <= 0) return;
 
-    const deductions = parseFloat(taxDeductions) || 0;
+    // Cap statutory deductions as per Income Tax Act
+    const val80C = Math.min(parseFloat(sec80C) || 0, 150000);
+    const val80D = Math.min(parseFloat(sec80D) || 0, 100000);
+    const val24b = Math.min(parseFloat(homeLoan24b) || 0, 200000);
+    const valHra = parseFloat(hraExemption) || 0;
+    const valNps = Math.min(parseFloat(nps80CCD) || 0, 50000);
+    const valOther = parseFloat(otherDeductions) || 0;
 
-    // --- NEW REGIME CALCULATION (FY 2026-27 / AY 2027-28) ---
-    // Standard Deduction: 75,000
+    const totalOldDeductions = val80C + val80D + val24b + valHra + valNps + valOther;
+
+    // --- NEW TAX REGIME (Section 115BAC) ---
+    // Standard Deduction: ₹75,000 for salaried assessees
     const newStdDeduction = 75000;
     const newTaxableIncome = Math.max(0, grossIncome - newStdDeduction);
     let newBaseTax = 0;
 
     if (newTaxableIncome > 1500000) {
-      newBaseTax += (newTaxableIncome - 1500000) * 0.3 + 150000;
+      newBaseTax = 150000 + (newTaxableIncome - 1500000) * 0.30;
     } else if (newTaxableIncome > 1200000) {
-      newBaseTax += (newTaxableIncome - 1200000) * 0.2 + 90000;
+      newBaseTax = 90000 + (newTaxableIncome - 1200000) * 0.20;
     } else if (newTaxableIncome > 1000000) {
-      newBaseTax += (newTaxableIncome - 1000000) * 0.15 + 60000;
+      newBaseTax = 60000 + (newTaxableIncome - 1000000) * 0.15;
     } else if (newTaxableIncome > 700000) {
-      newBaseTax += (newTaxableIncome - 700000) * 0.1 + 30000;
+      newBaseTax = 30000 + (newTaxableIncome - 700000) * 0.10;
     } else if (newTaxableIncome > 300000) {
-      newBaseTax += (newTaxableIncome - 300000) * 0.05;
+      newBaseTax = (newTaxableIncome - 300000) * 0.05;
     }
 
-    // New Regime Sec 87A Rebate: Tax is zero if taxable income <= 7,00,000
+    // Full 87A Rebate under New Regime for taxable income <= 7,00,000
     if (newTaxableIncome <= 700000) {
       newBaseTax = 0;
     }
-    const newCess = newBaseTax * 0.04;
-    const newTotalTax = newBaseTax + newCess;
+    const newCess = Math.round(newBaseTax * 0.04);
+    const newTotalTax = Math.round(newBaseTax + newCess);
 
-    // --- OLD REGIME CALCULATION (FY 2026-27 / AY 2027-28) ---
-    // Standard Deduction: 50,000
+    // --- OLD TAX REGIME ---
+    // Standard Deduction: ₹50,000
     const oldStdDeduction = 50000;
-    const oldTaxableIncome = Math.max(0, grossIncome - oldStdDeduction - deductions);
+    const oldTaxableIncome = Math.max(0, grossIncome - oldStdDeduction - totalOldDeductions);
     let oldBaseTax = 0;
 
     if (oldTaxableIncome > 1000000) {
-      oldBaseTax += (oldTaxableIncome - 1000000) * 0.3 + 112500;
+      oldBaseTax = 112500 + (oldTaxableIncome - 1000000) * 0.30;
     } else if (oldTaxableIncome > 500000) {
-      oldBaseTax += (oldTaxableIncome - 500000) * 0.2 + 12500;
+      oldBaseTax = 12500 + (oldTaxableIncome - 500000) * 0.20;
     } else if (oldTaxableIncome > 250000) {
-      oldBaseTax += (oldTaxableIncome - 250000) * 0.05;
+      oldBaseTax = (oldTaxableIncome - 250000) * 0.05;
     }
 
-    // Old Regime Sec 87A Rebate: Tax is zero if taxable income <= 5,00,000
+    // Full 87A Rebate under Old Regime for taxable income <= 5,00,000
     if (oldTaxableIncome <= 500000) {
       oldBaseTax = 0;
     }
-    const oldCess = oldBaseTax * 0.04;
-    const oldTotalTax = oldBaseTax + oldCess;
+    const oldCess = Math.round(oldBaseTax * 0.04);
+    const oldTotalTax = Math.round(oldBaseTax + oldCess);
+
+    const savings = Math.abs(oldTotalTax - newTotalTax);
+    const winner = newTotalTax <= oldTotalTax ? "New Tax Regime" : "Old Tax Regime";
 
     setTaxResult({
-      newTaxable: newTaxableIncome.toFixed(0),
-      newBase: newBaseTax.toFixed(0),
-      newCess: newCess.toFixed(0),
-      newTotal: newTotalTax.toFixed(0),
-      oldTaxable: oldTaxableIncome.toFixed(0),
-      oldBase: oldBaseTax.toFixed(0),
-      oldCess: oldCess.toFixed(0),
-      oldTotal: oldTotalTax.toFixed(0),
-      savings: Math.abs(oldTotalTax - newTotalTax).toFixed(0),
-      recommendedRegime: newTotalTax <= oldTotalTax ? "New Tax Regime" : "Old Tax Regime",
+      grossIncome: grossIncome.toLocaleString("en-IN"),
+      totalOldDeductions: totalOldDeductions.toLocaleString("en-IN"),
+      newStdDeduction: newStdDeduction.toLocaleString("en-IN"),
+      oldStdDeduction: oldStdDeduction.toLocaleString("en-IN"),
+      newTaxable: Math.round(newTaxableIncome).toLocaleString("en-IN"),
+      oldTaxable: Math.round(oldTaxableIncome).toLocaleString("en-IN"),
+      newBase: Math.round(newBaseTax).toLocaleString("en-IN"),
+      oldBase: Math.round(oldBaseTax).toLocaleString("en-IN"),
+      newCess: newCess.toLocaleString("en-IN"),
+      oldCess: oldCess.toLocaleString("en-IN"),
+      newTotal: newTotalTax.toLocaleString("en-IN"),
+      oldTotal: oldTotalTax.toLocaleString("en-IN"),
+      newTotalRaw: newTotalTax,
+      oldTotalRaw: oldTotalTax,
+      savings: savings.toLocaleString("en-IN"),
+      savingsRaw: savings,
+      recommendedRegime: winner,
     });
   };
 
@@ -164,7 +182,7 @@ export default function Calculators() {
           onClick={() => setActiveTab("tax")} 
           className={`${styles.tabBtn} ${activeTab === "tax" ? styles.activeTab : ""}`}
         >
-          Income Tax Calculator
+          Old vs New Tax Regime Comparison
         </button>
         <button 
           onClick={() => setActiveTab("emi")} 
@@ -267,99 +285,262 @@ export default function Calculators() {
         </div>
       )}
 
-      {/* 2. Income Tax Calculator View */}
+      {/* 2. Old vs New Tax Regime Comparison View */}
       {activeTab === "tax" && (
         <div className={styles.calculatorBlock}>
-          <div className={styles.calcGrid}>
-            <form onSubmit={calculateIncomeTax} className={styles.calcForm}>
-              <h3 className={styles.calcSub}>Income Tax Estimator (FY 2026-27)</h3>
-              <div className="form-group">
-                <label className="form-label">Gross Annual Income (₹)</label>
-                <input
-                  type="number"
-                  placeholder="e.g. 1200000"
-                  value={taxIncome}
-                  onChange={(e) => setTaxIncome(e.target.value)}
-                  className="form-control"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Deductions (80C, 80D, HRA etc. - Old Regime Only) (₹)</label>
-                <input
-                  type="number"
-                  placeholder="e.g. 150000 (Max 80C is 1.5L)"
-                  value={taxDeductions}
-                  onChange={(e) => setTaxDeductions(e.target.value)}
-                  className="form-control"
-                />
-                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", display: "block", marginTop: "4px" }}>
-                  *Standard deductions (75k for New, 50k for Old) are applied automatically.
-                </span>
-              </div>
-              <button type="submit" className="btn btn-primary" style={{ width: "100%", marginTop: "12px" }}>
-                Compare Regimes
-              </button>
-            </form>
+          <form onSubmit={calculateIncomeTax}>
+            <div className={styles.calcGrid}>
+              <div className={styles.calcForm}>
+                <h3 className={styles.calcSub}>Income & Investments Input</h3>
+                <div className="form-group">
+                  <label className="form-label">
+                    Gross Annual Income / CTC (₹) <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="e.g. 1200000"
+                    value={taxIncome}
+                    onChange={(e) => setTaxIncome(e.target.value)}
+                    className="form-control"
+                    required
+                  />
+                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px", display: "block" }}>
+                    *Standard deduction (₹75,000 for New Regime, ₹50,000 for Old Regime) is auto-deducted.
+                  </span>
+                </div>
 
-            <div className={styles.calcResults}>
-              <h3 className={styles.calcSub}>Regime Comparison (AY 2027-28)</h3>
-              {taxResult ? (
-                <div className={styles.resultsList}>
-                  <div className="table-responsive">
-                    <table className="table-custom">
-                      <thead>
-                        <tr>
-                          <th>Particulars</th>
-                          <th>New Regime</th>
-                          <th>Old Regime</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Taxable Income</td>
-                          <td>₹{taxResult.newTaxable}</td>
-                          <td>₹{taxResult.oldTaxable}</td>
-                        </tr>
-                        <tr>
-                          <td>Base Tax</td>
-                          <td>₹{taxResult.newBase}</td>
-                          <td>₹{taxResult.oldBase}</td>
-                        </tr>
-                        <tr>
-                          <td>Cess (4%)</td>
-                          <td>₹{taxResult.newCess}</td>
-                          <td>₹{taxResult.oldCess}</td>
-                        </tr>
-                        <tr style={{ fontWeight: "700" }}>
-                          <td>Total Tax Payable</td>
-                          <td style={{ color: taxResult.recommendedRegime === "New Tax Regime" ? "var(--secondary-color)" : "inherit" }}>
-                            ₹{taxResult.newTotal}
-                          </td>
-                          <td style={{ color: taxResult.recommendedRegime === "Old Tax Regime" ? "var(--secondary-color)" : "inherit" }}>
-                            ₹{taxResult.oldTotal}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                <div 
+                  className={styles.deductionToggle}
+                  onClick={() => setShowDetailedDeductions(!showDetailedDeductions)}
+                >
+                  <span>
+                    {showDetailedDeductions ? "▲ Hide" : "▼ Enter"} Eligible Deductions (80C, 80D, HRA, Home Loan)
+                  </span>
+                  <span style={{ fontSize: "0.8rem", color: "var(--secondary-color)" }}>
+                    {showDetailedDeductions ? "Collapse" : "For Old Regime"}
+                  </span>
+                </div>
+
+                {showDetailedDeductions && (
+                  <div className={styles.deductionsBox}>
+                    <div className="form-group">
+                      <label className="form-label" style={{ fontSize: "0.85rem" }}>
+                        Section 80C (PPF/EPF/ELSS/LIC)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Max ₹1,50,000"
+                        value={sec80C}
+                        onChange={(e) => setSec80C(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label" style={{ fontSize: "0.85rem" }}>
+                        Section 80D (Health Insurance)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Up to ₹1,00,000"
+                        value={sec80D}
+                        onChange={(e) => setSec80D(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label" style={{ fontSize: "0.85rem" }}>
+                        Section 24(b) (Home Loan Interest)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Max ₹2,00,000"
+                        value={homeLoan24b}
+                        onChange={(e) => setHomeLoan24b(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label" style={{ fontSize: "0.85rem" }}>
+                        HRA (House Rent Exemption)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="e.g. 120000"
+                        value={hraExemption}
+                        onChange={(e) => setHraExemption(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label" style={{ fontSize: "0.85rem" }}>
+                        Section 80CCD(1B) (NPS)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Max ₹50,000"
+                        value={nps80CCD}
+                        onChange={(e) => setNps80CCD(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label" style={{ fontSize: "0.85rem" }}>
+                        Other Deductions (80E/80G/80TTA)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="e.g. 25000"
+                        value={otherDeductions}
+                        onChange={(e) => setOtherDeductions(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
                   </div>
+                )}
 
-                  <div className={styles.recommendationBox}>
-                    <h4>Recommended Option: <strong>{taxResult.recommendedRegime}</strong></h4>
-                    {parseFloat(taxResult.savings) > 0 ? (
-                      <p>You can save approximately <strong>₹{taxResult.savings}</strong> by choosing this regime.</p>
-                    ) : (
-                      <p>Both tax regimes result in equivalent tax liability for this income slab.</p>
-                    )}
+                <button type="submit" className="btn btn-primary" style={{ width: "100%", marginTop: "10px" }}>
+                  Compare Both Regimes Now
+                </button>
+              </div>
+
+              {/* Side Info / Slab Info */}
+              <div className={styles.calcResults}>
+                <h3 className={styles.calcSub}>Key Regime Differences</h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "0.88rem", color: "var(--text-dark)", lineHeight: "1.5" }}>
+                  <div style={{ background: "#ffffff", padding: "12px", borderRadius: "6px", border: "1px solid var(--border-color)" }}>
+                    <strong style={{ color: "#2E7D32" }}>New Tax Regime (Default):</strong>
+                    <ul style={{ margin: "6px 0 0 18px", padding: 0 }}>
+                      <li>Standard deduction: <strong>₹75,000</strong></li>
+                      <li>Section 87A rebate: <strong>Zero tax up to ₹7.75 Lakh</strong> gross income</li>
+                      <li>Lower tax slabs, no investment proofs needed</li>
+                    </ul>
+                  </div>
+                  <div style={{ background: "#ffffff", padding: "12px", borderRadius: "6px", border: "1px solid var(--border-color)" }}>
+                    <strong style={{ color: "#1565C0" }}>Old Tax Regime:</strong>
+                    <ul style={{ margin: "6px 0 0 18px", padding: 0 }}>
+                      <li>Standard deduction: <strong>₹50,000</strong></li>
+                      <li>Allows Chapter VI-A deductions (80C, 80D, HRA, 24b Home Loan)</li>
+                      <li>Beneficial if total deductions exceed ₹3.75 - ₹4.25 Lakh</li>
+                    </ul>
                   </div>
                 </div>
-              ) : (
-                <div className={styles.placeholderMsg}>
-                  Input your annual CTC salary and investments to view a side-by-side tax liability comparison.
-                </div>
-              )}
+              </div>
             </div>
-          </div>
+          </form>
+
+          {/* Results Comparison Block */}
+          {taxResult && (
+            <div className={styles.regimeCompareWrapper}>
+              {/* Verdict Announcement */}
+              <div className={`${styles.verdictBanner} ${taxResult.recommendedRegime === "Old Tax Regime" ? styles.verdictBannerOld : ""}`}>
+                <div style={{ fontSize: "2rem" }}>
+                  {taxResult.recommendedRegime === "New Tax Regime" ? "🎉" : "💡"}
+                </div>
+                <div>
+                  <h4 className={`${styles.verdictTitle} ${taxResult.recommendedRegime === "Old Tax Regime" ? styles.verdictTitleOld : ""}`}>
+                    {taxResult.recommendedRegime === "New Tax Regime" 
+                      ? `New Tax Regime Saves You ₹${taxResult.savings}!` 
+                      : `Old Tax Regime Saves You ₹${taxResult.savings}!`}
+                  </h4>
+                  <p className={styles.verdictSub}>
+                    {taxResult.savingsRaw > 0 
+                      ? `Based on your gross income of ₹${taxResult.grossIncome} and claimed deductions of ₹${taxResult.totalOldDeductions}, choosing the ${taxResult.recommendedRegime} yields the lowest tax liability.`
+                      : "Both tax regimes yield zero tax liability due to statutory rebates for your income slab."}
+                  </p>
+                </div>
+              </div>
+
+              {/* Side-by-side Cards */}
+              <div className={styles.regimesGrid}>
+                {/* New Regime Card */}
+                <div className={`${styles.regimeCol} ${taxResult.recommendedRegime === "New Tax Regime" ? styles.regimeColWinner : ""}`}>
+                  {taxResult.recommendedRegime === "New Tax Regime" && (
+                    <span className={styles.winnerTag}>Recommended</span>
+                  )}
+                  <h4 className={styles.regimeHeading}>New Tax Regime</h4>
+                  <p className={styles.regimeFeatures}>Concessional Slabs (Sec 115BAC)</p>
+                  <div className={styles.regimeRows}>
+                    <div className={styles.regimeRow}>
+                      <span>Gross Annual Income:</span>
+                      <strong>₹{taxResult.grossIncome}</strong>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Standard Deduction:</span>
+                      <strong style={{ color: "#2E7D32" }}>- ₹{taxResult.newStdDeduction}</strong>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Exemptions & Deductions:</span>
+                      <span>Not applicable</span>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Net Taxable Income:</span>
+                      <strong>₹{taxResult.newTaxable}</strong>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Tax Calculated:</span>
+                      <span>₹{taxResult.newBase}</span>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Health & Education Cess (4%):</span>
+                      <span>₹{taxResult.newCess}</span>
+                    </div>
+                    <div className={styles.regimeRowTotal}>
+                      <span>Total Tax Payable:</span>
+                      <span className={`${styles.totalTaxValue} ${taxResult.recommendedRegime === "New Tax Regime" ? styles.totalTaxValueWinner : ""}`}>
+                        ₹{taxResult.newTotal}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Old Regime Card */}
+                <div className={`${styles.regimeCol} ${taxResult.recommendedRegime === "Old Tax Regime" ? styles.regimeColWinner : ""}`}>
+                  {taxResult.recommendedRegime === "Old Tax Regime" && (
+                    <span className={styles.winnerTag}>Recommended</span>
+                  )}
+                  <h4 className={styles.regimeHeading}>Old Tax Regime</h4>
+                  <p className={styles.regimeFeatures}>Traditional Slabs + Chapter VI-A</p>
+                  <div className={styles.regimeRows}>
+                    <div className={styles.regimeRow}>
+                      <span>Gross Annual Income:</span>
+                      <strong>₹{taxResult.grossIncome}</strong>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Standard Deduction:</span>
+                      <strong style={{ color: "#2E7D32" }}>- ₹{taxResult.oldStdDeduction}</strong>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Eligible Deductions (80C/80D/etc):</span>
+                      <strong style={{ color: "#2E7D32" }}>- ₹{taxResult.totalOldDeductions}</strong>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Net Taxable Income:</span>
+                      <strong>₹{taxResult.oldTaxable}</strong>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Tax Calculated:</span>
+                      <span>₹{taxResult.oldBase}</span>
+                    </div>
+                    <div className={styles.regimeRow}>
+                      <span>Health & Education Cess (4%):</span>
+                      <span>₹{taxResult.oldCess}</span>
+                    </div>
+                    <div className={styles.regimeRowTotal}>
+                      <span>Total Tax Payable:</span>
+                      <span className={`${styles.totalTaxValue} ${taxResult.recommendedRegime === "Old Tax Regime" ? styles.totalTaxValueWinner : ""}`}>
+                        ₹{taxResult.oldTotal}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

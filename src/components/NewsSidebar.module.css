@@ -137,9 +137,3 @@
     background-position: -200% 0;
   }
 }
-
-@media (max-width: 768px) {
-  .animateScroll {
-    animation-duration: 25.5s;
-  }
-}
