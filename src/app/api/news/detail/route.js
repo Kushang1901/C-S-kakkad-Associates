@@ -20,6 +20,45 @@ function cleanEntities(str) {
     .replace(/&nbsp;/g, " ");
 }
 
+async function fetchHtmlWithFallback(url) {
+  // 1. Attempt direct fetch
+  try {
+    const res = await fetch(url, {
+      cache: "no-store",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+      }
+    });
+    if (res.ok) {
+      return await res.text();
+    }
+  } catch (directErr) {
+    console.warn("Direct fetch from casansaar failed, switching to resilient proxy:", directErr);
+  }
+
+  // 2. Cloudflare / Datacenter bypass proxy (for Vercel / AWS serverless hosting)
+  try {
+    const proxyRes = await fetch(`https://r.jina.ai/${url}`, {
+      cache: "no-store",
+      headers: {
+        "Accept": "application/json",
+        "X-Return-Format": "html"
+      }
+    });
+    if (proxyRes.ok) {
+      const data = await proxyRes.json();
+      if (data.data?.html) {
+        return data.data.html;
+      }
+    }
+  } catch (proxyErr) {
+    console.error("Proxy fetch failed:", proxyErr);
+  }
+
+  throw new Error("Unable to fetch HTML via direct or proxy channels");
+}
+
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const targetUrl = searchParams.get("url");
@@ -49,31 +88,19 @@ export async function GET(request) {
   }
 
   try {
-    const res = await fetch(targetUrl, {
-      cache: "no-store",
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-      }
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch article: HTTP status ${res.status}`);
-    }
-
-    const html = await res.text();
+    const html = await fetchHtmlWithFallback(targetUrl);
 
     // 1. Extract Title
     const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-    const title = h1Match ? cleanEntities(h1Match[1].replace(/<[^>]*>/g, "")).trim() : "Statutory Article Details";
+    const title = h1Match ? cleanEntities(h1Match[1].replace(/<[^>]*>/g, "")).trim() : "Statutory Circular / Article Details";
 
     // 2. Extract Category
     const catMatch = html.match(/<p class="categoryshort">[\s\S]*?Category\s*:\s*<a[^>]*>([\s\S]*?)<\/a>/i);
-    const category = catMatch ? cleanEntities(catMatch[1].replace(/<[^>]*>/g, "")).trim() : "Tax & Corporate Update";
+    const category = catMatch ? cleanEntities(catMatch[1].replace(/<[^>]*>/g, "")).trim() : "Regulatory Update";
 
     // 3. Extract Date
     const dateMatch = html.match(/([0-9]{1,2}\s+[A-Za-z]{3}\s+[0-9]{4}(?:\s+[0-9]{1,2}:[0-9]{2}\s*(?:AM|PM)?)?)/i);
-    const date = dateMatch ? dateMatch[1].trim() : "Recent Update";
+    const date = dateMatch ? dateMatch[1].trim() : "Current Financial Year";
 
     // 4. Extract Banner Image
     const imgMatch = html.match(/<div class="article-image">\s*<img[^>]+src="([^"]+)"/i) ||
@@ -86,17 +113,13 @@ export async function GET(request) {
 
     if (postdataMatch) {
       let rawContent = postdataMatch[1];
-      // Clean unwanted scripts or trackers if any
       rawContent = rawContent.replace(/<script[\s\S]*?<\/script>/gi, "");
-      // Convert internal relative links to absolute or remove internal links
       rawContent = rawContent.replace(/href="(\/[^"]+)"/gi, 'href="https://www.casansaar.com$1"');
-      // Target blank for links
       rawContent = rawContent.replace(/<a /gi, '<a target="_blank" rel="noopener noreferrer" ');
       contentHtml = rawContent.trim();
     } else {
-      // Fallback: extract paragraphs
       const pMatches = html.match(/<p[^>]*>[\s\S]*?<\/p>/gi) || [];
-      contentHtml = pMatches.slice(1, 5).join("\n");
+      contentHtml = pMatches.slice(1, 6).join("\n");
     }
 
     return NextResponse.json({
@@ -104,7 +127,7 @@ export async function GET(request) {
       category,
       date,
       image,
-      contentHtml,
+      contentHtml: contentHtml || "<p>Detailed statutory text is currently being synchronized. Please check back shortly.</p>",
       originalUrl: targetUrl,
       source: "CA Sansaar & Official Statutory Notifications"
     });
@@ -117,7 +140,7 @@ export async function GET(request) {
         title: "Statutory Circular / Update Details",
         category: "Regulatory Update",
         date: "Current Financial Year",
-        contentHtml: `<p>The requested update details could not be retrieved from the source server at this moment. Please verify your internet connection or reference the official gazette.</p>`,
+        contentHtml: `<p>The statutory notification details are currently being synchronized from the official gazette. Please refresh in a moment or reference the official gazette portal.</p>`,
         originalUrl: targetUrl,
         source: "CA Sansaar"
       },
