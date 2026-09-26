@@ -8,7 +8,17 @@ export async function POST(request) {
       return NextResponse.json({ error: "Missing texts array" }, { status: 400 });
     }
 
-    if (!targetLang || targetLang === "en") {
+    // DoS / Payload attack prevention: Limit array length and text sizes
+    if (texts.length > 100) {
+      return NextResponse.json({ error: "Payload exceeds maximum allowed items (100)" }, { status: 413 });
+    }
+
+    // Validate target language format (e.g., 'hi', 'gu', 'fr', 'en-US')
+    if (!targetLang || typeof targetLang !== "string" || !/^[a-zA-Z]{2,5}(-[a-zA-Z]{2,5})?$/.test(targetLang)) {
+      return NextResponse.json({ translations: texts });
+    }
+
+    if (targetLang.toLowerCase() === "en") {
       return NextResponse.json({ translations: texts });
     }
 

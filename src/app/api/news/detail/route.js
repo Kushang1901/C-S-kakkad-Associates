@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import DOMPurify from "isomorphic-dompurify";
 
 export const dynamic = "force-dynamic";
 
@@ -70,11 +71,15 @@ export async function GET(request) {
     );
   }
 
-  // Ensure security: only allow fetching from casansaar.com
+  // Ensure strict SSRF protection: only allow official verified casansaar domains
   let parsedUrl;
   try {
     parsedUrl = new URL(targetUrl);
-    if (!parsedUrl.hostname.includes("casansaar.com")) {
+    const validHostnames = ["casansaar.com", "www.casansaar.com"];
+    if (
+      !["http:", "https:"].includes(parsedUrl.protocol) ||
+      !validHostnames.includes(parsedUrl.hostname.toLowerCase())
+    ) {
       return NextResponse.json(
         { error: "Target domain not permitted" },
         { status: 403 }
@@ -115,19 +120,32 @@ export async function GET(request) {
       let rawContent = postdataMatch[1];
       rawContent = rawContent.replace(/<script[\s\S]*?<\/script>/gi, "");
       rawContent = rawContent.replace(/href="(\/[^"]+)"/gi, 'href="https://www.casansaar.com$1"');
-      rawContent = rawContent.replace(/<a /gi, '<a target="_blank" rel="noopener noreferrer" ');
+      rawContent = rawContent.replace(/<a /gi, '<a target="_blank" rel="noopener noreferrer nofollow" ');
       contentHtml = rawContent.trim();
     } else {
       const pMatches = html.match(/<p[^>]*>[\s\S]*?<\/p>/gi) || [];
       contentHtml = pMatches.slice(1, 6).join("\n");
     }
 
+    // Cryptographic-grade XSS Sanitization using DOMPurify
+    const sanitizedHtml = DOMPurify.sanitize(contentHtml || "<p>Detailed statutory text is currently being synchronized. Please check back shortly.</p>", {
+      ALLOWED_TAGS: [
+        "p", "br", "strong", "b", "em", "i", "u", "span", "div",
+        "h1", "h2", "h3", "h4", "h5", "h6",
+        "ul", "ol", "li", "table", "thead", "tbody", "tr", "th", "td",
+        "a", "blockquote", "img"
+      ],
+      ALLOWED_ATTR: ["href", "target", "rel", "class", "style", "src", "alt", "title", "width", "height"],
+      FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "textarea", "button"],
+      FORBID_ATTR: ["onerror", "onload", "onclick", "onmouseover", "onfocus", "onblur", "javascript:"],
+    });
+
     return NextResponse.json({
       title,
       category,
       date,
       image,
-      contentHtml: contentHtml || "<p>Detailed statutory text is currently being synchronized. Please check back shortly.</p>",
+      contentHtml: sanitizedHtml,
       originalUrl: targetUrl,
       source: "CA Sansaar & Official Statutory Notifications"
     });

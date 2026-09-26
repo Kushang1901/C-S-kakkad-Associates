@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import DOMPurify from "isomorphic-dompurify";
 import styles from "./ArticleDetailView.module.css";
 import NewsSidebar from "./NewsSidebar";
 import NewsModal from "./NewsModal";
@@ -168,7 +169,9 @@ export default function ArticleDetailView({ pageType = "news" }) {
               {/* Render Full Body Article HTML */}
               <div
                 className={styles.articleBody}
-                dangerouslySetInnerHTML={{ __html: article?.contentHtml || "<p>No content available.</p>" }}
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(article?.contentHtml || "<p>No content available.</p>")
+                }}
               />
 
               {/* Statutory Attribution Box */}
