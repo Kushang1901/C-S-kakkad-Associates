@@ -44,39 +44,71 @@ function formatDate(dateStr) {
 }
 
 async function fetchHtmlWithFallback(url) {
-  // 1. Attempt direct fetch
+  // 1. Attempt direct fetch (Fast, with 3.5s timeout for serverless)
   try {
     const res = await fetch(url, {
       cache: "no-store",
+      signal: AbortSignal.timeout(3500),
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
       }
     });
     if (res.ok) {
-      return await res.text();
+      const text = await res.text();
+      if (text && text.length > 500) {
+        return text;
+      }
     }
   } catch (directErr) {
-    console.warn("Direct fetch from casansaar failed, switching to resilient proxy:", directErr);
+    console.warn("Direct fetch from casansaar failed or timed out, switching to resilient proxy:", directErr.message);
   }
 
-  // 2. Cloudflare / Datacenter bypass proxy (needed for Vercel / AWS serverless hosting)
+  // 2. Cloudflare / Datacenter bypass proxy (Jina AI Reader)
   try {
     const proxyRes = await fetch(`https://r.jina.ai/${url}`, {
       cache: "no-store",
+      signal: AbortSignal.timeout(5000),
       headers: {
         "Accept": "application/json",
         "X-Return-Format": "html"
       }
     });
     if (proxyRes.ok) {
-      const data = await proxyRes.json();
-      if (data.data?.html) {
-        return data.data.html;
+      const contentType = proxyRes.headers.get("content-type") || "";
+      if (contentType.includes("json")) {
+        const data = await proxyRes.json();
+        if (data.data?.html) {
+          return data.data.html;
+        }
+      } else {
+        const text = await proxyRes.text();
+        if (text && text.length > 500) {
+          return text;
+        }
       }
     }
   } catch (proxyErr) {
-    console.error("Proxy fetch failed:", proxyErr);
+    console.warn("Proxy fetch failed:", proxyErr.message);
+  }
+
+  // 3. Fallback: AllOrigins raw proxy
+  try {
+    const allOriginsRes = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(4000),
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
+    if (allOriginsRes.ok) {
+      const text = await allOriginsRes.text();
+      if (text && text.length > 500) {
+        return text;
+      }
+    }
+  } catch (allOriginsErr) {
+    console.warn("AllOrigins proxy fetch failed:", allOriginsErr.message);
   }
 
   throw new Error("Unable to fetch HTML via direct or proxy channels");

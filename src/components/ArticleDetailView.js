@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import DOMPurify from "isomorphic-dompurify";
 import styles from "./ArticleDetailView.module.css";
 import NewsSidebar from "./NewsSidebar";
 import NewsModal from "./NewsModal";
@@ -100,11 +99,24 @@ export default function ArticleDetailView({ pageType = "news" }) {
             </div>
             <h1 className={styles.articleTitle}>Unable to Display Update</h1>
             <p style={{ color: "#64748b", lineHeight: 1.7, marginBottom: 24 }}>
-              {error} Please return to the homepage or verify the requested link.
+              {error} You can access the official notification directly via the source portal.
             </p>
-            <Link href="/" className={`${styles.toolBtn} ${styles.backBtn}`}>
-              ← Return to Home Portal
-            </Link>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              {targetUrl && (
+                <a
+                  href={targetUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.toolBtn} ${styles.backBtn}`}
+                  style={{ background: "#1e3a8a", color: "#fff", borderColor: "#1e3a8a" }}
+                >
+                  Open Official Publication ↗
+                </a>
+              )}
+              <Link href="/" className={`${styles.toolBtn} ${styles.backBtn}`}>
+                ← Return to Home Portal
+              </Link>
+            </div>
           </div>
         ) : (
           <div className={styles.layoutGrid}>
@@ -132,6 +144,18 @@ export default function ArticleDetailView({ pageType = "news" }) {
                 </Link>
 
                 <div className={styles.toolbarActions}>
+                  {(article?.originalUrl || targetUrl) && (
+                    <a
+                      href={article?.originalUrl || targetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.toolBtn}
+                      title="Open source article in new tab"
+                    >
+                      Source ↗
+                    </a>
+                  )}
+
                   <button onClick={handlePrint} className={styles.toolBtn} title="Print circular">
                     <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <polyline points="6 9 6 2 18 2 18 9"></polyline>
@@ -170,7 +194,7 @@ export default function ArticleDetailView({ pageType = "news" }) {
               <div
                 className={styles.articleBody}
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(article?.contentHtml || "<p>No content available.</p>")
+                  __html: article?.contentHtml || "<p>No content available.</p>"
                 }}
               />
 
