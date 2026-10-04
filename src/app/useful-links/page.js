@@ -18,14 +18,14 @@ const PORTAL_LINKS = [
     dept: "Income Tax Department",
     category: "Income Tax",
     description: "TDS Reconciliation Analysis and Correction Enabling System for downloading Form 16/16A, Conso files, and justification reports.",
-    url: "https://www.tdscpc.gov.in/app/login.xhtml",
+    url: "https://traces.tdscpc.gov.in/",
   },
   {
     name: "Protean / NSDL Tax Services",
     dept: "Protean eGov Technologies",
     category: "Income Tax",
     description: "Online application for new PAN/TAN cards, corrections, status tracking, and e-Payment of direct taxes (Challan 280, 281).",
-    url: "https://www.tin-nsdl.com/",
+    url: "https://tinpan.proteantech.in/",
   },
 
   // Goods & Services Tax (GST)
@@ -57,14 +57,14 @@ const PORTAL_LINKS = [
     dept: "Ministry of Corporate Affairs",
     category: "Corporate & MCA",
     description: "Statutory filing portal for Company incorporation (SPICe+), Annual Returns (AOC-4, MGT-7), Director KYC (DIR-3), and LLP forms.",
-    url: "https://www.mca.gov.in/",
+    url: "https://www.mca.gov.in/content/mca/global/en/home.html",
   },
   {
     name: "Insolvency & Bankruptcy Board of India (IBBI)",
     dept: "Government of India",
     category: "Corporate & MCA",
     description: "Regulatory body overseeing insolvency professionals and corporate insolvency resolution processes (CIRP) under IBC 2016.",
-    url: "https://www.ibbi.gov.in/",
+    url: "https://ibbi.gov.in/",
   },
 
   // Trade, Industry & Enterprise
@@ -96,14 +96,14 @@ const PORTAL_LINKS = [
     dept: "Employees' Provident Fund Organisation",
     category: "Labor & Compliance",
     description: "Employer and employee unified portal for electronic ECR challan filing, monthly PF contributions, and online PF transfer/claims.",
-    url: "https://unifiedportal-mem.epfindia.gov.in/",
+    url: "https://unifiedportal-mem.epfindia.gov.in/memberinterface/",
   },
   {
     name: "ESIC Online Portal",
     dept: "Ministry of Labour & Employment",
     category: "Labor & Compliance",
     description: "Employee State Insurance Corporation portal for employer registration, employee monthly contribution filing, and medical benefits.",
-    url: "https://www.esic.gov.in/",
+    url: "https://esic.gov.in/",
   },
   {
     name: "Shram Suvidha Portal",
@@ -210,10 +210,23 @@ export default function UsefulLinksPage() {
         <div className={styles.linksGrid}>
           {filteredLinks.map((portal, idx) => (
             <div key={idx} className={styles.linkCard}>
-              <div className={styles.linkHeader}>
-                <h3 className={styles.portalName}>{portal.name}</h3>
-                <span className={styles.deptTag}>{portal.dept}</span>
+              <div className={styles.cardTopRow}>
+                <div className={styles.cardIconBox} aria-hidden="true">
+                  <svg className={styles.cardIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <span className={styles.deptTag} title={portal.dept}>
+                  {portal.dept}
+                </span>
               </div>
+
+              <h3 className={styles.portalName}>{portal.name}</h3>
+
+              <div className={styles.categoryRow}>
+                <span className={styles.categoryPill}>{portal.category}</span>
+              </div>
+
               <p className={styles.portalDesc}>{portal.description}</p>
               <a
                 href={portal.url}

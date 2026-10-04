@@ -6,6 +6,9 @@ import styles from "./page.module.css";
 import NewsModal from "@/components/NewsModal";
 import EnquiryModal from "@/components/EnquiryModal";
 
+// Cache hero slide translations across language changes
+const heroSlidesCache = { gu: null, hi: null };
+
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -54,6 +57,11 @@ export default function Home() {
         return;
       }
 
+      if (heroSlidesCache[lang]) {
+        setTranslatedSlides(heroSlidesCache[lang]);
+        return;
+      }
+
       const allTexts = [];
       slides.forEach((s) => {
         allTexts.push(s.tag, s.title, s.desc);
@@ -73,6 +81,7 @@ export default function Home() {
             title: translations[idx * 3 + 1] || s.title,
             desc: translations[idx * 3 + 2] || s.desc,
           }));
+          heroSlidesCache[lang] = newSlides;
           setTranslatedSlides(newSlides);
         }
       } catch (err) {

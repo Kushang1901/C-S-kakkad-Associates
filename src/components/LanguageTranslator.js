@@ -11,10 +11,37 @@ const LANGUAGES = [
   { code: "hi", name: "Hindi", nativeName: "हिन्दी" },
 ];
 
-// Memory cache to make repeated transitions instant
+const CACHE_STORAGE_KEY = "csk_translations_cache_v2";
+
+// Memory cache synced with localStorage for instant page switches
 const translationCache = {
   gu: {},
   hi: {},
+};
+
+// Safe helper to load cached translations from localStorage
+const loadLocalTranslations = () => {
+  if (typeof window === "undefined") return;
+  try {
+    const raw = localStorage.getItem(CACHE_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.gu) Object.assign(translationCache.gu, parsed.gu);
+      if (parsed.hi) Object.assign(translationCache.hi, parsed.hi);
+    }
+  } catch (e) {
+    console.warn("Could not read translations cache:", e);
+  }
+};
+
+// Safe helper to persist translations to localStorage
+const persistLocalTranslations = () => {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(translationCache));
+  } catch (e) {
+    console.warn("Could not save translations cache:", e);
+  }
 };
 
 export default function LanguageTranslator({ isMobile = false }) {
@@ -28,6 +55,7 @@ export default function LanguageTranslator({ isMobile = false }) {
 
   useEffect(() => {
     setMounted(true);
+    loadLocalTranslations();
   }, []);
 
   // Helper to gather all translatable text nodes across the page
@@ -75,22 +103,19 @@ export default function LanguageTranslator({ isMobile = false }) {
 
     const nodes = getTextNodes();
 
-    // 1. If English, restore to original text in 0ms with a brief smooth confirmation
+    // 1. If English, restore to original text in 0ms instantly
     if (langCode === "en") {
-      setIsTranslating(true);
       nodes.forEach((node) => {
         if (node.__originalText !== undefined) {
           node.nodeValue = node.__originalText;
         }
       });
-      setTimeout(() => {
-        setIsTranslating(false);
-      }, 250);
+      setIsTranslating(false);
       return;
     }
 
-    // 2. For Gujarati / Hindi
-    setIsTranslating(true);
+    // 2. For Gujarati / Hindi:
+    // First, immediately translate all nodes that already exist in cache
     const toTranslateMap = new Map();
     const uncachedTexts = new Set();
 
@@ -107,7 +132,7 @@ export default function LanguageTranslator({ isMobile = false }) {
       }
       toTranslateMap.get(original).push(node);
 
-      if (translationCache[langCode][original]) {
+      if (translationCache[langCode]?.[original]) {
         node.nodeValue = translationCache[langCode][original];
       } else {
         if (!/^[\d\s,.\-+/%:()]+$/.test(original)) {
@@ -116,11 +141,14 @@ export default function LanguageTranslator({ isMobile = false }) {
       }
     });
 
-    // If all nodes already translated from cache, we're done immediately!
+    // If everything on the page is already cached, complete immediately (0ms)!
     if (uncachedTexts.size === 0) {
       setIsTranslating(false);
       return;
     }
+
+    // Only display spinner overlay if we actually need to fetch new translations
+    setIsTranslating(true);
 
     try {
       const textsArray = Array.from(uncachedTexts);
@@ -132,8 +160,12 @@ export default function LanguageTranslator({ isMobile = false }) {
 
       if (res.ok) {
         const { translations } = await res.json();
+        if (!translationCache[langCode]) {
+          translationCache[langCode] = {};
+        }
+
         textsArray.forEach((original, idx) => {
-          const translated = translations[idx] || original;
+          const translated = translations?.[idx] || original;
           translationCache[langCode][original] = translated;
 
           const targetNodes = toTranslateMap.get(original) || [];
@@ -141,6 +173,9 @@ export default function LanguageTranslator({ isMobile = false }) {
             node.nodeValue = translated;
           });
         });
+
+        // Persist to localStorage for instantaneous future visits
+        persistLocalTranslations();
       }
     } catch (err) {
       console.error("Translation error:", err);
@@ -154,7 +189,7 @@ export default function LanguageTranslator({ isMobile = false }) {
     if (currentLang !== "en") {
       const timer = setTimeout(() => {
         applyTranslation(currentLang);
-      }, 60);
+      }, 50);
       return () => clearTimeout(timer);
     }
   }, [pathname, currentLang, applyTranslation]);

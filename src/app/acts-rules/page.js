@@ -25,35 +25,35 @@ const STATUTORY_ITEMS = [
     type: "Act",
     category: "Corporate & LLP",
     authority: "Ministry of Corporate Affairs",
-    link: "https://www.mca.gov.in/Ministry/pdf/CompaniesAct2013.pdf" 
+    link: "https://www.mca.gov.in/content/mca/global/en/acts-rules/companies-act.html" 
   },
   { 
     name: "The Limited Liability Partnership Act, 2008",
     type: "Act",
     category: "Corporate & LLP",
     authority: "Ministry of Corporate Affairs",
-    link: "https://www.mca.gov.in/Ministry/pdf/LLP_Act_2008.pdf" 
+    link: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks/acts.html" 
   },
   { 
     name: "Chartered Accountants Act, 1949 [As amended]",
     type: "Act",
     category: "Professional Bodies",
     authority: "ICAI / MCA",
-    link: "https://www.mca.gov.in/Ministry/pdf/CharteredAccountantsAct1949.pdf" 
+    link: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks/acts.html" 
   },
   { 
     name: "Company Secretaries Act, 1980 [As amended]",
     type: "Act",
     category: "Professional Bodies",
     authority: "ICSI / MCA",
-    link: "https://www.mca.gov.in/Ministry/pdf/CompanySecretariesAct1980.pdf" 
+    link: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks/acts.html" 
   },
   { 
     name: "Cost and Works Accountants Act, 1959 [As amended]",
     type: "Act",
     category: "Professional Bodies",
     authority: "ICMAI / MCA",
-    link: "https://www.mca.gov.in/Ministry/pdf/CostAndWorksAccountantsAct1959.pdf" 
+    link: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks/acts.html" 
   },
   { 
     name: "The Societies Registration Act, 1860",
@@ -146,7 +146,7 @@ const STATUTORY_ITEMS = [
     type: "Rule",
     category: "Corporate & LLP",
     authority: "Ministry of Corporate Affairs",
-    link: "https://www.mca.gov.in/Ministry/pdf/RegisteredValuersValuationRules2017.pdf" 
+    link: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks/rules.html" 
   },
   { 
     name: "Central Goods and Services Tax (CGST) Rules, 2017",
