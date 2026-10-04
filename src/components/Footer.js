@@ -72,7 +72,6 @@ export default function Footer() {
           <div className={styles.columnLinks}>
             <h4 className={styles.title}>Utilities & Portals</h4>
             <ul className={styles.links}>
-              <li><Link href="/compliance-calendar">Compliance Calendar</Link></li>
               <li><Link href="/calculators">Tax & EMI Calculators</Link></li>
               <li><Link href="/useful-links">Government Portals</Link></li>
               <li><Link href="/acts-rules">Acts & Rules</Link></li>
