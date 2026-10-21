@@ -1,6 +1,27 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Accounting & Bookkeeping Outsourcing Services Dwarka | Payroll & MIS",
+  description: "Professional accounting, ledger maintenance, payroll processing, and MIS financial reporting by C S Kakkad & Associates. Secure, accurate, and cost-effective cloud accounting solutions.",
+  keywords: [
+    "Accounting Outsourcing Dwarka",
+    "Bookkeeping Services Gujarat",
+    "Payroll Processing CA",
+    "MIS Reporting Consultant",
+    "TDS Returns and Bank Reconciliation",
+    "Cloud Bookkeeping Dwarka",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/services/accounting-outsourcing",
+  },
+  openGraph: {
+    title: "Accounting & Outsourcing Services | C S Kakkad & Associates",
+    description: "Reliable bookkeeping, payroll administration, and financial reporting for businesses of all scales.",
+    url: "https://www.cachintankakkad.in/services/accounting-outsourcing",
+  },
+};
+
 export default function AccountingOutsourcing() {
   return (
     <InnerPageLayout 

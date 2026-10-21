@@ -1,5 +1,13 @@
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Our Vision & Values | C S Kakkad & Associates",
+  description: "Explore the strategic vision, foundational ethics, and long-term compliance pillars guiding C S Kakkad & Associates Chartered Accountants.",
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/vision",
+  },
+};
+
 export default function Vision() {
   return (
     <InnerPageLayout title="Our Vision" breadcrumbs={[{ name: "Vision" }]}>

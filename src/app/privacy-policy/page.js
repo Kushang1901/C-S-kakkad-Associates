@@ -1,5 +1,13 @@
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Privacy & Data Security Policy | C S Kakkad & Associates",
+  description: "Client data confidentiality, encryption protocols, and privacy commitments under ICAI ethical guidelines at C S Kakkad & Associates.",
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/privacy-policy",
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <InnerPageLayout title="Privacy Policy" breadcrumbs={[{ name: "Privacy Policy" }]}>
@@ -50,7 +58,7 @@ export default function PrivacyPolicy() {
 
       <h2>5. Contact & Updates</h2>
       <p>
-        We update this policy periodically to align with WIRC/ICAI guidelines. For questions regarding your data security, please email CA Chintan S. Kakkad at <a href="mailto:cachintankakkad@gmail.com" style={{ color: "var(--secondary-color)", fontWeight: "600", textDecoration: "underline" }}>cachintankakkad@gmail.com</a>.
+        We update this policy periodically to align with WIRC/ICAI guidelines. For questions regarding your data security, please email CA Chintan S. Kakkad at <a href="mailto:info@cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600", textDecoration: "underline" }}>info@cachintankakkad.in</a>.
       </p>
     </InnerPageLayout>
   );

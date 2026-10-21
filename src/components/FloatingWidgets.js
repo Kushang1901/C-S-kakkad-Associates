@@ -79,7 +79,7 @@ export default function FloatingWidgets() {
 
             {/* Email Option */}
             <a 
-              href="mailto:cachintankakkad@gmail.com"
+              href="mailto:info@cachintankakkad.in"
               className="chatbot-option"
             >
               <svg style={{ color: "var(--primary-light)" }} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

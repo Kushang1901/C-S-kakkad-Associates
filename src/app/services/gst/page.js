@@ -1,6 +1,27 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "GST Registration & Return Filing Consultant in Dwarka | GSTR-1, 3B, 9",
+  description: "Comprehensive Goods & Services Tax (GST) consultancy by C S Kakkad & Associates. Expert GST registration, monthly GSTR-1 & 3B filings, ITC reconciliation, and GST litigation advisory.",
+  keywords: [
+    "GST Consultant Dwarka",
+    "GST Registration Dwarka Gujarat",
+    "GSTR-1 and GSTR-3B Filing",
+    "GSTR-2B ITC Reconciliation",
+    "GST Annual Return GSTR-9",
+    "GST Notice Reply CA Dwarka",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/services/gst",
+  },
+  openGraph: {
+    title: "GST Advisory & Filing Services | C S Kakkad & Associates",
+    description: "Accurate GST registrations, returns, Input Tax Credit audits, and tax dispute management.",
+    url: "https://www.cachintankakkad.in/services/gst",
+  },
+};
+
 export default function GSTServices() {
   return (
     <InnerPageLayout 

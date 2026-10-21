@@ -2,6 +2,26 @@ import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 import styles from "./team.module.css";
 
+export const metadata = {
+  title: "Leadership & Team | CA Chintan S. Kakkad (F.C.A.)",
+  description: "Meet the leadership and professional departments at C S Kakkad & Associates. Led by CA Chintan S. Kakkad with over 12 years of chartered accountancy practice in Gujarat.",
+  keywords: [
+    "CA Chintan Kakkad",
+    "CA Chintan S Kakkad",
+    "Fellow Chartered Accountant Dwarka",
+    "Managing Partner CS Kakkad",
+    "Chartered Accountant Team Gujarat",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/team",
+  },
+  openGraph: {
+    title: "Leadership & Team | C S Kakkad & Associates",
+    description: "Led by CA Chintan S. Kakkad (F.C.A.) — professional chartered accountancy, auditing, and corporate finance team.",
+    url: "https://www.cachintankakkad.in/team",
+  },
+};
+
 export default function Team() {
   const departments = [
     {
@@ -132,9 +152,9 @@ export default function Team() {
           {/* CTA */}
           <div className={styles.ctaRow}>
             <Link href="/enquiry" className={styles.btnPrimary}>Book Consultation</Link>
-            <a href="mailto:cachintankakkad@gmail.com" className={styles.btnOutline}>
+            <a href="mailto:info@cachintankakkad.in" className={styles.btnOutline}>
               <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
-              cachintankakkad@gmail.com
+              info@cachintankakkad.in
             </a>
             <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer" className={styles.btnOutline}>
               <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>

@@ -9,8 +9,33 @@ import NewsModal from "./NewsModal";
 export default function InnerPageLayout({ title, breadcrumbs = [], children }) {
   const [selectedNews, setSelectedNews] = useState(null);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.cachintankakkad.in",
+      },
+      ...breadcrumbs.map((crumb, idx) => ({
+        "@type": "ListItem",
+        position: idx + 2,
+        name: crumb.name,
+        ...(crumb.path ? { item: `https://www.cachintankakkad.in${crumb.path}` } : {}),
+      })),
+    ],
+  };
+
   return (
     <div>
+      {/* Breadcrumb Structured Data for Google SERP & AEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* Reusable Banner */}
       <div className={styles.pageBanner}>
         <div className="container">

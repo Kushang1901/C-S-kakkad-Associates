@@ -1,6 +1,21 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Download Tax & Regulatory Forms | Form 15G, 15H, 49A, 26AS, GST Forms",
+  description: "Official download links and guidelines for statutory Indian tax forms including Form 15G, Form 15H, PAN application Form 49A, TDS certificates, and GST registration forms.",
+  keywords: [
+    "Tax Forms Download India",
+    "Form 15G 15H Download",
+    "Form 49A PAN Application",
+    "Form 26AS Download",
+    "GST Registration Forms",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/forms",
+  },
+};
+
 export default function Forms() {
   const forms = [
     {

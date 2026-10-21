@@ -1,6 +1,27 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Business Loan Syndication & Project Report CA | CMA Data Preparation",
+  description: "Secure bank finance, CC limits, term loans, and working capital with C S Kakkad & Associates. Specialists in bank project reports, CMA data modeling, and debt syndication in Gujarat.",
+  keywords: [
+    "Business Loan Syndication Gujarat",
+    "Project Report for Bank Loan CA",
+    "CMA Data Preparation Dwarka",
+    "Working Capital Term Loan Advisor",
+    "MSME Loan Consultant Gujarat",
+    "Bank Credit Appraisal CA",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/services/business-finance-loan",
+  },
+  openGraph: {
+    title: "Business Finance & Loan Syndication | C S Kakkad & Associates",
+    description: "Bankable project reports, CMA data formulation, and commercial debt syndication for businesses.",
+    url: "https://www.cachintankakkad.in/services/business-finance-loan",
+  },
+};
+
 export default function BusinessFinanceLoan() {
   return (
     <InnerPageLayout 

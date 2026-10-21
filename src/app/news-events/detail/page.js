@@ -2,8 +2,11 @@ import { Suspense } from "react";
 import ArticleDetailView from "@/components/ArticleDetailView";
 
 export const metadata = {
-  title: "News & Events Details | C S Kakkad & Associates",
-  description: "Read full chartered accountancy, income tax, and GST news updates."
+  title: "Tax & Compliance News Updates | C S Kakkad & Associates",
+  description: "Read authoritative updates on Income Tax rulings, GST council circulars, MCA notifications, and ICAI announcements.",
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/news-events/detail",
+  },
 };
 
 export default function NewsDetailPage() {

@@ -1,6 +1,27 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Statutory & Tax Audit Services in Dwarka | Section 44AB Audits",
+  description: "Certified auditing services by C S Kakkad & Associates in Dwarka. Specializing in statutory audits under Companies Act 2013, tax audits under Sec 44AB, and internal risk assessments.",
+  keywords: [
+    "Statutory Audit Dwarka",
+    "Tax Audit Section 44AB Dwarka",
+    "Company Audit Gujarat",
+    "Internal Audit Services",
+    "ICAI Auditor Dwarka",
+    "Tax Auditor CA Chintan Kakkad",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/services/audit-assurance",
+  },
+  openGraph: {
+    title: "Audit & Assurance Services | C S Kakkad & Associates",
+    description: "Independent statutory audits, tax audits under Sec 44AB, and corporate governance reviews in Dwarka, Gujarat.",
+    url: "https://www.cachintankakkad.in/services/audit-assurance",
+  },
+};
+
 export default function AuditAssurance() {
   return (
     <InnerPageLayout 

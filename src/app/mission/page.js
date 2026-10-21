@@ -1,5 +1,13 @@
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Our Mission & Client Commitments | C S Kakkad & Associates",
+  description: "Discover the mission and client commitments of C S Kakkad & Associates — delivering timely tax compliance, rigorous audits, and strategic financial syndication.",
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/mission",
+  },
+};
+
 export default function Mission() {
   return (
     <InnerPageLayout title="Our Mission" breadcrumbs={[{ name: "Mission" }]}>

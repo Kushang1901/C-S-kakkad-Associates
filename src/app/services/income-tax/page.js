@@ -1,6 +1,27 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Income Tax Consultant & ITR Filing in Dwarka | Direct Tax Advisory",
+  description: "Expert income tax return (ITR) filing, advance tax planning, capital gains calculations, TDS returns, and income tax scrutiny representation by C S Kakkad & Associates, Dwarka.",
+  keywords: [
+    "Income Tax Consultant Dwarka",
+    "ITR Filing Dwarka",
+    "Direct Tax Advisory Gujarat",
+    "Capital Gains Tax Consultant",
+    "Advance Tax Computation",
+    "Income Tax Scrutiny Representation CA",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/services/income-tax",
+  },
+  openGraph: {
+    title: "Income Tax Advisory & Compliance | C S Kakkad & Associates",
+    description: "Proactive direct tax optimization, statutory ITR filing, and assessment defense for businesses & individuals.",
+    url: "https://www.cachintankakkad.in/services/income-tax",
+  },
+};
+
 export default function IncomeTaxServices() {
   return (
     <InnerPageLayout 

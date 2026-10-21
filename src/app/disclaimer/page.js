@@ -1,6 +1,14 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "ICAI Regulatory Disclaimer | C S Kakkad & Associates",
+  description: "Official legal disclaimer in compliance with the Institute of Chartered Accountants of India (ICAI) guidelines against advertising and solicitation.",
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/disclaimer",
+  },
+};
+
 export default function Disclaimer() {
   return (
     <InnerPageLayout title="Disclaimer" breadcrumbs={[{ name: "Disclaimer" }]}>

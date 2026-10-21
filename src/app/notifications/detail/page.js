@@ -2,8 +2,11 @@ import { Suspense } from "react";
 import ArticleDetailView from "@/components/ArticleDetailView";
 
 export const metadata = {
-  title: "Circular & Notification Details | C S Kakkad & Associates",
-  description: "Read full statutory regulatory circulars, notifications, and orders from MCA, SEBI, RBI, ICAI, and FEMA."
+  title: "Statutory Circulars & Notifications | C S Kakkad & Associates",
+  description: "Official statutory regulatory circulars, notifications, and orders from MCA, SEBI, RBI, ICAI, and Income Tax Department.",
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/notifications/detail",
+  },
 };
 
 export default function NotificationDetailPage() {

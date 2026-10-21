@@ -1,5 +1,13 @@
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "ICAI CPE Hours Status Check & Guidelines | C S Kakkad & Associates",
+  description: "Check your ICAI Continuing Professional Education (CPE) hours, requirements for Certificate of Practice (COP) holders, and portal login procedures.",
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/cpe-status",
+  },
+};
+
 export default function CPEStatus() {
   return (
     <InnerPageLayout title="CPE Status Check" breadcrumbs={[{ name: "CPE Status" }]}>

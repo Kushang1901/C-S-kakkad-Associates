@@ -1,6 +1,27 @@
 import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 
+export const metadata = {
+  title: "Company Registration & Business Setup Consultant Dwarka | Private Limited, LLP",
+  description: "Start and scale your enterprise with C S Kakkad & Associates. End-to-end guidance for Private Limited company incorporation, LLP registration, partnership deeds, MSME Udyam, and ROC statutory filings.",
+  keywords: [
+    "Company Registration Dwarka",
+    "Private Limited Incorporation Gujarat",
+    "LLP Formation CA",
+    "Partnership Deed Drafting",
+    "MSME Udyam Registration",
+    "ROC Compliance Consultant Dwarka",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/services/consultancy",
+  },
+  openGraph: {
+    title: "Corporate Consultancy & Business Setup | C S Kakkad & Associates",
+    description: "Expert business entity structuring, legal registrations, and corporate governance compliance.",
+    url: "https://www.cachintankakkad.in/services/consultancy",
+  },
+};
+
 export default function Consultancy() {
   return (
     <InnerPageLayout 

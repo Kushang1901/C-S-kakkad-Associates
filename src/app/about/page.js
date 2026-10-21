@@ -2,6 +2,25 @@ import Link from "next/link";
 import InnerPageLayout from "@/components/InnerPageLayout";
 import styles from "../content-page.module.css";
 
+export const metadata = {
+  title: "About Our Firm | C S Kakkad & Associates Chartered Accountants",
+  description: "Learn about C S Kakkad & Associates, a leading Chartered Accountancy practice in Dwarka, Gujarat. Founded on integrity, ethics, and deep expertise in Indian taxation and audit compliance.",
+  keywords: [
+    "About C S Kakkad and Associates",
+    "Chartered Accountants Profile Dwarka",
+    "CA Firm History Gujarat",
+    "ICAI Member Firm Dwarka",
+  ],
+  alternates: {
+    canonical: "https://www.cachintankakkad.in/about",
+  },
+  openGraph: {
+    title: "About C S Kakkad & Associates | Chartered Accountants",
+    description: "Firm history, professional values, and comprehensive chartered accountancy capabilities in Dwarka, Gujarat.",
+    url: "https://www.cachintankakkad.in/about",
+  },
+};
+
 export default function About() {
   return (
     <InnerPageLayout title="About Us" breadcrumbs={[{ name: "About Us" }]}>
