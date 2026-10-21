@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
       </p>
       <ol>
         <li><strong>Secure Cloud Ledgers:</strong> All softcopies are stored on secure cloud platforms featuring two-factor authentication and bank-grade encryption.</li>
-        <li><strong>Physical Security:</strong> All printed tax registers, deeds, and files are locked in secure storage cabinets at our Dwarka and Surajkaradi offices, accessible only to authorized assistants.</li>
+        <li><strong>Physical Security:</strong> All printed tax registers, deeds, and files are locked in secure storage cabinets at our Dwarka office, accessible only to authorized assistants.</li>
         <li><strong>Assistance Protocols:</strong> Our articled assistants and paid accountants sign strict confidentiality agreements preventing the copy or transmission of client records outside our office networks.</li>
       </ol>
 

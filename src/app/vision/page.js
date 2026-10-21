@@ -30,7 +30,7 @@ export default function Vision() {
           <strong>Pioneering Digital Tax Solutions:</strong> We aspire to integrate AI and secure cloud bookkeeping solutions, enabling clients to access real-time profit and loss metrics and instant tax compliance reports.
         </li>
         <li>
-          <strong>Empowering Local Business & Startups:</strong> We strive to support the local economy in Dwarka and Surajkaradi by advising small and medium enterprises (MSMEs) on project financing, bank credit, and government subsidies.
+          <strong>Empowering Local Business & Startups:</strong> We strive to support the local economy in Dwarka and the surrounding region by advising small and medium enterprises (MSMEs) on project financing, bank credit, and government subsidies.
         </li>
         <li>
           <strong>Setting Ethical Standards:</strong> We aim to lead by example, promoting transparent tax practices and robust internal audits that help businesses build trust with lenders, investors, and regulators.

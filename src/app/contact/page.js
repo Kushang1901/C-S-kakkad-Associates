@@ -16,7 +16,6 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
-  const [activeMapTab, setActiveMapTab] = useState("dwarka");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,37 +84,20 @@ ${line}
           <div className="grid-2" style={{ alignItems: "start" }}>
             {/* Address columns */}
             <div>
-              <h2 style={{ marginBottom: "24px" }}>Our Office Locations</h2>
+              <h2 style={{ marginBottom: "24px" }}>Our Office Location</h2>
               <p style={{ color: "var(--text-muted)", marginBottom: "30px" }}>
-                Please visit us at our offices or get in touch through our phone numbers or email address. We look forward to working with you.
+                Please visit us at our office or get in touch through our phone numbers or email address. We look forward to working with you.
               </p>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
                 <div style={{ padding: "24px", border: "1px solid var(--border-color)", borderRadius: "var(--border-radius)", background: "var(--bg-light)" }}>
-                  <h3 style={{ color: "var(--primary-color)", margin: "0 0 12px 0", fontSize: "1.2rem" }}>Main Office (Dwarka)</h3>
+                  <h3 style={{ color: "var(--primary-color)", margin: "0 0 12px 0", fontSize: "1.2rem" }}>Dwarka (Main Office)</h3>
                   <p style={{ margin: "0 0 12px 0", fontSize: "0.95rem" }}>
                     Office No. 8, 1st Floor, Dwarkesh Shopping Centre,<br />
                     Nr. Rabari Gate, Dwarka - 361335
                   </p>
                   <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
                     <strong>Mobile:</strong> <a href="tel:+919409207388">+91 94092 07388</a> | <a href="tel:+919978666211">+91 99786 66211</a>
-                  </p>
-                  <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
-                    <strong>Email:</strong> <a href="mailto:cachintankakkad@gmail.com" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>cachintankakkad@gmail.com</a>
-                  </p>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    <strong>Website:</strong> <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>
-                  </p>
-                </div>
-
-                <div style={{ padding: "24px", border: "1px solid var(--border-color)", borderRadius: "var(--border-radius)", background: "var(--bg-light)" }}>
-                  <h3 style={{ color: "var(--primary-color)", margin: "0 0 12px 0", fontSize: "1.2rem" }}>Branch Office (Surajkaradi)</h3>
-                  <p style={{ margin: "0 0 12px 0", fontSize: "0.95rem" }}>
-                    Nr. Navneet Hotel, Okha Highway Road,<br />
-                    Surajkaradi - 361347
-                  </p>
-                  <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
-                    <strong>Mobile:</strong> <a href="tel:+917383538193">+91 73835 38193</a> | <a href="tel:+919409207388">+91 94092 07388</a>
                   </p>
                   <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
                     <strong>Email:</strong> <a href="mailto:cachintankakkad@gmail.com" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>cachintankakkad@gmail.com</a>
@@ -253,55 +235,15 @@ ${line}
             </div>
           </div>
 
-          {/* Dual Office Google Maps Section */}
+          {/* Office Google Maps Section */}
           <div style={{ marginTop: "50px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginBottom: "18px" }}>
-              <div>
-                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.3rem", color: "var(--primary-color)", margin: "0 0 4px 0" }}>
-                  Interactive Office Location Maps
-                </h3>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", margin: 0 }}>
-                  Select an office to view location map, landmark details, and get live GPS navigation.
-                </p>
-              </div>
-
-              {/* Office Selector Tabs */}
-              <div style={{ display: "flex", gap: "8px", background: "var(--bg-light)", padding: "4px", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
-                <button
-                  type="button"
-                  onClick={() => setActiveMapTab("dwarka")}
-                  style={{
-                    padding: "8px 16px",
-                    borderRadius: "6px",
-                    border: "none",
-                    fontSize: "0.85rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    transition: "var(--transition-fast)",
-                    backgroundColor: activeMapTab === "dwarka" ? "var(--primary-color)" : "transparent",
-                    color: activeMapTab === "dwarka" ? "#ffffff" : "var(--text-dark)",
-                  }}
-                >
-                  Dwarka Main Office
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveMapTab("surajkaradi")}
-                  style={{
-                    padding: "8px 16px",
-                    borderRadius: "6px",
-                    border: "none",
-                    fontSize: "0.85rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    transition: "var(--transition-fast)",
-                    backgroundColor: activeMapTab === "surajkaradi" ? "var(--primary-color)" : "transparent",
-                    color: activeMapTab === "surajkaradi" ? "#ffffff" : "var(--text-dark)",
-                  }}
-                >
-                  Surajkaradi Branch Office
-                </button>
-              </div>
+            <div style={{ marginBottom: "18px" }}>
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.3rem", color: "var(--primary-color)", margin: "0 0 4px 0" }}>
+                Office Location Map
+              </h3>
+              <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", margin: 0 }}>
+                Find us easily at Dwarkesh Shopping Centre in Dwarka or get live GPS navigation via Google Maps.
+              </p>
             </div>
 
             {/* Office Info Strip */}
@@ -319,19 +261,15 @@ ${line}
             }}>
               <div>
                 <strong style={{ color: "var(--primary-color)", fontSize: "1rem" }}>
-                  {activeMapTab === "dwarka" ? "Main Office — Dwarka" : "Branch Office — Surajkaradi / Okha"}
+                  Dwarka (Main Office)
                 </strong>
                 <p style={{ margin: "4px 0 0 0", fontSize: "0.85rem", color: "var(--text-muted)" }}>
-                  {activeMapTab === "dwarka" 
-                    ? "Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate, Dwarka - 361335" 
-                    : "Okha Highway Road, Nr. Navneet Hotel, Surajkaradi - 361347"}
+                  Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate, Dwarka - 361335
                 </p>
               </div>
 
               <a
-                href={activeMapTab === "dwarka" 
-                  ? "https://maps.google.com/?q=C+S+KAKKAD+%26+ASSOCIATES+Dwarka" 
-                  : "https://maps.google.com/?q=Navneet+Hotel+Okha+Highway+Road+Surajkaradi"}
+                href="https://maps.google.com/?q=C+S+KAKKAD+%26+ASSOCIATES+Dwarka"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"
@@ -346,29 +284,16 @@ ${line}
 
             {/* Map Frame Container */}
             <div style={{ width: "100%", height: "400px", backgroundColor: "#f0f0f0", border: "1px solid var(--border-color)", borderRadius: "0 0 var(--border-radius) var(--border-radius)", overflow: "hidden" }}>
-              {activeMapTab === "dwarka" ? (
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.8990117699523!2d68.96291147518288!3d22.24391014493722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39569d7dafe91cfb%3A0xc15b726cfa017ca1!2sC%20S%20KAKKAD%20%26%20ASSOCIATES!5e0!3m2!1sen!2sin!4v1785841640233!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, display: "block" }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  title="C S Kakkad & Associates Dwarka Office Location Map"
-                ></iframe>
-              ) : (
-                <iframe
-                  src="https://maps.google.com/maps?q=Navneet+Hotel+Okha+Highway+Road+Surajkaradi+Gujarat+361347&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, display: "block" }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  title="C S Kakkad & Associates Surajkaradi Branch Location Map"
-                ></iframe>
-              )}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.8990117699523!2d68.96291147518288!3d22.24391014493722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39569d7dafe91cfb%3A0xc15b726cfa017ca1!2sC%20S%20KAKKAD%20%26%20ASSOCIATES!5e0!3m2!1sen!2sin!4v1785841640233!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="C S Kakkad & Associates Dwarka Office Location Map"
+              ></iframe>
             </div>
           </div>
         </div>

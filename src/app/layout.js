@@ -11,7 +11,7 @@ export const metadata = {
     default: "C S Kakkad & Associates | Chartered Accountants",
     template: "%s | C S Kakkad & Associates",
   },
-  description: "C S Kakkad & Associates is a leading Chartered Accountancy firm in Dwarka and Surajkaradi offering professional services in auditing, taxation, GST, business finance, and consultancy.",
+  description: "C S Kakkad & Associates is a leading Chartered Accountancy firm in Dwarka offering professional services in auditing, taxation, GST, business finance, and consultancy.",
   keywords: [
     "CS Kakkad",
     "CA Dwarka",
@@ -28,7 +28,7 @@ export const metadata = {
   },
   openGraph: {
     title: "C S Kakkad & Associates | Chartered Accountants",
-    description: "C S Kakkad & Associates is a leading Chartered Accountancy firm in Dwarka and Surajkaradi offering professional services in auditing, taxation, GST, business finance, and consultancy.",
+    description: "C S Kakkad & Associates is a leading Chartered Accountancy firm in Dwarka offering professional services in auditing, taxation, GST, business finance, and consultancy.",
     url: "https://www.cachintankakkad.in",
     siteName: "C S Kakkad & Associates",
     locale: "en_IN",
@@ -45,7 +45,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "C S Kakkad & Associates | Chartered Accountants",
-    description: "Leading Chartered Accountancy firm in Dwarka and Surajkaradi offering auditing, taxation, GST, business finance, and consultancy.",
+    description: "Leading Chartered Accountancy firm in Dwarka offering auditing, taxation, GST, business finance, and consultancy.",
     images: ["/cs-kakkad-logo.png"],
   },
   robots: {
@@ -61,7 +61,7 @@ const jsonLd = {
   url: "https://www.cachintankakkad.in",
   logo: "https://www.cachintankakkad.in/cs-kakkad-logo.png",
   image: "https://www.cachintankakkad.in/cs-kakkad-logo.png",
-  description: "Chartered Accountancy firm in Dwarka and Surajkaradi providing auditing, taxation, GST, loan syndication, and consultancy.",
+  description: "Chartered Accountancy firm in Dwarka providing auditing, taxation, GST, loan syndication, and consultancy.",
   telephone: "+919409207388",
   email: "cachintankakkad@gmail.com",
   founder: {
@@ -69,24 +69,14 @@ const jsonLd = {
     name: "CA Chintan S. Kakkad",
     jobTitle: "Managing Partner & Fellow Chartered Accountant",
   },
-  address: [
-    {
-      "@type": "PostalAddress",
-      streetAddress: "Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate",
-      addressLocality: "Dwarka",
-      addressRegion: "Gujarat",
-      postalCode: "361335",
-      addressCountry: "IN",
-    },
-    {
-      "@type": "PostalAddress",
-      streetAddress: "Nr. Navneet Hotel, Okha Highway Road",
-      addressLocality: "Surajkaradi",
-      addressRegion: "Gujarat",
-      postalCode: "361347",
-      addressCountry: "IN",
-    },
-  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate",
+    addressLocality: "Dwarka",
+    addressRegion: "Gujarat",
+    postalCode: "361335",
+    addressCountry: "IN",
+  },
 };
 
 export default function RootLayout({ children }) {

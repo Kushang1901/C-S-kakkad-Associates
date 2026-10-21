@@ -56,7 +56,7 @@ export default function About() {
 
       <h2>Why Work With Us</h2>
       <p>
-        We offer single-window services for all compliance, auditing, taxation, and business setup needs. With dual offices in Dwarka and Surajkaradi, we provide localized support to businesses and individuals, ensuring easy access to tax professionals whenever needed.
+        We offer single-window services for all compliance, auditing, taxation, and business setup needs. Based conveniently in Dwarka, we provide dedicated support to businesses and individuals, ensuring easy access to trusted tax and finance professionals whenever needed.
       </p>
       <div className="btn-group">
         <Link href="/contact" className="btn btn-primary">Visit Our Office</Link>

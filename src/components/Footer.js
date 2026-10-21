@@ -28,21 +28,14 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Offices column */}
+          {/* Office column */}
           <div className={styles.columnInfo}>
-            <h4 className={styles.title}>Our Offices</h4>
+            <h4 className={styles.title}>Our Office</h4>
             <div className={styles.officeBlock}>
-              <span className={styles.officeTitle}>Main Office (Dwarka)</span>
+              <span className={styles.officeTitle}>Dwarka (Main Office)</span>
               <p>Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate, Dwarka - 361335</p>
               <p className={styles.contact}>
                 <strong>Mo:</strong> <a href="tel:+919409207388">94092 07388</a> | <a href="tel:+919978666211">99786 66211</a>
-              </p>
-            </div>
-            <div className={styles.officeBlock}>
-              <span className={styles.officeTitle}>Branch Office (Surajkaradi)</span>
-              <p>Nr. Navneet Hotel, Okha Highway Road, Surajkaradi - 361347</p>
-              <p className={styles.contact}>
-                <strong>Mo:</strong> <a href="tel:+917383538193">73835 38193</a> | <a href="tel:+919409207388">94092 07388</a>
               </p>
             </div>
           </div>

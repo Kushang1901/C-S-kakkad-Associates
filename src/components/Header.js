@@ -283,12 +283,9 @@ export default function Header() {
             <strong>Web:</strong> <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer">www.cachintankakkad.in</a>
           </p>
 
-          <h4 className={styles.drawerFooterTitle} style={{ marginTop: "14px" }}>Our Offices</h4>
+          <h4 className={styles.drawerFooterTitle} style={{ marginTop: "14px" }}>Our Office</h4>
           <p className={styles.drawerFooterText} style={{ fontSize: "0.75rem" }}>
-            <strong>Dwarka:</strong> Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate
-          </p>
-          <p className={styles.drawerFooterText} style={{ fontSize: "0.75rem", marginTop: "4px" }}>
-            <strong>Surajkaradi:</strong> Nr. Navneet Hotel, Okha Highway Road
+            Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate, Dwarka - 361335
           </p>
         </div>
       </div>
