@@ -100,8 +100,11 @@ ${line}
                   <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
                     <strong>Mobile:</strong> <a href="tel:+919409207388">+91 94092 07388</a> | <a href="tel:+919978666211">+91 99786 66211</a>
                   </p>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                  <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
                     <strong>Email:</strong> <a href="mailto:cachintankakkad@gmail.com" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>cachintankakkad@gmail.com</a>
+                  </p>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    <strong>Website:</strong> <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>
                   </p>
                 </div>
 
@@ -114,8 +117,11 @@ ${line}
                   <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
                     <strong>Mobile:</strong> <a href="tel:+917383538193">+91 73835 38193</a> | <a href="tel:+919409207388">+91 94092 07388</a>
                   </p>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                  <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
                     <strong>Email:</strong> <a href="mailto:cachintankakkad@gmail.com" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>cachintankakkad@gmail.com</a>
+                  </p>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    <strong>Website:</strong> <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>
                   </p>
                 </div>
               </div>

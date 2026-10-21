@@ -279,6 +279,9 @@ export default function Header() {
           <p className={styles.drawerFooterText}>
             <strong>Phone:</strong> <a href="tel:+919409207388">94092 07388</a>
           </p>
+          <p className={styles.drawerFooterText}>
+            <strong>Web:</strong> <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer">www.cachintankakkad.in</a>
+          </p>
 
           <h4 className={styles.drawerFooterTitle} style={{ marginTop: "14px" }}>Our Offices</h4>
           <p className={styles.drawerFooterText} style={{ fontSize: "0.75rem" }}>

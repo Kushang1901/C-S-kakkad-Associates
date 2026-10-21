@@ -1,0 +1,18 @@
+export default function manifest() {
+  return {
+    name: "C S Kakkad & Associates | Chartered Accountants",
+    short_name: "CS Kakkad",
+    description: "Leading Chartered Accountancy firm in Dwarka and Surajkaradi offering auditing, taxation, GST, business finance, and consultancy.",
+    start_url: "https://www.cachintankakkad.in/",
+    display: "standalone",
+    background_color: "#0f2027",
+    theme_color: "#1a365d",
+    icons: [
+      {
+        src: "/icon.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+  };
+}

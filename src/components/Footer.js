@@ -20,6 +20,12 @@ export default function Footer() {
             <p className={styles.description}>
               Offering a wide range of professional services in accounting, auditing, taxation, business finance, and regulatory compliance. Committed to excellence, integrity, and trust.
             </p>
+            <p style={{ marginTop: "12px", fontSize: "0.88rem" }}>
+              <span style={{ color: "rgba(255, 255, 255, 0.7)" }}>Official Web: </span>
+              <a href="https://www.cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600", textDecoration: "none" }}>
+                www.cachintankakkad.in
+              </a>
+            </p>
           </div>
 
           {/* Offices column */}

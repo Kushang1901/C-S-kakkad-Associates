@@ -136,6 +136,10 @@ export default function Team() {
               <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
               cachintankakkad@gmail.com
             </a>
+            <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer" className={styles.btnOutline}>
+              <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              cachintankakkad.in
+            </a>
           </div>
         </div>
       </div>
