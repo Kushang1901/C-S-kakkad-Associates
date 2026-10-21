@@ -43,7 +43,7 @@ export default function About() {
         </div>
         <div className={styles.leaderDetails}>
           <h3 className={styles.leaderName}>CA Chintan S. Kakkad</h3>
-          <span className={styles.leaderRole}>Founder & Managing Partner (F.C.A., B.Com)</span>
+          <span className={styles.leaderRole}>Founder & Sole Proprietor (F.C.A., B.Com)</span>
           <p className={styles.leaderQuote}>
             &ldquo;Our focus is to provide consistent, customized, and workable tax and financial solutions to our clients with the highest level of dedication, integrating advanced digital technologies and thorough regulatory research.&rdquo;
           </p>

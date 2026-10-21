@@ -82,7 +82,7 @@ ${line}
           <h3 style={{ color: "var(--primary-color)", margin: 0, fontSize: "1.15rem" }}>Articled Assistants (CA Articleship)</h3>
           <span style={{ fontSize: "0.8rem", fontWeight: "700", color: "var(--secondary-color)" }}>POSITION: 2 OPENINGS</span>
           <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", marginTop: "8px", marginBottom: 0 }}>
-            Candidates who have cleared one or both groups of CA Intermediate (IPCC). We offer exposure to statutory audits, bank branch audits, GST audits, and personal income tax assessments under direct partner guidance.
+            Candidates who have cleared one or both groups of CA Intermediate (IPCC). We offer exposure to statutory audits, bank branch audits, GST audits, and personal income tax assessments under direct guidance of CA Chintan Kakkad.
           </p>
         </div>
         <div style={{ padding: "20px", border: "1px solid var(--border-color)", borderRadius: "var(--border-radius)", background: "var(--bg-light)" }}>

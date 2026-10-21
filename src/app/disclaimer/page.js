@@ -26,7 +26,7 @@ export default function Disclaimer() {
       }}>
         <h3 style={{ marginTop: 0, color: "#D32F2F", marginBottom: "10px" }}>No Solicitation or Advertisement</h3>
         <p style={{ margin: 0, fontSize: "0.95rem" }}>
-          Under the regulations of the <strong>Institute of Chartered Accountants of India (ICAI)</strong>, Chartered Accountants are prohibited from advertising or soliciting clients, directly or indirectly. By accessing this website, you acknowledge that you are doing so of your own free will to obtain general information, and that no advertisement, invitation, or solicitation of any kind has been made by the firm or its partners.
+          Under the regulations of the <strong>Institute of Chartered Accountants of India (ICAI)</strong>, Chartered Accountants are prohibited from advertising or soliciting clients, directly or indirectly. By accessing this website, you acknowledge that you are doing so of your own free will to obtain general information, and that no advertisement, invitation, or solicitation of any kind has been made by the firm or its proprietor.
         </p>
       </div>
 

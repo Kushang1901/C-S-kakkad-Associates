@@ -9,7 +9,7 @@ export const metadata = {
     "CA Chintan Kakkad",
     "CA Chintan S Kakkad",
     "Fellow Chartered Accountant Dwarka",
-    "Managing Partner CS Kakkad",
+    "Sole Proprietor CS Kakkad",
     "Chartered Accountant Team Gujarat",
   ],
   alternates: {
@@ -118,7 +118,7 @@ export default function Team() {
             <h2 className={styles.founderName}>CA Chintan S. Kakkad</h2>
             <span className={styles.qualBadge}>F.C.A. &nbsp;·&nbsp; B.Com</span>
           </div>
-          <p className={styles.founderRole}>Founder &amp; Managing Partner</p>
+          <p className={styles.founderRole}>Founder &amp; Sole Proprietor</p>
 
           <p className={styles.bio}>
             A Fellow Chartered Accountant with over 15 years of practice, CA Chintan S. Kakkad leads the firm&apos;s strategic direction, client advisory, and quality assurance. He specializes in statutory audits, direct tax representation before ITAT, corporate finance syndication, and financial restructuring for MSMEs and corporates across Gujarat.

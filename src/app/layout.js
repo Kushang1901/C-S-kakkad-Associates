@@ -98,7 +98,7 @@ const jsonLdGraph = {
         "@type": "Person",
         "@id": "https://www.cachintankakkad.in/#founder",
         name: "CA Chintan S. Kakkad",
-        jobTitle: "Managing Partner & Fellow Chartered Accountant",
+        jobTitle: "Founder & Sole Proprietor, Fellow Chartered Accountant",
         honorificPrefix: "CA",
         hasCredential: "Fellow Chartered Accountant (F.C.A.), B.Com",
         alumniOf: {

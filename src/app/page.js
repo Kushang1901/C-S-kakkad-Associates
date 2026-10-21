@@ -326,12 +326,12 @@ export default function Home() {
                 <div className={styles.partnerFrame}>
                   <img 
                     src="/owner image-1.jpeg" 
-                    alt="CA Chintan S. Kakkad - Managing Partner" 
+                    alt="CA Chintan S. Kakkad - Founder & Sole Proprietor" 
                     className={styles.partnerImg} 
                   />
                   <div className={styles.partnerOverlay}>
                     <h3 className={styles.partnerOverlayName}>CA Chintan S. Kakkad</h3>
-                    <span className={styles.partnerOverlayRole}>Founder & Managing Partner (F.C.A., B.Com)</span>
+                    <span className={styles.partnerOverlayRole}>Founder & Sole Proprietor (F.C.A., B.Com)</span>
                   </div>
                 </div>
               </div>
