@@ -55,6 +55,8 @@
 /* Common text elements inside layout mainContent */
 .mainContent p {
   margin-bottom: 20px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .mainContent h2 {
@@ -90,6 +92,13 @@
 
 .mainContent li {
   margin-bottom: 10px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.mainContent blockquote {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 @media (max-width: 992px) {

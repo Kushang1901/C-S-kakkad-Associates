@@ -103,6 +103,8 @@
   color: #334155;
   line-height: 1.65;
   margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* Stats */
@@ -325,6 +327,8 @@
   color: #64748B;
   line-height: 1.55;
   margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* ── Standards Banner ── */

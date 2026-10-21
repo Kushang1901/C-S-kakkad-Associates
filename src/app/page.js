@@ -320,7 +320,7 @@ export default function Home() {
             <div className={styles.welcomeImgBlock}>
               <div className={styles.partnerShowcase}>
                 <div className={styles.partnerExpBadge}>
-                  <span className={styles.partnerExpVal}>15+</span>
+                  <span className={styles.partnerExpVal}>12+</span>
                   <span className={styles.partnerExpText}>Years Exp</span>
                 </div>
                 <div className={styles.partnerFrame}>

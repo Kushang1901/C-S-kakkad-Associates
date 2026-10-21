@@ -121,6 +121,15 @@ textarea {
   padding: 0 24px;
 }
 
+/* Justified Body Text for Content Articles & Pages */
+article p,
+article li,
+.content-text p,
+.page-content p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .section {
   padding: 80px 0;
 }

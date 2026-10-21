@@ -430,6 +430,8 @@
 .welcomeText p {
   margin-bottom: 16px;
   color: var(--text-muted);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .statsGrid {
