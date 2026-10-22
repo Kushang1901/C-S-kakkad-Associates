@@ -45,6 +45,7 @@ export default function Footer() {
               <li><Link href="/team">Our Team</Link></li>
               <li><Link href="/career">Careers</Link></li>
               <li><Link href="/contact">Contact Us</Link></li>
+              <li><Link href="/sitemap">Sitemap</Link></li>
             </ul>
           </div>
 
@@ -92,6 +93,10 @@ export default function Footer() {
               <Link href="/privacy-policy">Privacy Policy</Link>
               <span className={styles.divider}>|</span>
               <Link href="/disclaimer">Disclaimer</Link>
+              <span className={styles.divider}>|</span>
+              <Link href="/sitemap">Sitemap</Link>
+              <span className={styles.divider}>|</span>
+              <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer">XML Sitemap</a>
             </div>
           </div>
         </div>

@@ -41,6 +41,20 @@ export const metadata = {
   alternates: {
     canonical: "https://www.cachintankakkad.in",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-144.png", sizes: "144x144", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "C S Kakkad & Associates | Chartered Accountants",
     description: "Premier Chartered Accountancy firm in Dwarka, Gujarat providing statutory audit, corporate taxation, GST advisory, and business loan syndication.",
@@ -50,9 +64,15 @@ export const metadata = {
     type: "website",
     images: [
       {
+        url: "/icon-512.png",
+        width: 512,
+        height: 512,
+        alt: "C S Kakkad & Associates Chartered Accountants Logo",
+      },
+      {
         url: "/cs-kakkad-logo.png",
-        width: 800,
-        height: 600,
+        width: 120,
+        height: 91,
         alt: "C S Kakkad & Associates Logo",
       },
     ],
@@ -61,7 +81,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "C S Kakkad & Associates | Chartered Accountants",
     description: "Leading Chartered Accountancy firm in Dwarka, Gujarat offering auditing, taxation, GST, business finance, and consultancy.",
-    images: ["/cs-kakkad-logo.png"],
+    images: ["/icon-512.png"],
   },
   robots: {
     index: true,
@@ -84,10 +104,10 @@ const jsonLdGraph = {
       "@type": ["AccountingService", "FinancialService", "LocalBusiness"],
       "@id": "https://www.cachintankakkad.in/#organization",
       name: "C S Kakkad & Associates",
-      alternateName: ["CS Kakkad & Associates", "CA Chintan Kakkad", "C S Kakkad Chartered Accountants"],
+      alternateName: ["CS Kakkad & Associates", "CA Chintan Kakkad", "C S Kakkad Chartered Accountants", "cachintankakkad.in"],
       url: "https://www.cachintankakkad.in",
-      logo: "https://www.cachintankakkad.in/cs-kakkad-logo.png",
-      image: "https://www.cachintankakkad.in/cs-kakkad-logo.png",
+      logo: "https://www.cachintankakkad.in/icon-512.png",
+      image: "https://www.cachintankakkad.in/icon-512.png",
       description: "C S Kakkad & Associates is a distinguished Chartered Accountancy firm based in Dwarka, Gujarat providing statutory auditing, taxation, GST compliance, business finance syndication, and management consultancy.",
       telephone: "+919409207388",
       email: "info@cachintankakkad.in",
@@ -263,6 +283,83 @@ const jsonLdGraph = {
         },
       ],
     },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.cachintankakkad.in/#sitelinks-navigation",
+      name: "Main Navigation",
+      itemListElement: [
+        {
+          "@type": "SiteNavigationElement",
+          position: 1,
+          name: "About Us",
+          url: "https://www.cachintankakkad.in/about",
+          description: "Firm history, professional credentials, and leadership.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 2,
+          name: "Audit & Assurance",
+          url: "https://www.cachintankakkad.in/services/audit-assurance",
+          description: "Statutory audits, tax audits under Sec 44AB, and internal controls.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 3,
+          name: "Income Tax Advisory",
+          url: "https://www.cachintankakkad.in/services/income-tax",
+          description: "Corporate and individual ITR filing, tax planning, and appeals.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 4,
+          name: "Goods & Services Tax (GST)",
+          url: "https://www.cachintankakkad.in/services/gst",
+          description: "GST registration, monthly returns, and ITC reconciliation.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 5,
+          name: "Business Finance & Loan Syndication",
+          url: "https://www.cachintankakkad.in/services/business-finance-loan",
+          description: "Bank project reports, CMA data modeling, and commercial credit.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 6,
+          name: "Tax & EMI Calculators",
+          url: "https://www.cachintankakkad.in/calculators",
+          description: "Interactive tools for Income Tax, Loan EMI, and GST.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 7,
+          name: "Our Team",
+          url: "https://www.cachintankakkad.in/team",
+          description: "Meet CA Chintan S. Kakkad (F.C.A.) and our associates.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 8,
+          name: "Empanelment",
+          url: "https://www.cachintankakkad.in/empanelment",
+          description: "Bank audit empanelment and tender qualifications.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 9,
+          name: "Contact Us",
+          url: "https://www.cachintankakkad.in/contact",
+          description: "Dwarka head office location and contact details.",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 10,
+          name: "Sitemap",
+          url: "https://www.cachintankakkad.in/sitemap",
+          description: "Comprehensive website directory and XML feeds.",
+        },
+      ],
+    },
   ],
 };
 
@@ -270,6 +367,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
+        {/* Favicon & Web App Icons for Search Engines (Google, Bing, Yahoo) */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png" />
+        <link rel="icon" type="image/png" sizes="144x144" href="/icon-144.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
+
         {/* Preconnect to Google Translate CDN endpoints to minimize translation latency */}
         <link rel="preconnect" href="https://translate.google.com" />
         <link rel="preconnect" href="https://translate.googleapis.com" crossOrigin="anonymous" />

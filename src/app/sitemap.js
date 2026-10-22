@@ -23,6 +23,7 @@ export default async function sitemap() {
     { path: "/vision", priority: 0.7, changeFrequency: "monthly" },
     { path: "/mission", priority: 0.7, changeFrequency: "monthly" },
     { path: "/career", priority: 0.75, changeFrequency: "monthly" },
+    { path: "/sitemap", priority: 0.85, changeFrequency: "weekly" },
     { path: "/privacy-policy", priority: 0.5, changeFrequency: "yearly" },
     { path: "/disclaimer", priority: 0.5, changeFrequency: "yearly" },
   ];
