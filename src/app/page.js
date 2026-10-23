@@ -298,18 +298,14 @@ export default function Home() {
               }}>
                 Located in a bustling urban center, C S Kakkad & Associates is a distinguished financial consulting firm that specializes in providing comprehensive financial planning services for individuals and businesses. With a team of experienced professionals, we offer tailored solutions for wealth management, retirement planning, insurance services, and tax consulting. Our approach is centered on building long-lasting client relationships, ensuring each client's financial goals are met with personalized strategies and expert guidance.
               </p>
-              
+
               <p>
                 Built on professional integrity, proactive advice, and strict confidentiality, we deliver dedicated solutions for everything from standard bookkeeping to complex tax audit representation.
               </p>
               <div className={styles.statsGrid}>
                 <div className={styles.statItem}>
-                  <div className={styles.statVal}>15+</div>
+                  <div className={styles.statVal}>12+</div>
                   <div className={styles.statLabel}>Years Exp</div>
-                </div>
-                <div className={styles.statItem}>
-                  <div className={styles.statVal}>500+</div>
-                  <div className={styles.statLabel}>Clients</div>
                 </div>
                 <div className={styles.statItem}>
                   <div className={styles.statVal}>100%</div>
@@ -324,14 +320,14 @@ export default function Home() {
                   <span className={styles.partnerExpText}>Years Exp</span>
                 </div>
                 <div className={styles.partnerFrame}>
-                  <img 
-                    src="/owner image-1.jpeg" 
-                    alt="CA Chintan S. Kakkad - Founder & Sole Proprietor" 
-                    className={styles.partnerImg} 
+                  <img
+                    src="/owner image-1.jpeg"
+                    alt="Chintan S. Kakkad - Chartered Accountant"
+                    className={styles.partnerImg}
                   />
                   <div className={styles.partnerOverlay}>
-                    <h3 className={styles.partnerOverlayName}>CA Chintan S. Kakkad</h3>
-                    <span className={styles.partnerOverlayRole}>Founder & Sole Proprietor (F.C.A., B.Com)</span>
+                    <h3 className={styles.partnerOverlayName}>Chintan S. Kakkad</h3>
+                    <span className={styles.partnerOverlayRole}>Chartered Accountant (F.C.A., B.Com)</span>
                   </div>
                 </div>
               </div>
