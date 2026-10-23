@@ -22,7 +22,7 @@ export default function robots() {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://www.cachintankakkad.in/sitemap.xml",
-    host: "https://www.cachintankakkad.in",
+    sitemap: "https://cachintankakkad.in/sitemap.xml",
+    host: "https://cachintankakkad.in",
   };
 }

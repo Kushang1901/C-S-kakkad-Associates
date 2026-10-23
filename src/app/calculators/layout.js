@@ -14,12 +14,12 @@ export const metadata = {
     "CA Financial Calculators Gujarat",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/calculators",
+    canonical: "https://cachintankakkad.in/calculators",
   },
   openGraph: {
     title: "Official Tax & Financial Calculators | C S Kakkad & Associates",
     description: "Accurate, instant financial calculators for Indian taxpayers and businesses. Compare tax regimes, calculate monthly EMIs, and compute GST invoice values.",
-    url: "https://www.cachintankakkad.in/calculators",
+    url: "https://cachintankakkad.in/calculators",
     type: "website",
     images: ["/icon-512.png"],
   },
@@ -30,9 +30,9 @@ const calculatorSchema = {
   "@graph": [
     {
       "@type": "WebApplication",
-      "@id": "https://www.cachintankakkad.in/calculators#tax-calculator",
+      "@id": "https://cachintankakkad.in/calculators#tax-calculator",
       name: "Old vs New Income Tax Regime Calculator (Section 115BAC)",
-      url: "https://www.cachintankakkad.in/calculators",
+      url: "https://cachintankakkad.in/calculators",
       applicationCategory: "FinanceApplication",
       operatingSystem: "All",
       offers: {
@@ -44,14 +44,14 @@ const calculatorSchema = {
       author: {
         "@type": "AccountingService",
         name: "C S Kakkad & Associates",
-        url: "https://www.cachintankakkad.in",
+        url: "https://cachintankakkad.in",
       },
     },
     {
       "@type": "WebApplication",
-      "@id": "https://www.cachintankakkad.in/calculators#emi-calculator",
+      "@id": "https://cachintankakkad.in/calculators#emi-calculator",
       name: "Loan EMI & Interest Repayment Calculator",
-      url: "https://www.cachintankakkad.in/calculators",
+      url: "https://cachintankakkad.in/calculators",
       applicationCategory: "FinanceApplication",
       operatingSystem: "All",
       offers: {
@@ -63,14 +63,14 @@ const calculatorSchema = {
       author: {
         "@type": "AccountingService",
         name: "C S Kakkad & Associates",
-        url: "https://www.cachintankakkad.in",
+        url: "https://cachintankakkad.in",
       },
     },
     {
       "@type": "WebApplication",
-      "@id": "https://www.cachintankakkad.in/calculators#gst-calculator",
+      "@id": "https://cachintankakkad.in/calculators#gst-calculator",
       name: "Goods & Services Tax (GST) Invoice Calculator",
-      url: "https://www.cachintankakkad.in/calculators",
+      url: "https://cachintankakkad.in/calculators",
       applicationCategory: "FinanceApplication",
       operatingSystem: "All",
       offers: {
@@ -82,12 +82,12 @@ const calculatorSchema = {
       author: {
         "@type": "AccountingService",
         name: "C S Kakkad & Associates",
-        url: "https://www.cachintankakkad.in",
+        url: "https://cachintankakkad.in",
       },
     },
     {
       "@type": "FAQPage",
-      "@id": "https://www.cachintankakkad.in/calculators#faq",
+      "@id": "https://cachintankakkad.in/calculators#faq",
       mainEntity: [
         {
           "@type": "Question",

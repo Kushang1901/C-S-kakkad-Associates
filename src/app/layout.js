@@ -6,7 +6,7 @@ import FloatingWidgets from "@/components/FloatingWidgets";
 import Script from "next/script";
 
 export const metadata = {
-  metadataBase: new URL("https://www.cachintankakkad.in"),
+  metadataBase: new URL("https://cachintankakkad.in"),
   title: {
     default: "C S Kakkad & Associates | Chartered Accountants in Dwarka & Gujarat",
     template: "%s | C S Kakkad & Associates",
@@ -33,7 +33,7 @@ export const metadata = {
     "ICAI Fellow Chartered Accountant",
     "cachintankakkad.in",
   ],
-  authors: [{ name: "CA Chintan S. Kakkad", url: "https://www.cachintankakkad.in/team" }],
+  authors: [{ name: "CA Chintan S. Kakkad", url: "https://cachintankakkad.in/team" }],
   creator: "C S Kakkad & Associates",
   publisher: "C S Kakkad & Associates",
   formatDetection: {
@@ -42,7 +42,7 @@ export const metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: "https://www.cachintankakkad.in",
+    canonical: "https://cachintankakkad.in",
   },
   icons: {
     icon: [
@@ -61,7 +61,7 @@ export const metadata = {
   openGraph: {
     title: "C S Kakkad & Associates | Chartered Accountants",
     description: "Premier Chartered Accountancy firm in Dwarka, Gujarat providing statutory audit, corporate taxation, GST advisory, and business loan syndication.",
-    url: "https://www.cachintankakkad.in",
+    url: "https://cachintankakkad.in",
     siteName: "C S Kakkad & Associates",
     locale: "en_IN",
     type: "website",
@@ -105,7 +105,7 @@ const jsonLdGraph = {
   "@graph": [
     {
       "@type": ["AccountingService", "FinancialService", "LocalBusiness"],
-      "@id": "https://www.cachintankakkad.in/#organization",
+      "@id": "https://cachintankakkad.in/#organization",
       name: "C S Kakkad & Associates",
       alternateName: [
         "CS Kakkad & Associates",
@@ -116,9 +116,9 @@ const jsonLdGraph = {
         "Chartered Accountant Surat",
         "Chartered Accountant Dwarka",
       ],
-      url: "https://www.cachintankakkad.in",
-      logo: "https://www.cachintankakkad.in/icon-512.png",
-      image: "https://www.cachintankakkad.in/icon-512.png",
+      url: "https://cachintankakkad.in",
+      logo: "https://cachintankakkad.in/icon-512.png",
+      image: "https://cachintankakkad.in/icon-512.png",
       description: "C S Kakkad & Associates is a distinguished Chartered Accountancy firm based in Gujarat providing statutory auditing, taxation, GST compliance, business finance syndication, and management consultancy across Dwarka, Surat, Ahmedabad, Jamnagar, and Rajkot.",
       telephone: "+919409207388",
       email: "info@cachintankakkad.in",
@@ -127,7 +127,7 @@ const jsonLdGraph = {
       paymentAccepted: "Cash, Cheque, Bank Transfer, UPI",
       founder: {
         "@type": "Person",
-        "@id": "https://www.cachintankakkad.in/#founder",
+        "@id": "https://cachintankakkad.in/#founder",
         name: "CA Chintan S. Kakkad",
         jobTitle: "Founder & Sole Proprietor, Fellow Chartered Accountant",
         honorificPrefix: "CA",
@@ -191,7 +191,7 @@ const jsonLdGraph = {
             itemOffered: {
               "@type": "Service",
               name: "Audit & Assurance",
-              url: "https://www.cachintankakkad.in/services/audit-assurance",
+              url: "https://cachintankakkad.in/services/audit-assurance",
               description: "Statutory audits, tax audits under Sec 44AB, and internal control reviews.",
             },
           },
@@ -200,7 +200,7 @@ const jsonLdGraph = {
             itemOffered: {
               "@type": "Service",
               name: "Income Tax Advisory & Filing",
-              url: "https://www.cachintankakkad.in/services/income-tax",
+              url: "https://cachintankakkad.in/services/income-tax",
               description: "Corporate and individual ITR filing, capital gains calculation, advance tax, and tax scrutiny representation.",
             },
           },
@@ -209,7 +209,7 @@ const jsonLdGraph = {
             itemOffered: {
               "@type": "Service",
               name: "Goods & Services Tax (GST)",
-              url: "https://www.cachintankakkad.in/services/gst",
+              url: "https://cachintankakkad.in/services/gst",
               description: "GST registration, monthly GSTR-1 & GSTR-3B filings, annual returns, and GSTR-2B input tax credit audit.",
             },
           },
@@ -218,7 +218,7 @@ const jsonLdGraph = {
             itemOffered: {
               "@type": "Service",
               name: "Business Finance & Loan Syndication",
-              url: "https://www.cachintankakkad.in/services/business-finance-loan",
+              url: "https://cachintankakkad.in/services/business-finance-loan",
               description: "Commercial loan syndication, bank project reports, CMA data modeling, and working capital credit appraisal.",
             },
           },
@@ -227,7 +227,7 @@ const jsonLdGraph = {
             itemOffered: {
               "@type": "Service",
               name: "Corporate Consultancy & Entity Setup",
-              url: "https://www.cachintankakkad.in/services/consultancy",
+              url: "https://cachintankakkad.in/services/consultancy",
               description: "Company incorporation, LLP formation, MSME Udyam registration, and ROC statutory filings.",
             },
           },
@@ -236,7 +236,7 @@ const jsonLdGraph = {
             itemOffered: {
               "@type": "Service",
               name: "Accounting & Outsourcing",
-              url: "https://www.cachintankakkad.in/services/accounting-outsourcing",
+              url: "https://cachintankakkad.in/services/accounting-outsourcing",
               description: "End-to-end cloud bookkeeping, payroll preparation, TDS deduction, and monthly MIS financial statements.",
             },
           },
@@ -245,18 +245,18 @@ const jsonLdGraph = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.cachintankakkad.in/#website",
-      url: "https://www.cachintankakkad.in",
+      "@id": "https://cachintankakkad.in/#website",
+      url: "https://cachintankakkad.in",
       name: "C S Kakkad & Associates",
       description: "Official portal for C S Kakkad & Associates Chartered Accountants, Dwarka",
       publisher: {
-        "@id": "https://www.cachintankakkad.in/#organization",
+        "@id": "https://cachintankakkad.in/#organization",
       },
       inLanguage: ["en-IN", "gu-IN", "hi-IN"],
     },
     {
       "@type": "FAQPage",
-      "@id": "https://www.cachintankakkad.in/#faq",
+      "@id": "https://cachintankakkad.in/#faq",
       mainEntity: [
         {
           "@type": "Question",
@@ -326,77 +326,77 @@ const jsonLdGraph = {
     },
     {
       "@type": "ItemList",
-      "@id": "https://www.cachintankakkad.in/#sitelinks-navigation",
+      "@id": "https://cachintankakkad.in/#sitelinks-navigation",
       name: "Main Navigation",
       itemListElement: [
         {
           "@type": "SiteNavigationElement",
           position: 1,
           name: "About Us",
-          url: "https://www.cachintankakkad.in/about",
+          url: "https://cachintankakkad.in/about",
           description: "Firm history, professional credentials, and leadership.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 2,
           name: "Audit & Assurance",
-          url: "https://www.cachintankakkad.in/services/audit-assurance",
+          url: "https://cachintankakkad.in/services/audit-assurance",
           description: "Statutory audits, tax audits under Sec 44AB, and internal controls.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 3,
           name: "Income Tax Advisory",
-          url: "https://www.cachintankakkad.in/services/income-tax",
+          url: "https://cachintankakkad.in/services/income-tax",
           description: "Corporate and individual ITR filing, tax planning, and appeals.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 4,
           name: "Goods & Services Tax (GST)",
-          url: "https://www.cachintankakkad.in/services/gst",
+          url: "https://cachintankakkad.in/services/gst",
           description: "GST registration, monthly returns, and ITC reconciliation.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 5,
           name: "Business Finance & Loan Syndication",
-          url: "https://www.cachintankakkad.in/services/business-finance-loan",
+          url: "https://cachintankakkad.in/services/business-finance-loan",
           description: "Bank project reports, CMA data modeling, and commercial credit.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 6,
           name: "Tax & EMI Calculators",
-          url: "https://www.cachintankakkad.in/calculators",
+          url: "https://cachintankakkad.in/calculators",
           description: "Interactive tools for Income Tax, Loan EMI, and GST.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 7,
           name: "Our Team",
-          url: "https://www.cachintankakkad.in/team",
+          url: "https://cachintankakkad.in/team",
           description: "Meet CA Chintan S. Kakkad (F.C.A.) and our associates.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 8,
           name: "Empanelment",
-          url: "https://www.cachintankakkad.in/empanelment",
+          url: "https://cachintankakkad.in/empanelment",
           description: "Bank audit empanelment and tender qualifications.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 9,
           name: "Contact Us",
-          url: "https://www.cachintankakkad.in/contact",
+          url: "https://cachintankakkad.in/contact",
           description: "Dwarka head office location and contact details.",
         },
         {
           "@type": "SiteNavigationElement",
           position: 10,
           name: "Sitemap",
-          url: "https://www.cachintankakkad.in/sitemap",
+          url: "https://cachintankakkad.in/sitemap",
           description: "Comprehensive website directory and XML feeds.",
         },
       ],

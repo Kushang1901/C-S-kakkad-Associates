@@ -1,5 +1,5 @@
 export default async function sitemap() {
-  const baseUrl = "https://www.cachintankakkad.in";
+  const baseUrl = "https://cachintankakkad.in";
 
   // Core static & service routes with tailored SEO priorities
   const routes = [
