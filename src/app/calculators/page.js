@@ -24,6 +24,12 @@ export default function Calculators() {
   const [showDetailedDeductions, setShowDetailedDeductions] = useState(false);
   const [taxResult, setTaxResult] = useState(null);
 
+  // Loan EMI Calculator State
+  const [loanPrincipal, setLoanPrincipal] = useState("");
+  const [loanInterest, setLoanInterest] = useState("");
+  const [loanTenure, setLoanTenure] = useState("");
+  const [emiResult, setEmiResult] = useState(null);
+
   // 1. GST Calculation
   const calculateGst = (e) => {
     e.preventDefault();
@@ -155,9 +161,10 @@ export default function Calculators() {
     const totalInterest = totalPayment - principal;
 
     setEmiResult({
-      emi: emi.toFixed(0),
-      totalInterest: totalInterest.toFixed(0),
-      totalPayment: totalPayment.toFixed(0),
+      principal: principal.toLocaleString("en-IN"),
+      emi: Math.round(emi).toLocaleString("en-IN"),
+      totalInterest: Math.round(totalInterest).toLocaleString("en-IN"),
+      totalPayment: Math.round(totalPayment).toLocaleString("en-IN"),
       principalPercent: ((principal / totalPayment) * 100).toFixed(0),
       interestPercent: ((totalInterest / totalPayment) * 100).toFixed(0),
     });
@@ -599,15 +606,15 @@ export default function Calculators() {
                   </div>
                   <div className={styles.resultItem}>
                     <span>Principal Amount:</span>
-                    <strong>₹{parseFloat(loanPrincipal).toLocaleString("en-IN")}</strong>
+                    <strong>₹{emiResult.principal}</strong>
                   </div>
                   <div className={styles.resultItem}>
                     <span>Total Interest Payable:</span>
-                    <strong style={{ color: "var(--secondary-color)" }}>₹{parseFloat(emiResult.totalInterest).toLocaleString("en-IN")}</strong>
+                    <strong style={{ color: "var(--secondary-color)" }}>₹{emiResult.totalInterest}</strong>
                   </div>
                   <div className={styles.resultItem} style={{ borderTop: "1px solid var(--border-color)", paddingTop: "12px", marginTop: "4px" }}>
                     <span>Total Repayment Amount:</span>
-                    <strong style={{ fontSize: "1.1rem" }}>₹{parseFloat(emiResult.totalPayment).toLocaleString("en-IN")}</strong>
+                    <strong style={{ fontSize: "1.1rem" }}>₹{emiResult.totalPayment}</strong>
                   </div>
 
                   {/* Percentage distribution visual bar */}
