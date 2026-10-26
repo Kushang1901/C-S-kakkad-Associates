@@ -122,7 +122,7 @@ ${line}
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="e.g. John Doe"
+                placeholder=""
                 className="form-control"
                 required
               />
@@ -134,7 +134,7 @@ ${line}
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="e.g. 94092 00000"
+                placeholder=""
                 className="form-control"
                 required
               />
@@ -149,7 +149,7 @@ ${line}
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="e.g. john@example.com"
+                placeholder=""
                 className="form-control"
                 required
               />
@@ -161,7 +161,7 @@ ${line}
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
-                placeholder="e.g. Acme Corp"
+                placeholder=""
                 className="form-control"
               />
             </div>

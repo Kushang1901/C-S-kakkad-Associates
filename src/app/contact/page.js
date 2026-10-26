@@ -82,29 +82,141 @@ ${line}
       <div className={`${styles.contentWrapper} section`}>
         <div className="container">
           <div className="grid-2" style={{ alignItems: "start" }}>
-            {/* Address columns */}
+            {/* Address & Office Information Column */}
             <div>
-              <h2 style={{ marginBottom: "24px" }}>Our Office Location</h2>
-              <p style={{ color: "var(--text-muted)", marginBottom: "30px" }}>
-                Please visit us at our office or get in touch through our phone numbers or email address. We look forward to working with you.
-              </p>
+              <div style={{ marginBottom: "24px" }}>
+                <h2 style={{ marginBottom: "10px", fontSize: "1.75rem", color: "var(--primary-color)" }}>
+                  Our Office Location
+                </h2>
+                <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                  Please visit us at our office or connect via phone or email for tax consultations, audits, and financial advisory.
+                </p>
+              </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-                <div style={{ padding: "24px", border: "1px solid var(--border-color)", borderRadius: "var(--border-radius)", background: "var(--bg-light)" }}>
-                  <h3 style={{ color: "var(--primary-color)", margin: "0 0 12px 0", fontSize: "1.2rem" }}>Dwarka (Main Office)</h3>
-                  <p style={{ margin: "0 0 12px 0", fontSize: "0.95rem" }}>
-                    Office No. 8, 1st Floor, Dwarkesh Shopping Centre,<br />
-                    Nr. Rabari Gate, Dwarka - 361335
+              <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+                {/* Main Office Card */}
+                <div style={{
+                  padding: "24px",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "var(--border-radius)",
+                  background: "#ffffff",
+                  boxShadow: "var(--shadow-sm)",
+                  borderLeft: "4px solid var(--primary-color)"
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "14px", flexWrap: "wrap", gap: "8px" }}>
+                    <h3 style={{ color: "var(--primary-color)", margin: 0, fontSize: "1.2rem", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{ color: "var(--secondary-color)" }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                      </svg>
+                      Dwarka (Head Office)
+                    </h3>
+                    <span style={{
+                      fontSize: "0.75rem",
+                      fontWeight: "600",
+                      padding: "4px 10px",
+                      background: "var(--accent-green)",
+                      color: "var(--secondary-color)",
+                      borderRadius: "20px",
+                      letterSpacing: "0.5px"
+                    }}>
+                      MAIN FIRM
+                    </span>
+                  </div>
+
+                  <p style={{ margin: "0 0 14px 0", fontSize: "0.95rem", lineHeight: "1.6", color: "var(--text-dark)", display: "flex", gap: "10px" }}>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{ flexShrink: 0, marginTop: "3px", color: "var(--secondary-color)" }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>
+                      Office No. 8, 1st Floor, Dwarkesh Shopping Centre,<br />
+                      Nr. Rabari Gate, Dwarka - 361335, Gujarat
+                    </span>
                   </p>
-                  <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
-                    <strong>Mobile:</strong> <a href="tel:+919409207388">+91 94092 07388</a> | <a href="tel:+919978666211">+91 99786 66211</a>
-                  </p>
-                  <p style={{ margin: "0 0 4px 0", fontSize: "0.95rem" }}>
-                    <strong>Email:</strong> <a href="mailto:info@cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>info@cachintankakkad.in</a>
-                  </p>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    <strong>Website:</strong> <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>
-                  </p>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px", paddingTop: "12px", borderTop: "1px solid var(--border-light)" }}>
+                    <p style={{ margin: 0, fontSize: "0.92rem", display: "flex", alignItems: "center", gap: "10px" }}>
+                      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{ color: "var(--secondary-color)", flexShrink: 0 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                      </svg>
+                      <span><strong>Mobile:</strong> <a href="tel:+919409207388" style={{ color: "var(--text-dark)", textDecoration: "none" }}>+91 94092 07388</a> &nbsp;|&nbsp; <a href="tel:+919978666211" style={{ color: "var(--text-dark)", textDecoration: "none" }}>+91 99786 66211</a></span>
+                    </p>
+
+                    <p style={{ margin: 0, fontSize: "0.92rem", display: "flex", alignItems: "center", gap: "10px" }}>
+                      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{ color: "var(--secondary-color)", flexShrink: 0 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                      <span><strong>Email:</strong> <a href="mailto:info@cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>info@cachintankakkad.in</a></span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Office Working Hours Card */}
+                <div style={{
+                  padding: "20px 24px",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "var(--border-radius)",
+                  background: "#ffffff",
+                  boxShadow: "var(--shadow-sm)",
+                  borderLeft: "4px solid var(--secondary-color)"
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{ color: "var(--secondary-color)" }}>
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <h3 style={{ margin: 0, fontSize: "1.05rem", color: "var(--primary-color)" }}>Office Working Hours</h3>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "0.9rem", paddingBottom: "8px", borderBottom: "1px dashed var(--border-light)" }}>
+                    <span style={{ color: "var(--text-dark)", fontWeight: "500" }}>Monday – Saturday</span>
+                    <span style={{ color: "var(--primary-color)", fontWeight: "600" }}>09:30 AM – 07:30 PM</span>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "0.9rem", paddingTop: "8px" }}>
+                    <span style={{ color: "var(--text-muted)" }}>Sunday</span>
+                    <span style={{ color: "#b91c1c", fontWeight: "600", fontSize: "0.85rem" }}>Closed (Appointments only)</span>
+                  </div>
+                </div>
+
+                {/* Direct Consultation / Quick Action Banner */}
+                <div style={{
+                  padding: "16px 20px",
+                  border: "1px solid #bfdbfe",
+                  borderRadius: "var(--border-radius)",
+                  background: "linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "12px"
+                }}>
+                  <div>
+                    <h4 style={{ margin: "0 0 2px 0", fontSize: "0.92rem", color: "var(--primary-color)", fontWeight: "700" }}>
+                      Need Quick Consultation?
+                    </h4>
+                    <p style={{ margin: 0, fontSize: "0.82rem", color: "var(--text-muted)" }}>
+                      Connect directly with our team for tax or finance assistance
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    <a
+                      href="tel:+919409207388"
+                      className="btn btn-primary"
+                      style={{ padding: "7px 13px", fontSize: "0.8rem", display: "inline-flex", alignItems: "center", gap: "5px" }}
+                    >
+                      Call Now
+                    </a>
+                    <a
+                      href="https://api.whatsapp.com/send?phone=919409207388&text=Hello%20CA%20Chintan%20Kakkad,%20I%20have%20an%20enquiry."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary"
+                      style={{ padding: "7px 13px", fontSize: "0.8rem", display: "inline-flex", alignItems: "center", gap: "5px" }}
+                    >
+                      WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -164,7 +276,7 @@ ${line}
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="e.g. John Doe"
+                      placeholder=""
                       className="form-control"
                       required
                     />
@@ -178,7 +290,7 @@ ${line}
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="john@example.com"
+                        placeholder=""
                         className="form-control"
                         required
                       />
@@ -190,7 +302,7 @@ ${line}
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="e.g. 98989 00000"
+                        placeholder=""
                         className="form-control"
                         required
                       />
@@ -204,7 +316,7 @@ ${line}
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="e.g. Business Tax Audit Query"
+                      placeholder=""
                       className="form-control"
                       required
                     />
@@ -216,7 +328,7 @@ ${line}
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Write your detailed questions or comments here..."
+                      placeholder=""
                       className="form-control"
                       required
                     ></textarea>
