@@ -51,9 +51,59 @@ const nextConfig = {
   poweredByHeader: false,
   async headers() {
     return [
+      // Security headers for all routes
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      // Force fresh fetch for favicon & icons — helps Google pick up latest logo
+      {
+        source: "/favicon.ico",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, must-revalidate",
+          },
+          {
+            key: "Surrogate-Control",
+            value: "no-store",
+          },
+        ],
+      },
+      {
+        source: "/icon-:size*.png",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, must-revalidate",
+          },
+          {
+            key: "Surrogate-Control",
+            value: "no-store",
+          },
+        ],
+      },
+      {
+        source: "/apple-icon.png",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, must-revalidate",
+          },
+          {
+            key: "Surrogate-Control",
+            value: "no-store",
+          },
+        ],
+      },
+      {
+        source: "/manifest.webmanifest",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, must-revalidate",
+          },
+        ],
       },
     ];
   },
