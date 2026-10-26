@@ -13,14 +13,73 @@ export default function ArticleDetailView({ pageType = "news" }) {
   const targetUrl = searchParams.get("url");
 
   const [article, setArticle] = useState(null);
+  const [originalArticle, setOriginalArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
   const [selectedSidebarNews, setSelectedSidebarNews] = useState(null);
+  const [currentLang, setCurrentLang] = useState("en");
 
   const isCircular = pageType === "notification";
   const pageTitle = isCircular ? "Notifications & Circulars" : "News & Events";
   const parentHref = isCircular ? "/#notifications" : "/#news";
+
+  // Translate article metadata (title, category, date) in state
+  const translateArticleMeta = async (artData, lang) => {
+    if (!artData || lang === "en") return;
+    try {
+      const textsToTranslate = [artData.title || "", artData.category || "", artData.date || ""];
+      const res = await fetch("/api/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texts: textsToTranslate, targetLang: lang }),
+      });
+      if (res.ok) {
+        const { translations } = await res.json();
+        setArticle((prev) => ({
+          ...(prev || artData),
+          title: translations?.[0] || prev?.title || artData.title,
+          category: translations?.[1] || prev?.category || artData.category,
+          date: translations?.[2] || prev?.date || artData.date,
+        }));
+      }
+    } catch (e) {
+      console.warn("Failed to translate article metadata:", e);
+    }
+  };
+
+  // Sync current language from localStorage on mount and listen to changes
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("csk_active_language");
+      if (saved && (saved === "gu" || saved === "hi")) {
+        setCurrentLang(saved);
+      }
+    } catch (e) {}
+
+    const handleLangChange = (e) => {
+      const newLang = e.detail || "en";
+      setCurrentLang(newLang);
+
+      if (newLang === "en") {
+        if (originalArticle) {
+          setArticle(originalArticle);
+        }
+      } else if (originalArticle) {
+        translateArticleMeta(originalArticle, newLang);
+      }
+
+      // Notify global translator to translate all article paragraphs, breadcrumbs, and sidebar
+      if (typeof window !== "undefined") {
+        setTimeout(() => {
+          window.cskTranslateNow?.(newLang);
+        }, 100);
+      }
+    };
+
+    window.addEventListener("appLanguageChanged", handleLangChange);
+    return () => window.removeEventListener("appLanguageChanged", handleLangChange);
+  }, [originalArticle]);
 
   useEffect(() => {
     if (!targetUrl) {
@@ -41,7 +100,27 @@ export default function ArticleDetailView({ pageType = "news" }) {
           throw new Error("Unable to fetch article details");
         }
         const data = await res.json();
+        setOriginalArticle(data);
         setArticle(data);
+
+        // Check if currently viewing in non-English language
+        const activeLang = typeof window !== "undefined"
+          ? (localStorage.getItem("csk_active_language") || currentLang)
+          : currentLang;
+
+        if (activeLang && activeLang !== "en") {
+          translateArticleMeta(data, activeLang);
+        }
+
+        // Notify translator to translate article HTML body, breadcrumbs, and layout
+        if (typeof window !== "undefined") {
+          setTimeout(() => {
+            window.dispatchEvent(new CustomEvent("cskContentUpdated"));
+            if (activeLang && activeLang !== "en") {
+              window.cskTranslateNow?.(activeLang);
+            }
+          }, 120);
+        }
       } catch (err) {
         console.error("Failed to load article detail:", err);
         setError("Failed to retrieve article details from source server.");
@@ -51,7 +130,7 @@ export default function ArticleDetailView({ pageType = "news" }) {
     }
 
     loadArticle();
-  }, [targetUrl]);
+  }, [targetUrl, currentLang]);
 
 
   const handleShare = () => {

@@ -6,19 +6,58 @@ import styles from "./page.module.css";
 import NewsModal from "@/components/NewsModal";
 import EnquiryModal from "@/components/EnquiryModal";
 
-// Cache hero slide translations across language changes
+// Cache hero slide and news translations across language changes
 const heroSlidesCache = { gu: null, hi: null };
+const newsCache = { gu: null, hi: null };
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [news, setNews] = useState([]);
+  const [translatedNews, setTranslatedNews] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState(null);
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(null);
   const [translatedSlides, setTranslatedSlides] = useState(null);
   const [currentLang, setCurrentLang] = useState("en");
+
+  // Helper to translate news items batch
+  const translateNewsList = async (items, lang) => {
+    if (!items || items.length === 0 || lang === "en") return items;
+    if (newsCache[lang]) return newsCache[lang];
+
+    try {
+      const titles = items.map((i) => i.title);
+      const res = await fetch("/api/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texts: titles, targetLang: lang }),
+      });
+      if (res.ok) {
+        const { translations } = await res.json();
+        const translated = items.map((item, idx) => ({
+          ...item,
+          title: translations?.[idx] || item.title,
+        }));
+        newsCache[lang] = translated;
+        return translated;
+      }
+    } catch (err) {
+      console.error("Failed to translate news items:", err);
+    }
+    return items;
+  };
+
+  // Read saved language from localStorage on initial mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("csk_active_language");
+      if (saved && (saved === "gu" || saved === "hi")) {
+        setCurrentLang(saved);
+      }
+    } catch (e) {}
+  }, []);
 
   const slides = [
     {
@@ -47,51 +86,57 @@ export default function Home() {
     }
   ];
 
-  // Listen to language change to dynamically translate hero slides
+  // Listen to language change to dynamically translate hero slides and news ticker
   useEffect(() => {
     const handleLanguageChange = async (e) => {
       const lang = e.detail || "en";
       setCurrentLang(lang);
       if (lang === "en") {
         setTranslatedSlides(null);
+        setTranslatedNews(null);
         return;
       }
 
+      // Translate slides
       if (heroSlidesCache[lang]) {
         setTranslatedSlides(heroSlidesCache[lang]);
-        return;
+      } else {
+        const allTexts = [];
+        slides.forEach((s) => {
+          allTexts.push(s.tag, s.title, s.desc);
+        });
+
+        try {
+          const res = await fetch("/api/translate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ texts: allTexts, targetLang: lang }),
+          });
+          if (res.ok) {
+            const { translations } = await res.json();
+            const newSlides = slides.map((s, idx) => ({
+              ...s,
+              tag: translations[idx * 3] || s.tag,
+              title: translations[idx * 3 + 1] || s.title,
+              desc: translations[idx * 3 + 2] || s.desc,
+            }));
+            heroSlidesCache[lang] = newSlides;
+            setTranslatedSlides(newSlides);
+          }
+        } catch (err) {
+          console.error("Hero translation error:", err);
+        }
       }
 
-      const allTexts = [];
-      slides.forEach((s) => {
-        allTexts.push(s.tag, s.title, s.desc);
-      });
-
-      try {
-        const res = await fetch("/api/translate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ texts: allTexts, targetLang: lang }),
-        });
-        if (res.ok) {
-          const { translations } = await res.json();
-          const newSlides = slides.map((s, idx) => ({
-            ...s,
-            tag: translations[idx * 3] || s.tag,
-            title: translations[idx * 3 + 1] || s.title,
-            desc: translations[idx * 3 + 2] || s.desc,
-          }));
-          heroSlidesCache[lang] = newSlides;
-          setTranslatedSlides(newSlides);
-        }
-      } catch (err) {
-        console.error("Hero translation error:", err);
+      // Translate news ticker items
+      if (news.length > 0) {
+        translateNewsList(news, lang).then((t) => setTranslatedNews(t));
       }
     };
 
     window.addEventListener("appLanguageChanged", handleLanguageChange);
     return () => window.removeEventListener("appLanguageChanged", handleLanguageChange);
-  }, []);
+  }, [news]);
 
   // Auto-advance slides every 6 seconds
   useEffect(() => {
@@ -114,6 +159,15 @@ export default function Home() {
         if (res.ok) {
           const data = await res.json();
           setNews(data);
+
+          // If language is currently non-English, translate the fetched news immediately
+          const activeLang = typeof window !== "undefined"
+            ? (localStorage.getItem("csk_active_language") || currentLang)
+            : currentLang;
+
+          if (activeLang && activeLang !== "en") {
+            translateNewsList(data, activeLang).then((t) => setTranslatedNews(t));
+          }
         }
       } catch (error) {
         console.error("Failed to load news for marquee:", error);
@@ -122,7 +176,7 @@ export default function Home() {
       }
     }
     fetchNews();
-  }, []);
+  }, [currentLang]);
 
   const services = [
     {
@@ -255,23 +309,30 @@ export default function Home() {
                     <span className={styles.tickerBullet}></span>
                     <span>Connecting to live tax updates...</span>
                   </div>
-                ) : news.length > 0 ? (
-                  [...news, ...news].map((item, idx) => (
-                    <div
-                      key={idx}
-                      className={styles.tickerItem}
-                      onClick={() => setSelectedNews(item)}
-                    >
-                      <span className={styles.tickerBullet}></span>
-                      <span className={styles.tickerDate}>{item.date}:</span>
-                      <span>{item.title}</span>
-                    </div>
-                  ))
                 ) : (
-                  <div className={styles.tickerItem}>
-                    <span className={styles.tickerBullet}></span>
-                    <span>No active updates. Check back later.</span>
-                  </div>
+                  (() => {
+                    const activeNews = (currentLang !== "en" && translatedNews && translatedNews.length > 0)
+                      ? translatedNews
+                      : news;
+                    return activeNews.length > 0 ? (
+                      [...activeNews, ...activeNews].map((item, idx) => (
+                        <div
+                          key={idx}
+                          className={styles.tickerItem}
+                          onClick={() => setSelectedNews(item)}
+                        >
+                          <span className={styles.tickerBullet}></span>
+                          <span className={styles.tickerDate}>{item.date}:</span>
+                          <span>{item.title}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <div className={styles.tickerItem}>
+                        <span className={styles.tickerBullet}></span>
+                        <span>No active updates. Check back later.</span>
+                      </div>
+                    );
+                  })()
                 )}
               </div>
             </div>

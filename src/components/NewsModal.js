@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import styles from "./NewsModal.module.css";
 
@@ -30,6 +31,10 @@ export default function NewsModal({ newsItem, item, onClose }) {
     ? `/notifications/detail?url=${encodeURIComponent(activeItem.link || "")}`
     : `/news-events/detail?url=${encodeURIComponent(activeItem.link || "")}`;
 
+  const activeLang = typeof window !== "undefined"
+    ? (localStorage.getItem("csk_active_language") || "en")
+    : "en";
+
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalCard} onClick={(e) => e.stopPropagation()}>
@@ -56,14 +61,14 @@ export default function NewsModal({ newsItem, item, onClose }) {
               className="btn btn-secondary"
               style={{ fontSize: "0.85rem", padding: "8px 18px", display: "inline-flex", alignItems: "center", gap: "6px" }}
             >
-              Read Full Article
+              {activeLang === "gu" ? "સંપૂર્ણ લેખ વાંચો" : activeLang === "hi" ? "पूरा लेख पढ़ें" : "Read Full Article"}
               <svg style={{ width: "14px", height: "14px" }} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
             </Link>
           ) : null}
           <button className="btn btn-outline" onClick={onClose} style={{ fontSize: "0.85rem", padding: "8px 16px" }}>
-            Close
+            {activeLang === "gu" ? "બંધ કરો" : activeLang === "hi" ? "बंद करें" : "Close"}
           </button>
         </div>
       </div>

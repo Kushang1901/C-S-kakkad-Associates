@@ -76,9 +76,62 @@ function TickerWidget({ title, items, loading, onItemClick }) {
   );
 }
 
+// Memory cache for sidebar translations
+const sidebarNewsCache = { gu: null, hi: null };
+
 export default function NewsSidebar({ onItemClick }) {
   const [news, setNews] = useState([]);
+  const [translatedNews, setTranslatedNews] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentLang, setCurrentLang] = useState("en");
+
+  const translateSidebarList = async (items, lang) => {
+    if (!items || items.length === 0 || lang === "en") return items;
+    if (sidebarNewsCache[lang]) return sidebarNewsCache[lang];
+
+    try {
+      const titles = items.map((i) => i.title);
+      const res = await fetch("/api/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texts: titles, targetLang: lang }),
+      });
+      if (res.ok) {
+        const { translations } = await res.json();
+        const translated = items.map((item, idx) => ({
+          ...item,
+          title: translations?.[idx] || item.title,
+        }));
+        sidebarNewsCache[lang] = translated;
+        return translated;
+      }
+    } catch (err) {
+      console.warn("Sidebar translation error:", err);
+    }
+    return items;
+  };
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("csk_active_language");
+      if (saved && (saved === "gu" || saved === "hi")) {
+        setCurrentLang(saved);
+      }
+    } catch (e) {}
+
+    const handleLangChange = (e) => {
+      const newLang = e.detail || "en";
+      setCurrentLang(newLang);
+      if (newLang === "en") {
+        setTranslatedNews(null);
+      } else if (news.length > 0) {
+        translateSidebarList(news, newLang).then((t) => setTranslatedNews(t));
+      }
+    };
+
+    window.addEventListener("appLanguageChanged", handleLangChange);
+    return () => window.removeEventListener("appLanguageChanged", handleLangChange);
+  }, [news]);
 
   useEffect(() => {
     async function fetchNews() {
@@ -87,6 +140,14 @@ export default function NewsSidebar({ onItemClick }) {
         if (res.ok) {
           const data = await res.json();
           setNews(data);
+
+          const activeLang = typeof window !== "undefined"
+            ? (localStorage.getItem("csk_active_language") || currentLang)
+            : currentLang;
+
+          if (activeLang && activeLang !== "en") {
+            translateSidebarList(data, activeLang).then((t) => setTranslatedNews(t));
+          }
         }
       } catch (error) {
         console.error("Failed to load news in sidebar:", error);
@@ -95,7 +156,7 @@ export default function NewsSidebar({ onItemClick }) {
       }
     }
     fetchNews();
-  }, []);
+  }, [currentLang]);
 
   // Classify news items
   const isCircular = (item) => {
@@ -122,19 +183,23 @@ export default function NewsSidebar({ onItemClick }) {
     );
   };
 
-  const newsAndEvents = useMemo(() => news.filter(item => !isCircular(item)), [news]);
-  const notificationsCirculars = useMemo(() => news.filter(item => isCircular(item)), [news]);
+  const activeItems = (currentLang !== "en" && translatedNews && translatedNews.length > 0)
+    ? translatedNews
+    : news;
+
+  const newsAndEvents = useMemo(() => activeItems.filter(item => !isCircular(item)), [activeItems]);
+  const notificationsCirculars = useMemo(() => activeItems.filter(item => isCircular(item)), [activeItems]);
 
   return (
     <aside className={styles.sidebar}>
       <TickerWidget
-        title="News & Events"
+        title={currentLang === "gu" ? "સમાચાર અને ઘટનાઓ" : currentLang === "hi" ? "समाचार और घटनाएं" : "News & Events"}
         items={newsAndEvents}
         loading={loading}
         onItemClick={onItemClick}
       />
       <TickerWidget
-        title="Notification/Circular"
+        title={currentLang === "gu" ? "સૂચના / પરિપત્ર" : currentLang === "hi" ? "अधिसूचना / परिपत्र" : "Notification/Circular"}
         items={notificationsCirculars}
         loading={loading}
         onItemClick={onItemClick}

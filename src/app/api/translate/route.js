@@ -60,6 +60,40 @@ async function translateBatchChunk(chunk, targetLang) {
   const cleaned = chunk.map((t) => t.replace(/\|\|\|/g, " ").trim());
   const query = cleaned.join(DELIM);
 
+  // Method 1: Google GTX via POST (Handles long queries and whole article paragraphs without URI limits)
+  try {
+    const postBody = new URLSearchParams();
+    postBody.append("client", "gtx");
+    postBody.append("sl", "en");
+    postBody.append("tl", targetLang);
+    postBody.append("dt", "t");
+    postBody.append("q", query);
+
+    const res = await fetch("https://translate.googleapis.com/translate_a/single", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      },
+      body: postBody.toString(),
+      signal: AbortSignal.timeout(6000),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data?.[0])) {
+        const full = data[0].map((item) => item[0]).join("");
+        const parts = full.split(/\s*\|\|\|\s*/);
+        if (parts.length === chunk.length) {
+          return parts.map((p) => p.trim());
+        }
+      }
+    }
+  } catch (e) {
+    // If POST failed, try GET method
+  }
+
+  // Method 2: Google GTX via GET fallback
   try {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(query)}`;
     const res = await fetch(url, {
@@ -78,10 +112,10 @@ async function translateBatchChunk(chunk, targetLang) {
       }
     }
   } catch (e) {
-    // If batch endpoint failed or timed out, fall through to fallback
+    // Fall through to individual fallback
   }
 
-  // Graceful fallback: translate items in this chunk individually with concurrency
+  // Method 3: Graceful fallback: translate items individually in parallel
   return Promise.all(chunk.map((text) => translateSingleText(text, targetLang)));
 }
 
@@ -93,10 +127,10 @@ export async function POST(request) {
       return NextResponse.json({ error: "Missing texts array" }, { status: 400 });
     }
 
-    // Support up to 600 items for rich full-page translations
-    if (texts.length > 600) {
+    // Support up to 1200 items for rich full-page & long article translations
+    if (texts.length > 1200) {
       return NextResponse.json(
-        { error: "Payload exceeds maximum allowed items (600)" },
+        { error: "Payload exceeds maximum allowed items (1200)" },
         { status: 413 }
       );
     }

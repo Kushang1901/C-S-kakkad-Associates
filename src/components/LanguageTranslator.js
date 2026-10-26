@@ -44,19 +44,15 @@ const persistLocalTranslations = () => {
   }
 };
 
+const LANG_STORAGE_KEY = "csk_active_language";
+
 export default function LanguageTranslator({ isMobile = false }) {
-  // Always default to English on every page load/reload as requested
   const [currentLang, setCurrentLang] = useState("en");
   const [isOpen, setIsOpen] = useState(false);
   const [isTranslating, setIsTranslating] = useState(false);
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef(null);
   const pathname = usePathname();
-
-  useEffect(() => {
-    setMounted(true);
-    loadLocalTranslations();
-  }, []);
 
   // Helper to gather all translatable text nodes across the page
   const getTextNodes = () => {
@@ -98,7 +94,7 @@ export default function LanguageTranslator({ isMobile = false }) {
   };
 
   // Main translation function
-  const applyTranslation = useCallback(async (langCode) => {
+  const applyTranslation = useCallback(async (langCode, showSpinner = true) => {
     if (typeof window === "undefined") return;
 
     const nodes = getTextNodes();
@@ -147,8 +143,10 @@ export default function LanguageTranslator({ isMobile = false }) {
       return;
     }
 
-    // Only display spinner overlay if we actually need to fetch new translations
-    setIsTranslating(true);
+    // Only display spinner overlay if requested and actually fetching new translations
+    if (showSpinner) {
+      setIsTranslating(true);
+    }
 
     try {
       const textsArray = Array.from(uncachedTexts);
@@ -184,15 +182,87 @@ export default function LanguageTranslator({ isMobile = false }) {
     }
   }, []);
 
+  // Initialize and load saved language
+  useEffect(() => {
+    setMounted(true);
+    loadLocalTranslations();
+
+    try {
+      const saved = localStorage.getItem(LANG_STORAGE_KEY);
+      if (saved && (saved === "gu" || saved === "hi")) {
+        setCurrentLang(saved);
+        setTimeout(() => {
+          applyTranslation(saved, false);
+        }, 120);
+      }
+    } catch (e) {}
+  }, [applyTranslation]);
+
+  // Synchronize across multiple translator instances (mobile & desktop)
+  useEffect(() => {
+    const handleGlobalLang = (e) => {
+      const lang = e.detail;
+      if (lang && lang !== currentLang) {
+        setCurrentLang(lang);
+      }
+    };
+    window.addEventListener("appLanguageChanged", handleGlobalLang);
+    return () => window.removeEventListener("appLanguageChanged", handleGlobalLang);
+  }, [currentLang]);
+
   // Re-apply translation when route changes while a non-English language is active
   useEffect(() => {
     if (currentLang !== "en") {
       const timer = setTimeout(() => {
-        applyTranslation(currentLang);
-      }, 50);
+        applyTranslation(currentLang, false);
+      }, 150);
       return () => clearTimeout(timer);
     }
   }, [pathname, currentLang, applyTranslation]);
+
+  // Listen to custom "cskContentUpdated" events and observe dynamic DOM changes
+  useEffect(() => {
+    window.cskTranslateNow = (lang = currentLang) => {
+      if (lang && lang !== "en") {
+        applyTranslation(lang, false);
+      }
+    };
+    window.cskGetActiveLang = () => currentLang;
+
+    const handleContentUpdated = () => {
+      if (currentLang !== "en") {
+        applyTranslation(currentLang, false);
+      }
+    };
+    window.addEventListener("cskContentUpdated", handleContentUpdated);
+
+    // Debounced MutationObserver for dynamically injected DOM nodes (news ticker, articles, modals)
+    let debounceTimer = null;
+    const observer = new MutationObserver((mutations) => {
+      if (currentLang === "en") return;
+      let hasAddedNodes = false;
+      for (const m of mutations) {
+        if (m.addedNodes && m.addedNodes.length > 0) {
+          hasAddedNodes = true;
+          break;
+        }
+      }
+      if (hasAddedNodes) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          applyTranslation(currentLang, false);
+        }, 150);
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      window.removeEventListener("cskContentUpdated", handleContentUpdated);
+      observer.disconnect();
+      clearTimeout(debounceTimer);
+    };
+  }, [currentLang, applyTranslation]);
 
   // Handle outside click to close dropdown
   useEffect(() => {
@@ -219,12 +289,16 @@ export default function LanguageTranslator({ isMobile = false }) {
     setCurrentLang(langCode);
     setIsOpen(false);
 
-    // Notify other components like the hero slider in page.js
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, langCode);
+    } catch (e) {}
+
+    // Notify other components like the hero slider, news ticker, and article view
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("appLanguageChanged", { detail: langCode }));
     }
 
-    applyTranslation(langCode);
+    applyTranslation(langCode, true);
   };
 
   const activeLangObj = LANGUAGES.find((l) => l.code === currentLang) || LANGUAGES[0];
