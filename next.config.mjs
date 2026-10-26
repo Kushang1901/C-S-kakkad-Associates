@@ -71,16 +71,38 @@ const nextConfig = {
         ],
       },
       {
-        source: "/icon-:size*.png",
+        source: "/icon-48.png",
         headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=86400, must-revalidate",
-          },
-          {
-            key: "Surrogate-Control",
-            value: "no-store",
-          },
+          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
+          { key: "Surrogate-Control", value: "no-store" },
+        ],
+      },
+      {
+        source: "/icon-96.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
+          { key: "Surrogate-Control", value: "no-store" },
+        ],
+      },
+      {
+        source: "/icon-144.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
+          { key: "Surrogate-Control", value: "no-store" },
+        ],
+      },
+      {
+        source: "/icon-192.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
+          { key: "Surrogate-Control", value: "no-store" },
+        ],
+      },
+      {
+        source: "/icon-512.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
+          { key: "Surrogate-Control", value: "no-store" },
         ],
       },
       {
