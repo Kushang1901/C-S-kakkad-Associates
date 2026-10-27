@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import CloudflareTurnstile from "./CloudflareTurnstile";
 
 export default function EnquiryForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ export default function EnquiryForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState(null);
+  const turnstileRef = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +30,11 @@ export default function EnquiryForm() {
 
     if (!formData.name || !formData.email || !formData.phone || !formData.service) {
       setError("Please fill out all required fields.");
+      return;
+    }
+
+    if (!turnstileToken) {
+      setError("Please complete the Cloudflare security verification.");
       return;
     }
 
@@ -61,6 +69,8 @@ ${line}
         service: "",
         message: "",
       });
+      setTurnstileToken(null);
+      turnstileRef.current?.reset();
     }, 1000);
   };
 
@@ -196,6 +206,21 @@ ${line}
               placeholder="Briefly describe your requirements or tax queries..."
               className="form-control"
             ></textarea>
+          </div>
+
+          <div className="form-group" style={{ marginBottom: "16px" }}>
+            <label className="form-label" style={{ marginBottom: "6px", display: "block" }}>
+              Security Verification <span style={{ color: "red" }}>*</span>
+            </label>
+            <CloudflareTurnstile
+              ref={turnstileRef}
+              onVerify={(token) => {
+                setTurnstileToken(token);
+                setError("");
+              }}
+              onExpire={() => setTurnstileToken(null)}
+              onError={() => setTurnstileToken(null)}
+            />
           </div>
 
           <button

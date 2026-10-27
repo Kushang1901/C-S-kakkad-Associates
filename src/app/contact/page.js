@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
+import CloudflareTurnstile from "@/components/CloudflareTurnstile";
 import styles from "../content-page.module.css";
 
 export default function Contact() {
@@ -16,6 +17,8 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState(null);
+  const turnstileRef = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +31,11 @@ export default function Contact() {
 
     if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
       setError("Please fill out all required fields.");
+      return;
+    }
+
+    if (!turnstileToken) {
+      setError("Please complete the Cloudflare security verification.");
       return;
     }
 
@@ -61,6 +69,8 @@ ${line}
         subject: "",
         message: "",
       });
+      setTurnstileToken(null);
+      turnstileRef.current?.reset();
     }, 1000);
   };
 
@@ -332,6 +342,21 @@ ${line}
                       className="form-control"
                       required
                     ></textarea>
+                  </div>
+
+                  <div className="form-group" style={{ marginBottom: "16px" }}>
+                    <label className="form-label" style={{ marginBottom: "6px", display: "block" }}>
+                      Security Verification <span style={{ color: "red" }}>*</span>
+                    </label>
+                    <CloudflareTurnstile
+                      ref={turnstileRef}
+                      onVerify={(token) => {
+                        setTurnstileToken(token);
+                        setError("");
+                      }}
+                      onExpire={() => setTurnstileToken(null)}
+                      onError={() => setTurnstileToken(null)}
+                    />
                   </div>
 
                   <button
