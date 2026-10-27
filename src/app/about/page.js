@@ -39,6 +39,9 @@ export default function About() {
             src="/owner image-1.jpeg" 
             alt="CA Chintan S. Kakkad" 
             className={styles.leaderImg} 
+            width={1086}
+            height={1448}
+            loading="lazy"
           />
         </div>
         <div className={styles.leaderDetails}>

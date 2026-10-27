@@ -271,7 +271,12 @@ export default function Home() {
               <button onClick={() => setIsEnquiryModalOpen(true)} className="btn btn-secondary">
                 {currentLang === "hi" ? "पुस्तक परामर्श" : currentLang === "gu" ? "પુસ્તક પરામર્શ" : "Book Consultation"}
               </button>
-              <Link href="/about" className="btn btn-outline" style={{ color: '#fff', borderColor: '#fff' }}>
+              <Link 
+                href="/about" 
+                className="btn btn-outline" 
+                style={{ color: '#fff', borderColor: '#fff' }}
+                aria-label="Learn more about C S Kakkad & Associates Chartered Accountants"
+              >
                 {currentLang === "hi" ? "और अधिक जानें" : currentLang === "gu" ? "વધુ જાણો" : "Learn More"}
               </Link>
             </div>
@@ -385,6 +390,9 @@ export default function Home() {
                     src="/owner image-1.jpeg"
                     alt="Chintan S. Kakkad - Chartered Accountant"
                     className={styles.partnerImg}
+                    width={1086}
+                    height={1448}
+                    loading="lazy"
                   />
                   <div className={styles.partnerOverlay}>
                     <h3 className={styles.partnerOverlayName}>Chintan S. Kakkad</h3>
@@ -412,7 +420,11 @@ export default function Home() {
                 </div>
                 <h3 className={`serviceTitle ${styles.serviceTitle}`}>{service.title}</h3>
                 <p className={styles.serviceDesc}>{service.desc}</p>
-                <Link href={service.path} className={styles.serviceLink}>
+                <Link 
+                  href={service.path} 
+                  className={styles.serviceLink}
+                  aria-label={`Read detailed service about ${service.title}`}
+                >
                   <span>Read Detailed Service</span>
                   <svg className={styles.serviceLinkIcon} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

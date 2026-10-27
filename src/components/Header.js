@@ -138,7 +138,7 @@ export default function Header() {
         <div className="container">
           <div className={styles.navbarInner}>
             <Link href="/" className={`${styles.logoContainer} notranslate`}>
-              <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} />
+              <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} width="120" height="91" />
               <div className={styles.brandInfo}>
                 <span className={styles.brandName}>C S Kakkad & Associates</span>
                 <span className={styles.brandTitle}>Chartered Accountants</span>
@@ -214,7 +214,7 @@ export default function Header() {
         {/* Drawer Header */}
         <div className={styles.drawerHeader}>
           <div className={`${styles.drawerLogoContainer} notranslate`}>
-            <img src="/cs-kakkad-logo.png" alt="Logo" className={styles.drawerLogo} />
+            <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.drawerLogo} width="120" height="91" />
             <div className={styles.drawerBrandInfo}>
               <span className={styles.drawerBrandName}>C S Kakkad & Associates</span>
               <span className={styles.drawerBrandTitle}>CHARTERED ACCOUNTANTS</span>
@@ -272,7 +272,7 @@ export default function Header() {
 
         {/* Drawer Footer - Contact Info */}
         <div className={styles.drawerFooter}>
-          <h4 className={styles.drawerFooterTitle}>Contact Info</h4>
+          <div className={styles.drawerFooterTitle}>Contact Info</div>
           <p className={styles.drawerFooterText}>
             <strong>Email:</strong> <a href="mailto:info@cachintankakkad.in">info@cachintankakkad.in</a>
           </p>
@@ -280,7 +280,7 @@ export default function Header() {
             <strong>Phone:</strong> <a href="tel:+919409207388">94092 07388</a>
           </p>
 
-          <h4 className={styles.drawerFooterTitle} style={{ marginTop: "14px" }}>Our Office</h4>
+          <div className={styles.drawerFooterTitle} style={{ marginTop: "14px" }}>Our Office</div>
           <p className={styles.drawerFooterText} style={{ fontSize: "0.75rem" }}>
             Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate, Dwarka - 361335
           </p>

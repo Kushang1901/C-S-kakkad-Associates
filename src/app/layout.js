@@ -408,9 +408,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
-        {/* Preconnect to Google Translate CDN endpoints to minimize translation latency */}
-        <link rel="preconnect" href="https://translate.google.com" />
-        <link rel="preconnect" href="https://translate.googleapis.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for Google Translate endpoints without blocking connections */}
         <link rel="dns-prefetch" href="https://translate.google.com" />
         <link rel="dns-prefetch" href="https://translate.googleapis.com" />
         <script

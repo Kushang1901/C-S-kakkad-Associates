@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Company Info column */}
           <div className={styles.columnLogo}>
             <div className={styles.logoRow}>
-              <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} />
+              <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} width="120" height="91" />
               <div className={styles.logoText}>
                 <span className={styles.firmName}>C S Kakkad & Associates</span>
                 <span className={styles.firmTag}>Chartered Accountants</span>
@@ -24,7 +24,7 @@ export default function Footer() {
 
           {/* Office column */}
           <div className={styles.columnInfo}>
-            <h4 className={styles.title}>Our Office</h4>
+            <h3 className={styles.title}>Our Office</h3>
             <div className={styles.officeBlock}>
               <span className={styles.officeTitle}>Dwarka (Main Office)</span>
               <p>Office No. 8, 1st Floor, Dwarkesh Shopping Centre, Nr. Rabari Gate, Dwarka - 361335</p>
@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Quick Links Column */}
           <div className={styles.columnLinks}>
-            <h4 className={styles.title}>Quick Links</h4>
+            <h3 className={styles.title}>Quick Links</h3>
             <ul className={styles.links}>
               <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
@@ -51,7 +51,7 @@ export default function Footer() {
 
           {/* Services Column */}
           <div className={styles.columnLinks}>
-            <h4 className={styles.title}>Our Services</h4>
+            <h3 className={styles.title}>Our Services</h3>
             <ul className={styles.links}>
               <li><Link href="/services/accounting-outsourcing">Accounting & Outsourcing</Link></li>
               <li><Link href="/services/audit-assurance">Audit & Assurance</Link></li>
@@ -64,7 +64,7 @@ export default function Footer() {
 
           {/* Utilities Column */}
           <div className={styles.columnLinks}>
-            <h4 className={styles.title}>Utilities & Portals</h4>
+            <h3 className={styles.title}>Utilities & Portals</h3>
             <ul className={styles.links}>
               <li><Link href="/calculators">Tax & EMI Calculators</Link></li>
               <li><Link href="/useful-links">Government Portals</Link></li>

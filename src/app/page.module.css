@@ -97,21 +97,34 @@
 }
 
 .indicatorDot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.indicatorDot::after {
+  content: "";
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.4);
-  border: none;
-  cursor: pointer;
-  padding: 0;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.indicatorDot:hover {
+.indicatorDot:hover::after {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-.indicatorActive {
+.indicatorActive::after {
   background-color: var(--secondary-light);
   transform: scale(1.2);
 }
@@ -283,6 +296,7 @@
 .partnerImg {
   width: 100%;
   height: 470px;
+  aspect-ratio: 1086 / 1448;
   object-fit: cover;
   object-position: top center;
   display: block;

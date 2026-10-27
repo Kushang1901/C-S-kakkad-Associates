@@ -33,7 +33,7 @@ export default function Preloader() {
 
   return (
     <div className={`preloader-overlay ${fadeOut ? "fade-out" : ""}`}>
-      <img src="/loader.png" alt="CS Kakkad & Associates Logo" className="preloader-logo" />
+      <img src="/loader.png" alt="CS Kakkad & Associates Logo" className="preloader-logo" width="120" height="91" />
       <div className="dots-loader">
         <span></span>
         <span></span>

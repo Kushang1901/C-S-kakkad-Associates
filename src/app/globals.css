@@ -485,12 +485,12 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   z-index: 99999;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  will-change: opacity;
+  transition: opacity 0.4s ease;
 }
 
 .preloader-overlay.fade-out {
   opacity: 0;
-  visibility: hidden;
   pointer-events: none;
 }
 
