@@ -56,53 +56,44 @@ const nextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
-      // Force fresh fetch for favicon & icons — helps Google pick up latest logo
+      // Caching headers for favicon & icons — ensure crawlers & CDNs can cache stable assets
       {
         source: "/favicon.ico",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=86400, must-revalidate",
-          },
-          {
-            key: "Surrogate-Control",
-            value: "no-store",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
         ],
       },
       {
         source: "/icon-48.png",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
-          { key: "Surrogate-Control", value: "no-store" },
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
         ],
       },
       {
         source: "/icon-96.png",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
-          { key: "Surrogate-Control", value: "no-store" },
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
         ],
       },
       {
         source: "/icon-144.png",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
-          { key: "Surrogate-Control", value: "no-store" },
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
         ],
       },
       {
         source: "/icon-192.png",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
-          { key: "Surrogate-Control", value: "no-store" },
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
         ],
       },
       {
         source: "/icon-512.png",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=86400, must-revalidate" },
-          { key: "Surrogate-Control", value: "no-store" },
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
         ],
       },
       {
@@ -110,11 +101,7 @@ const nextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=86400, must-revalidate",
-          },
-          {
-            key: "Surrogate-Control",
-            value: "no-store",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
         ],
       },

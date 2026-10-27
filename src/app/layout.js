@@ -408,15 +408,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
-        {/* Favicon & Web App Icons for Search Engines (Google, Bing, Yahoo) */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png" />
-        <link rel="icon" type="image/png" sizes="144x144" href="/icon-144.png" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
-
         {/* Preconnect to Google Translate CDN endpoints to minimize translation latency */}
         <link rel="preconnect" href="https://translate.google.com" />
         <link rel="preconnect" href="https://translate.googleapis.com" crossOrigin="anonymous" />
