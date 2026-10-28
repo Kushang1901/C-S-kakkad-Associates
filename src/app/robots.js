@@ -9,6 +9,7 @@ export default function robots() {
       {
         userAgent: [
           "Googlebot",
+          "Googlebot-Image",
           "Bingbot",
           "GPTBot",
           "ChatGPT-User",

@@ -46,14 +46,14 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
       { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
       { url: "/icon-144.png", sizes: "144x144", type: "image/png" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
-    shortcut: "/favicon.ico",
+    shortcut: "/icon-48.png",
     apple: [
       { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
@@ -248,6 +248,7 @@ const jsonLdGraph = {
       "@id": "https://cachintankakkad.in/#website",
       url: "https://cachintankakkad.in",
       name: "C S Kakkad & Associates",
+      alternateName: ["CS Kakkad & Associates", "CA Chintan Kakkad", "cachintankakkad.in"],
       description: "Official portal for C S Kakkad & Associates Chartered Accountants, Dwarka",
       publisher: {
         "@id": "https://cachintankakkad.in/#organization",
@@ -408,6 +409,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
+        {/* Google Search Favicon Strict Specification (Multiple of 48px square) */}
+        <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+
         {/* DNS prefetch for Google Translate endpoints without blocking connections */}
         <link rel="dns-prefetch" href="https://translate.google.com" />
         <link rel="dns-prefetch" href="https://translate.googleapis.com" />
