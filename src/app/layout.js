@@ -47,6 +47,7 @@ export const metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
       { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
@@ -70,12 +71,6 @@ export const metadata = {
         width: 512,
         height: 512,
         alt: "C S Kakkad & Associates Chartered Accountants Logo",
-      },
-      {
-        url: "/cs-kakkad-logo.png",
-        width: 120,
-        height: 91,
-        alt: "C S Kakkad & Associates Logo",
       },
     ],
   },

@@ -53,6 +53,18 @@ const securityHeaders = [
 
 const nextConfig = {
   poweredByHeader: false,
+  async rewrites() {
+    return [
+      {
+        source: "/icon",
+        destination: "/icon.png",
+      },
+      {
+        source: "/apple-icon",
+        destination: "/apple-icon.png",
+      },
+    ];
+  },
   async headers() {
     return [
       // Security headers for all routes
@@ -96,6 +108,12 @@ const nextConfig = {
       },
       {
         source: "/icon-512.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+        ],
+      },
+      {
+        source: "/icon.png",
         headers: [
           { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
         ],
