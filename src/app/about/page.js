@@ -12,24 +12,50 @@ export const metadata = {
     "ICAI Member Firm Dwarka",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/about",
+    canonical: "https://cachintankakkad.in/about",
   },
   openGraph: {
     title: "About C S Kakkad & Associates | Chartered Accountants",
     description: "Firm history, professional values, and comprehensive chartered accountancy capabilities in Dwarka, Gujarat.",
-    url: "https://www.cachintankakkad.in/about",
+    url: "https://cachintankakkad.in/about",
+  },
+};
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://cachintankakkad.in/about#webpage",
+  url: "https://cachintankakkad.in/about",
+  name: "About C S Kakkad & Associates | Chartered Accountants",
+  description: "Firm history, leadership profile of CA Chintan S. Kakkad, and professional practice areas in Dwarka and Gujarat.",
+  mainEntity: {
+    "@type": "AccountingService",
+    "@id": "https://cachintankakkad.in/#organization",
+    name: "C S Kakkad & Associates",
+    founder: {
+      "@type": "Person",
+      "@id": "https://cachintankakkad.in/#founder",
+      name: "CA Chintan S. Kakkad",
+      jobTitle: "Founder & Sole Proprietor",
+      honorificPrefix: "CA",
+      hasCredential: "Fellow Chartered Accountant (F.C.A.), B.Com",
+    },
   },
 };
 
 export default function About() {
   return (
     <InnerPageLayout title="About Us" breadcrumbs={[{ name: "About Us" }]}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
       <h2>Firm Profile</h2>
       <p>
         Established with a commitment to integrity, efficiency, and high professional standards, <strong>C S Kakkad & Associates</strong> is a premier Chartered Accountancy firm rendering comprehensive services in India. We cater to the growing audit, tax, accounting, and business advisory needs of corporations, institutions, partnership firms, and individuals.
       </p>
       <p>
-        Located in a bustling urban center, our firm is a distinguished financial consulting practice that specializes in providing comprehensive financial planning services for individuals and businesses. With a team of experienced professionals, we offer tailored solutions for wealth management, retirement planning, insurance services, and tax consulting. Our approach is centered on building long-lasting client relationships, ensuring each client's financial goals are met with personalized strategies and expert guidance.
+        Located in a bustling urban center, our firm is a distinguished financial consulting practice that specializes in providing comprehensive financial planning services for individuals and businesses. With a team of experienced professionals, we offer tailored solutions for wealth management, retirement planning, insurance services, and tax consulting. Our approach is centered on building long-lasting client relationships, ensuring each client&apos;s financial goals are met with personalized strategies and expert guidance.
       </p>
       
       {/* Leadership Profile */}
@@ -60,7 +86,7 @@ export default function About() {
       </div>
 
       <p>
-        The firm is led by experienced professionals who understand that today's rapidly changing economic landscape demands agility, compliance, and forward-thinking strategies. Under our leadership, the firm has achieved robust growth, advising clients in retail, manufacturing, logistics, tourism, and services sector.
+        The firm is led by experienced professionals who understand that today&apos;s rapidly changing economic landscape demands agility, compliance, and forward-thinking strategies. Under our leadership, the firm has achieved robust growth, advising clients in retail, manufacturing, logistics, tourism, and services sector.
       </p>
 
       <h2>Our Philosophy</h2>

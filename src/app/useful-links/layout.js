@@ -9,12 +9,12 @@ export const metadata = {
     "Government Tax Links India",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/useful-links",
+    canonical: "https://cachintankakkad.in/useful-links",
   },
   openGraph: {
     title: "Government Tax Links & Resource Directory | C S Kakkad & Associates",
     description: "One-click access to verified Indian statutory, tax, and corporate filing portals.",
-    url: "https://www.cachintankakkad.in/useful-links",
+    url: "https://cachintankakkad.in/useful-links",
   },
 };
 

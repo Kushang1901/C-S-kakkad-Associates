@@ -13,12 +13,12 @@ export const metadata = {
     "Tax Auditor CA Chintan Kakkad",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/services/audit-assurance",
+    canonical: "https://cachintankakkad.in/services/audit-assurance",
   },
   openGraph: {
     title: "Audit & Assurance Services | C S Kakkad & Associates",
     description: "Independent statutory audits, tax audits under Sec 44AB, and corporate governance reviews in Dwarka, Gujarat.",
-    url: "https://www.cachintankakkad.in/services/audit-assurance",
+    url: "https://cachintankakkad.in/services/audit-assurance",
   },
 };
 

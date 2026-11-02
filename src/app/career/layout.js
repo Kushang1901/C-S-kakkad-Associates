@@ -8,12 +8,12 @@ export const metadata = {
     "Semi Qualified CA Careers",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/career",
+    canonical: "https://cachintankakkad.in/career",
   },
   openGraph: {
     title: "Careers & Professional Growth | C S Kakkad & Associates",
     description: "Explore career and ICAI articleship training opportunities at our Dwarka office.",
-    url: "https://www.cachintankakkad.in/career",
+    url: "https://cachintankakkad.in/career",
   },
 };
 

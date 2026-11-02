@@ -8,12 +8,12 @@ export const metadata = {
     "Statutory Branch Audit Dwarka",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/empanelment",
+    canonical: "https://cachintankakkad.in/empanelment",
   },
   openGraph: {
     title: "Empanelment & Tenders | C S Kakkad & Associates",
     description: "Verified institutional empanelment documents and audit execution track record.",
-    url: "https://www.cachintankakkad.in/empanelment",
+    url: "https://cachintankakkad.in/empanelment",
   },
 };
 

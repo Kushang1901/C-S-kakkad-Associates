@@ -13,12 +13,12 @@ export const metadata = {
     "GST Notice Reply CA Dwarka",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/services/gst",
+    canonical: "https://cachintankakkad.in/services/gst",
   },
   openGraph: {
     title: "GST Advisory & Filing Services | C S Kakkad & Associates",
     description: "Accurate GST registrations, returns, Input Tax Credit audits, and tax dispute management.",
-    url: "https://www.cachintankakkad.in/services/gst",
+    url: "https://cachintankakkad.in/services/gst",
   },
 };
 

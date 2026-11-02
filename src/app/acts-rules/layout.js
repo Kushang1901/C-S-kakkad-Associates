@@ -8,7 +8,7 @@ export const metadata = {
     "Indian Tax Laws Acts Rules",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/acts-rules",
+    canonical: "https://cachintankakkad.in/acts-rules",
   },
 };
 

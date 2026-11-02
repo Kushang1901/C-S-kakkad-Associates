@@ -13,12 +13,12 @@ export const metadata = {
     "Bank Credit Appraisal CA",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/services/business-finance-loan",
+    canonical: "https://cachintankakkad.in/services/business-finance-loan",
   },
   openGraph: {
     title: "Business Finance & Loan Syndication | C S Kakkad & Associates",
     description: "Bankable project reports, CMA data formulation, and commercial debt syndication for businesses.",
-    url: "https://www.cachintankakkad.in/services/business-finance-loan",
+    url: "https://cachintankakkad.in/services/business-finance-loan",
   },
 };
 

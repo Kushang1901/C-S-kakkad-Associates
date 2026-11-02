@@ -12,12 +12,12 @@ export const metadata = {
     "cachintankakkad sitemap xml",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/sitemap",
+    canonical: "https://cachintankakkad.in/sitemap",
   },
   openGraph: {
     title: "Sitemap | C S Kakkad & Associates",
     description: "Complete navigation index of all auditing, taxation, GST, and business loan services offered by C S Kakkad & Associates.",
-    url: "https://www.cachintankakkad.in/sitemap",
+    url: "https://cachintankakkad.in/sitemap",
     type: "website",
     images: ["/icon-512.png"],
   },

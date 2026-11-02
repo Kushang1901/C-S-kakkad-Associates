@@ -13,12 +13,46 @@ export const metadata = {
     "Chartered Accountant Team Gujarat",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/team",
+    canonical: "https://cachintankakkad.in/team",
   },
   openGraph: {
     title: "Leadership & Team | C S Kakkad & Associates",
     description: "Led by CA Chintan S. Kakkad (F.C.A.) — professional chartered accountancy, auditing, and corporate finance team.",
-    url: "https://www.cachintankakkad.in/team",
+    url: "https://cachintankakkad.in/team",
+  },
+};
+
+const teamSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://cachintankakkad.in/team#webpage",
+  url: "https://cachintankakkad.in/team",
+  name: "Leadership & Team | CA Chintan S. Kakkad (F.C.A.)",
+  description: "Meet the leadership and professional departments at C S Kakkad & Associates led by CA Chintan S. Kakkad.",
+  mainEntity: {
+    "@type": "Person",
+    "@id": "https://cachintankakkad.in/#founder",
+    name: "CA Chintan S. Kakkad",
+    jobTitle: "Founder & Sole Proprietor",
+    honorificPrefix: "CA",
+    hasCredential: "Fellow Chartered Accountant (F.C.A.), B.Com",
+    worksFor: {
+      "@type": "AccountingService",
+      "@id": "https://cachintankakkad.in/#organization",
+      name: "C S Kakkad & Associates",
+    },
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Institute of Chartered Accountants of India (ICAI)",
+    },
+    knowsAbout: [
+      "Statutory Audits",
+      "Tax Audits under Section 44AB",
+      "Direct Tax Representation before ITAT",
+      "Corporate Finance & Loan Syndication",
+      "GST Litigation & Advisory",
+      "Financial Restructuring for MSMEs",
+    ],
   },
 };
 
@@ -97,7 +131,10 @@ export default function Team() {
 
   return (
     <InnerPageLayout title="Our Team & Leadership" breadcrumbs={[{ name: "Team" }]}>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(teamSchema) }}
+      />
       {/* ── Founder Horizontal Card ── */}
       <div className={styles.founderCard}>
 
@@ -156,7 +193,7 @@ export default function Team() {
               <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
               info@cachintankakkad.in
             </a>
-            <a href="https://www.cachintankakkad.in" target="_blank" rel="noopener noreferrer" className={styles.btnOutline}>
+            <a href="https://cachintankakkad.in" target="_blank" rel="noopener noreferrer" className={styles.btnOutline}>
               <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
               cachintankakkad.in
             </a>

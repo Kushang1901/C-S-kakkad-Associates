@@ -403,6 +403,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
+        {/* Machine-readable context for AI and LLM Search Engines */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context" />
+        <link rel="help" type="text/plain" href="/llms.txt" />
+
         {/* DNS prefetch for Google Translate endpoints without blocking connections */}
         <link rel="dns-prefetch" href="https://translate.google.com" />
         <link rel="dns-prefetch" href="https://translate.googleapis.com" />

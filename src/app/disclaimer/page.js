@@ -5,7 +5,7 @@ export const metadata = {
   title: "ICAI Regulatory Disclaimer | C S Kakkad & Associates",
   description: "Official legal disclaimer in compliance with the Institute of Chartered Accountants of India (ICAI) guidelines against advertising and solicitation.",
   alternates: {
-    canonical: "https://www.cachintankakkad.in/disclaimer",
+    canonical: "https://cachintankakkad.in/disclaimer",
   },
 };
 
@@ -14,7 +14,7 @@ export default function Disclaimer() {
     <InnerPageLayout title="Disclaimer" breadcrumbs={[{ name: "Disclaimer" }]}>
       <h2>ICAI Compliance Disclaimer</h2>
       <p>
-        This website (<a href="https://www.cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>) is maintained strictly to provide general information about the services offered by <strong>C S Kakkad & Associates</strong> and acts as a resource portal containing reference links to legislative Acts, rules, and downloadable tax forms.
+        This website (<a href="https://cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>) is maintained strictly to provide general information about the services offered by <strong>C S Kakkad & Associates</strong> and acts as a resource portal containing reference links to legislative Acts, rules, and downloadable tax forms.
       </p>
 
       <div style={{

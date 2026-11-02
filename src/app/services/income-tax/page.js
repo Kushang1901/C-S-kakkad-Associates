@@ -13,12 +13,12 @@ export const metadata = {
     "Income Tax Scrutiny Representation CA",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/services/income-tax",
+    canonical: "https://cachintankakkad.in/services/income-tax",
   },
   openGraph: {
     title: "Income Tax Advisory & Compliance | C S Kakkad & Associates",
     description: "Proactive direct tax optimization, statutory ITR filing, and assessment defense for businesses & individuals.",
-    url: "https://www.cachintankakkad.in/services/income-tax",
+    url: "https://cachintankakkad.in/services/income-tax",
   },
 };
 

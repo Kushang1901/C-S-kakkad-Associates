@@ -12,7 +12,7 @@ export const metadata = {
     "GST Registration Forms",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/forms",
+    canonical: "https://cachintankakkad.in/forms",
   },
 };
 

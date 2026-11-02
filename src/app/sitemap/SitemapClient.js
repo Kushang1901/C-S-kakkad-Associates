@@ -236,7 +236,7 @@ export default function SitemapClient() {
 
       {/* SEO & Search Engine Crawl Note */}
       <div className={styles.summaryCard}>
-        <strong>Search Engine & Crawler Notice:</strong> This HTML sitemap is continuously synchronized with our live XML feed at <code>/sitemap.xml</code>. All internal URLs adhere to canonical standards under <code>https://www.cachintankakkad.in</code> and are structured to guarantee fast indexing by Google, Bing, and automated audit spiders.
+        <strong>Search Engine & Crawler Notice:</strong> This HTML sitemap is continuously synchronized with our live XML feed at <code>/sitemap.xml</code>. All internal URLs adhere to canonical standards under <code>https://cachintankakkad.in</code> and are structured to guarantee fast indexing by Google, Bing, and automated audit spiders.
       </div>
     </div>
   );

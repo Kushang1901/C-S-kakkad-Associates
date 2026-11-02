@@ -5,7 +5,7 @@ export const metadata = {
   title: "Statutory Circulars & Notifications | C S Kakkad & Associates",
   description: "Official statutory regulatory circulars, notifications, and orders from MCA, SEBI, RBI, ICAI, and Income Tax Department.",
   alternates: {
-    canonical: "https://www.cachintankakkad.in/notifications/detail",
+    canonical: "https://cachintankakkad.in/notifications/detail",
   },
 };
 

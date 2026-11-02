@@ -4,7 +4,7 @@ export const metadata = {
   title: "Privacy & Data Security Policy | C S Kakkad & Associates",
   description: "Client data confidentiality, encryption protocols, and privacy commitments under ICAI ethical guidelines at C S Kakkad & Associates.",
   alternates: {
-    canonical: "https://www.cachintankakkad.in/privacy-policy",
+    canonical: "https://cachintankakkad.in/privacy-policy",
   },
 };
 
@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
     <InnerPageLayout title="Privacy Policy" breadcrumbs={[{ name: "Privacy Policy" }]}>
       <h2>Privacy & Data Security Policy</h2>
       <p>
-        At <strong>C S Kakkad & Associates</strong>, we recognize the high sensitivity of the financial, taxation, and personal records shared by our clients. Maintaining absolute client confidentiality is a core ethical commitment of our chartered accountancy practice. This policy describes how we collect, store, and shield your financial datasets when you interact with our firm or visit our official website at <a href="https://www.cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>.
+        At <strong>C S Kakkad & Associates</strong>, we recognize the high sensitivity of the financial, taxation, and personal records shared by our clients. Maintaining absolute client confidentiality is a core ethical commitment of our chartered accountancy practice. This policy describes how we collect, store, and shield your financial datasets when you interact with our firm or visit our official website at <a href="https://cachintankakkad.in" style={{ color: "var(--secondary-color)", fontWeight: "600" }}>www.cachintankakkad.in</a>.
       </p>
 
       <h2>1. Collection of Client Information</h2>

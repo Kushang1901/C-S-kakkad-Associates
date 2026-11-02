@@ -9,12 +9,12 @@ export const metadata = {
     "CA Chintan Kakkad Contact",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/contact",
+    canonical: "https://cachintankakkad.in/contact",
   },
   openGraph: {
     title: "Contact Office | C S Kakkad & Associates Dwarka",
     description: "Connect with CA Chintan S. Kakkad and associates at our Dwarka office for taxation, audits, and business finance.",
-    url: "https://www.cachintankakkad.in/contact",
+    url: "https://cachintankakkad.in/contact",
   },
 };
 

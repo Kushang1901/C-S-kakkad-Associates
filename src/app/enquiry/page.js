@@ -5,7 +5,7 @@ export const metadata = {
   title: "Book Consultation & Tax Enquiry | C S Kakkad & Associates",
   description: "Schedule an advisory consultation with CA Chintan S. Kakkad. Get expert assistance with income tax filing, audits, GST queries, and business loan applications.",
   alternates: {
-    canonical: "https://www.cachintankakkad.in/enquiry",
+    canonical: "https://cachintankakkad.in/enquiry",
   },
 };
 

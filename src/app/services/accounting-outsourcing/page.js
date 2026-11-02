@@ -13,12 +13,12 @@ export const metadata = {
     "Cloud Bookkeeping Dwarka",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/services/accounting-outsourcing",
+    canonical: "https://cachintankakkad.in/services/accounting-outsourcing",
   },
   openGraph: {
     title: "Accounting & Outsourcing Services | C S Kakkad & Associates",
     description: "Reliable bookkeeping, payroll administration, and financial reporting for businesses of all scales.",
-    url: "https://www.cachintankakkad.in/services/accounting-outsourcing",
+    url: "https://cachintankakkad.in/services/accounting-outsourcing",
   },
 };
 

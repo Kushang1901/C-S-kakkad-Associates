@@ -13,12 +13,12 @@ export const metadata = {
     "ROC Compliance Consultant Dwarka",
   ],
   alternates: {
-    canonical: "https://www.cachintankakkad.in/services/consultancy",
+    canonical: "https://cachintankakkad.in/services/consultancy",
   },
   openGraph: {
     title: "Corporate Consultancy & Business Setup | C S Kakkad & Associates",
     description: "Expert business entity structuring, legal registrations, and corporate governance compliance.",
-    url: "https://www.cachintankakkad.in/services/consultancy",
+    url: "https://cachintankakkad.in/services/consultancy",
   },
 };
 

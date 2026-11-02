@@ -5,7 +5,7 @@ export const metadata = {
   title: "Tax & Compliance News Updates | C S Kakkad & Associates",
   description: "Read authoritative updates on Income Tax rulings, GST council circulars, MCA notifications, and ICAI announcements.",
   alternates: {
-    canonical: "https://www.cachintankakkad.in/news-events/detail",
+    canonical: "https://cachintankakkad.in/news-events/detail",
   },
 };
 
