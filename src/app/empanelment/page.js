@@ -94,9 +94,12 @@ const initialEmpanelments = [
   }
 ];
 
+const ITEMS_PER_PAGE = 6;
+
 export default function Empanelment() {
   const [empanelments, setEmpanelments] = useState(initialEmpanelments);
   const [activeCategory, setActiveCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -118,9 +121,30 @@ export default function Empanelment() {
     fetchLiveEmpanelments();
   }, []);
 
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat);
+    setCurrentPage(1);
+  };
+
   const filteredEmpanelments = activeCategory === "all"
     ? empanelments
     : empanelments.filter((item) => item.category === activeCategory);
+
+  const totalPages = Math.ceil(filteredEmpanelments.length / ITEMS_PER_PAGE) || 1;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedEmpanelments = filteredEmpanelments.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      if (typeof window !== "undefined") {
+        const el = document.getElementById("empanelment-board");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+  };
 
   const bankCount = empanelments.filter((item) => item.category === "bank").length;
   const psuCount = empanelments.filter((item) => item.category === "psu").length;
@@ -134,7 +158,7 @@ export default function Empanelment() {
       />
 
       {/* ── Section: Active Tender & Empanelment Opportunities Board ── */}
-      <div className={styles.tenderSectionHeader}>
+      <div id="empanelment-board" className={styles.tenderSectionHeader}>
         <div>
           <h3 className={styles.tenderSectionTitle}>Active Empanelment Notices &amp; Institutional Tenders</h3>
           <p className={styles.tenderSectionSubtitle}>
@@ -146,34 +170,34 @@ export default function Empanelment() {
         <div className={styles.filterPills}>
           <button 
             className={`${styles.filterPill} ${activeCategory === "all" ? styles.filterPillActive : ""}`}
-            onClick={() => setActiveCategory("all")}
+            onClick={() => handleCategoryChange("all")}
           >
             All Notices ({empanelments.length})
           </button>
           <button 
             className={`${styles.filterPill} ${activeCategory === "bank" ? styles.filterPillActive : ""}`}
-            onClick={() => setActiveCategory("bank")}
+            onClick={() => handleCategoryChange("bank")}
           >
             Bank Audits {bankCount > 0 && `(${bankCount})`}
           </button>
           <button 
             className={`${styles.filterPill} ${activeCategory === "psu" ? styles.filterPillActive : ""}`}
-            onClick={() => setActiveCategory("psu")}
+            onClick={() => handleCategoryChange("psu")}
           >
             PSU &amp; Government {psuCount > 0 && `(${psuCount})`}
           </button>
           <button 
             className={`${styles.filterPill} ${activeCategory === "due-diligence" ? styles.filterPillActive : ""}`}
-            onClick={() => setActiveCategory("due-diligence")}
+            onClick={() => handleCategoryChange("due-diligence")}
           >
             Stock &amp; Due Diligence {ddCount > 0 && `(${ddCount})`}
           </button>
         </div>
       </div>
 
-      {/* Tender List */}
+      {/* Tender List (2-Column Grid) */}
       <div className={styles.tenderList}>
-        {filteredEmpanelments.map((item) => {
+        {paginatedEmpanelments.map((item) => {
           const detailHref = `/empanelment/detail?url=${encodeURIComponent(item.link)}`;
           return (
             <div key={item.id} className={styles.tenderCard}>
@@ -208,6 +232,43 @@ export default function Empanelment() {
           );
         })}
       </div>
+
+      {/* ── Pagination Controls ── */}
+      {totalPages > 1 && (
+        <div className={styles.paginationWrap} aria-label="Empanelment Pagination">
+          <button
+            className={styles.pageBtn}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            aria-label="Previous Page"
+          >
+            « Prev
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              className={`${styles.pageBtn} ${currentPage === page ? styles.pageBtnActive : ""}`}
+              onClick={() => handlePageChange(page)}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            className={styles.pageBtn}
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            aria-label="Next Page"
+          >
+            Next »
+          </button>
+
+          <span className={styles.pageInfo}>
+            Page {currentPage} of {totalPages} ({filteredEmpanelments.length} notices)
+          </span>
+        </div>
+      )}
     </InnerPageLayout>
   );
 }

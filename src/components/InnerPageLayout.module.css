@@ -39,6 +39,18 @@
   align-items: start;
 }
 
+.stickySidebar {
+  position: sticky;
+  top: 90px;
+  align-self: start;
+}
+
+@media (max-width: 992px) {
+  .stickySidebar {
+    position: static;
+  }
+}
+
 .mainContent {
   background: var(--bg-white);
   border-radius: var(--border-radius-lg);

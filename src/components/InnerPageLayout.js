@@ -69,7 +69,7 @@ export default function InnerPageLayout({ title, breadcrumbs = [], children }) {
             </article>
 
             {/* Right Column: Sidebar */}
-            <aside>
+            <aside className={styles.stickySidebar}>
               <NewsSidebar onItemClick={(item) => setSelectedNews(item)} />
             </aside>
           </div>

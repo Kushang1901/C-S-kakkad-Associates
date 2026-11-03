@@ -70,56 +70,59 @@
   border-color: var(--primary-color, #1a365d);
 }
 
-/* ── Tender Cards ── */
+/* ── Tender Cards (2-Column Grid) ── */
 .tenderList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .tenderCard {
   background: var(--bg-white, #ffffff);
   border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 10px;
-  padding: 22px 24px;
+  padding: 20px 22px;
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .tenderCard:hover {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   border-color: #cbd5e1;
+  transform: translateY(-2px);
 }
 
 .tenderCardTop {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
 .tenderCategory {
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--secondary-color, #dd6d27);
   background: rgba(221, 109, 39, 0.08);
-  padding: 3px 10px;
+  padding: 3px 8px;
   border-radius: 4px;
 }
 
 .badge {
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 14px;
+  padding: 3px 8px;
+  border-radius: 12px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .badgeOpen {
@@ -143,7 +146,7 @@
 }
 
 .tenderTitle {
-  font-size: 1.15rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: var(--primary-color, #1a365d);
   margin: 0 0 10px 0;
@@ -159,21 +162,26 @@
 }
 
 .tenderDesc {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--text-dark, #334155);
   margin: 0 0 14px 0;
-  line-height: 1.6;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .tenderMeta {
   display: flex;
-  gap: 20px;
-  font-size: 0.85rem;
+  gap: 12px;
+  font-size: 0.82rem;
   color: var(--text-muted, #64748b);
   flex-wrap: wrap;
   align-items: center;
   padding-top: 12px;
   border-top: 1px dashed var(--border-color, #e2e8f0);
+  margin-top: auto;
 }
 
 .metaItem strong {
@@ -189,7 +197,7 @@
   margin-left: auto;
   color: var(--secondary-color, #dd6d27);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -202,6 +210,58 @@
 
 .btnReadMore:hover {
   text-decoration: underline;
+}
+
+/* ── Pagination Bar ── */
+.paginationWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.pageBtn:hover:not(:disabled) {
+  border-color: var(--secondary-color, #dd6d27);
+  color: var(--secondary-color, #dd6d27);
+  background: #fff7ed;
+}
+
+.pageBtnActive {
+  background: var(--primary-color, #1a365d) !important;
+  color: #ffffff !important;
+  border-color: var(--primary-color, #1a365d) !important;
+}
+
+.pageBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0 10px;
 }
 
 /* ── Modal ── */
@@ -333,6 +393,12 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .tenderList {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
