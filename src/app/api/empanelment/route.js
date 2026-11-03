@@ -38,6 +38,57 @@ function classifyCategory(title = "") {
   return { category: "bank", label: "Institutional Audit Panel" };
 }
 
+// Automatically detect if a tender closing date has passed
+function isDateExpired(closingDateStr) {
+  if (!closingDateStr) return false;
+  const s = closingDateStr.toLowerCase().trim();
+
+  // Continuous or rolling opportunities do not expire
+  if (s.includes("rolling") || s.includes("continuous") || s.includes("immediate") || s.includes("ongoing")) {
+    return false;
+  }
+
+  // DD MMM YYYY (e.g. "12 Nov 2026", "24 Nov 2026", "02 Nov 2026")
+  const textMonthMatch = s.match(/([0-9]{1,2})[-\s/]+([a-z]{3,9})[-\s/]+([0-9]{4})/i);
+  if (textMonthMatch) {
+    const day = parseInt(textMonthMatch[1], 10);
+    const monthStr = textMonthMatch[2].substring(0, 3).toLowerCase();
+    const year = parseInt(textMonthMatch[3], 10);
+    const months = {
+      jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+      jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+    };
+    if (months[monthStr] !== undefined) {
+      const deadline = new Date(year, months[monthStr], day, 23, 59, 59);
+      if (!isNaN(deadline.getTime())) {
+        return deadline.getTime() < Date.now();
+      }
+    }
+  }
+
+  // DD-MM-YYYY or DD/MM/YYYY (e.g. "13-11-2026", "30/11/2026")
+  const numDateMatch = s.match(/([0-9]{1,2})[-\s/]+([0-9]{1,2})[-\s/]+([0-9]{4})/);
+  if (numDateMatch) {
+    const day = parseInt(numDateMatch[1], 10);
+    const month = parseInt(numDateMatch[2], 10) - 1;
+    const year = parseInt(numDateMatch[3], 10);
+    const deadline = new Date(year, month, day, 23, 59, 59);
+    if (!isNaN(deadline.getTime())) {
+      return deadline.getTime() < Date.now();
+    }
+  }
+
+  try {
+    const parsed = new Date(closingDateStr);
+    if (!isNaN(parsed.getTime())) {
+      parsed.setHours(23, 59, 59, 999);
+      return parsed.getTime() < Date.now();
+    }
+  } catch (_) {}
+
+  return false;
+}
+
 async function fetchHtmlWithFallback(url) {
   // 1. Direct fetch
   try {
@@ -124,6 +175,12 @@ export async function GET() {
         const fullLink = rawLink.startsWith("http") ? rawLink : `https://www.casansaar.com/${rawLink.replace(/^\//, "")}`;
         const pubDate = pubDateMatch ? cleanString(pubDateMatch[1]) : "Current FY 2026-27";
         const closingDate = closeDateMatch ? cleanString(closeDateMatch[1]) : "Rolling / Immediate";
+
+        // Automatically delete / filter out expired or outdated tenders
+        if (isDateExpired(closingDate)) {
+          continue;
+        }
+
         const { category, label } = classifyCategory(rawTitle);
 
         // Calculate status label
