@@ -21,8 +21,13 @@ export default function ArticleDetailView({ pageType = "news" }) {
   const [currentLang, setCurrentLang] = useState("en");
 
   const isCircular = pageType === "notification";
-  const pageTitle = isCircular ? "Notifications & Circulars" : "News & Events";
-  const parentHref = isCircular ? "/#notifications" : "/#news";
+  const isEmpanelment = pageType === "empanelment";
+  const pageTitle = isEmpanelment
+    ? "Institutional Empanelment & Tenders"
+    : isCircular
+    ? "Notifications & Circulars"
+    : "News & Events";
+  const parentHref = isEmpanelment ? "/empanelment" : isCircular ? "/#notifications" : "/#news";
 
   // Translate article metadata (title, category, date) in state
   const translateArticleMeta = async (artData, lang) => {
@@ -213,12 +218,21 @@ export default function ArticleDetailView({ pageType = "news" }) {
 
               {/* Action Toolbar */}
               <div className={styles.toolbar}>
-                <Link href="/" className={`${styles.toolBtn} ${styles.backBtn}`}>
-                  ← Back to All Updates
+                <Link href={parentHref} className={`${styles.toolBtn} ${styles.backBtn}`}>
+                  ← Back to {isEmpanelment ? "Empanelment Board" : "All Updates"}
                 </Link>
 
                 <div className={styles.toolbarActions}>
-                  <button onClick={handleShare} className={styles.toolBtn} title="Share circular link">
+                  {isEmpanelment && (
+                    <Link
+                      href="/enquiry"
+                      className={styles.toolBtn}
+                      style={{ background: "#dd6d27", color: "#ffffff", borderColor: "#dd6d27", fontWeight: 700 }}
+                    >
+                      Invite Firm / Submit RFP
+                    </Link>
+                  )}
+                  <button onClick={handleShare} className={styles.toolBtn} title="Share link">
                     <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <circle cx="18" cy="5" r="3"></circle>
                       <circle cx="6" cy="12" r="3"></circle>
@@ -252,9 +266,15 @@ export default function ArticleDetailView({ pageType = "news" }) {
               />
 
               {/* Statutory Attribution Box */}
-              <div className={styles.disclaimerBox}>
-                <strong>Source & Attribution:</strong> This publication is compiled from public domain statutory circulars, gazettes, and updates courtesy of <em>{article?.source || "CA Sansaar"}</em> for informative and compliance reference of taxpayers and trade professionals.
-              </div>
+              {isEmpanelment ? (
+                <div className={styles.disclaimerBox} style={{ background: "#f8fafc", border: "1px solid #cbd5e1" }}>
+                  <strong style={{ color: "#1a365d" }}>Institutional Empanelment Noticeboard:</strong> This empanelment and audit tender notification is monitored and published by the <strong>Institutional &amp; Bank Audit Practice at C S Kakkad &amp; Associates</strong>. For RFP submissions, statutory/concurrent audit representations across Gujarat, or joint consortium eligibility, reach out directly to our audit desk at <a href="mailto:info@cachintankakkad.in" style={{ color: "#dd6d27", fontWeight: 700 }}>info@cachintankakkad.in</a>.
+                </div>
+              ) : (
+                <div className={styles.disclaimerBox}>
+                  <strong>Source & Attribution:</strong> This publication is compiled from public domain statutory circulars, gazettes, and updates courtesy of <em>{article?.source || "Official Gazettes"}</em> for informative and compliance reference of taxpayers and trade professionals.
+                </div>
+              )}
             </main>
 
             {/* Right Sidebar: Both Live News & Notification Scrollers */}

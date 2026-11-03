@@ -151,10 +151,24 @@ export async function GET(request) {
     const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
     const title = h1Match ? cleanEntities(h1Match[1].replace(/<[^>]*>/g, "")).trim() : "Statutory Circular / Article Details";
 
-    // 2. Extract Category
+    // 2. Extract Category & Deadlines
+    const isEmpanelment = targetUrl.toLowerCase().includes("empanelment");
+    let category = "Regulatory Update";
+    let closingDate = null;
+
     const catMatch = html.match(/<p class="categoryshort">[\s\S]*?Category\s*:\s*<a[^>]*>([\s\S]*?)<\/a>/i) ||
                      html.match(/<p class="post-category">[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i);
-    const category = catMatch ? cleanEntities(catMatch[1].replace(/<[^>]*>/g, "")).trim() : "Regulatory Update";
+    if (catMatch) {
+      category = cleanEntities(catMatch[1].replace(/<[^>]*>/g, "")).trim();
+    } else if (isEmpanelment) {
+      category = "Institutional Empanelment";
+    }
+
+    // Extract closing date for empanelments/tenders
+    const closingDateMatch = html.match(/(?:Closing\s*\/\s*Last\s*date|Closing\s*Date)\s*:\s*([0-9]{1,2}[-\s/]+[A-Za-z0-9]+[-\s/]+[0-9]{4})/i);
+    if (closingDateMatch) {
+      closingDate = closingDateMatch[1].trim();
+    }
 
     // 3. Extract Date
     const dateMatch = html.match(/([0-9]{1,2}\s+[A-Za-z]{3}\s+[0-9]{4}(?:\s+[0-9]{1,2}:[0-9]{2}\s*(?:AM|PM)?)?)/i);
@@ -172,6 +186,10 @@ export async function GET(request) {
     if (postdataMatch) {
       let rawContent = postdataMatch[1];
       rawContent = rawContent.replace(/<script[\s\S]*?<\/script>/gi, "");
+      // Remove third-party login prompts or openPOP functions
+      rawContent = rawContent.replace(/<a[^>]*login_link[^>]*>[\s\S]*?<\/a>/gi, "");
+      rawContent = rawContent.replace(/<a[^>]*openPOP[^>]*>[\s\S]*?<\/a>/gi, "");
+      rawContent = rawContent.replace(/Login for full details/gi, "");
       rawContent = rawContent.replace(/href="(\/[^"]+)"/gi, 'href="https://www.casansaar.com$1"');
       rawContent = rawContent.replace(/<a /gi, '<a target="_blank" rel="noopener noreferrer nofollow" ');
       contentHtml = rawContent.trim();
@@ -180,11 +198,24 @@ export async function GET(request) {
       if (articleMatch) {
         let rawContent = articleMatch[1];
         rawContent = rawContent.replace(/<script[\s\S]*?<\/script>/gi, "");
+        rawContent = rawContent.replace(/<a[^>]*login_link[^>]*>[\s\S]*?<\/a>/gi, "");
+        rawContent = rawContent.replace(/<a[^>]*openPOP[^>]*>[\s\S]*?<\/a>/gi, "");
         contentHtml = rawContent.trim();
       } else {
         const pMatches = html.match(/<p[^>]*>[\s\S]*?<\/p>/gi) || [];
         contentHtml = pMatches.slice(1, 8).join("\n");
       }
+    }
+
+    // Enhance empanelment detail text with structured metadata
+    if (isEmpanelment && closingDate) {
+      contentHtml = `
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-left: 4px solid #dd6d27; padding: 16px 20px; border-radius: 6px; margin-bottom: 24px;">
+          <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: #1e3a8a;"><strong>Notice Status:</strong> Active Institutional Empanelment</p>
+          <p style="margin: 0; font-size: 0.95rem; color: #b91c1c;"><strong>Official Closing / Submission Deadline:</strong> ${closingDate}</p>
+        </div>
+        ${contentHtml}
+      `;
     }
 
     // Sanitize HTML safely
@@ -196,10 +227,11 @@ export async function GET(request) {
       title,
       category,
       date,
+      closingDate,
       image,
       contentHtml: sanitizedHtml,
       originalUrl: targetUrl,
-      source: "CA Sansaar & Official Statutory Notifications"
+      source: isEmpanelment ? "C S Kakkad & Associates Institutional Desk" : "Official Statutory Circulars & Gazettes"
     });
 
   } catch (error) {
