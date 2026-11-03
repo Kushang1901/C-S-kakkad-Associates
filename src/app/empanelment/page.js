@@ -181,7 +181,7 @@ export default function Empanelment() {
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
               ICAI Member Firm · Est. 2014
             </span>
-            <h2 className={styles.credentialsTitle}>Institutional Audit &amp; Empanelment Credentials</h2>
+            <h3 className={styles.credentialsTitle}>Institutional Audit &amp; Empanelment Credentials</h3>
             <p className={styles.credentialsSubtitle}>
               <strong>C S Kakkad &amp; Associates</strong> is structured to provide rigorous, independent, and technology-driven audit services for nationalized banks, cooperative credit institutions, public corporations, and commercial lenders across Gujarat.
             </p>
