@@ -17,13 +17,13 @@ export default function InnerPageLayout({ title, breadcrumbs = [], children }) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.cachintankakkad.in",
+        item: "https://cachintankakkad.in",
       },
       ...breadcrumbs.map((crumb, idx) => ({
         "@type": "ListItem",
         position: idx + 2,
         name: crumb.name,
-        ...(crumb.path ? { item: `https://www.cachintankakkad.in${crumb.path}` } : {}),
+        ...(crumb.path ? { item: `https://cachintankakkad.in${crumb.path}` } : {}),
       })),
     ],
   };
