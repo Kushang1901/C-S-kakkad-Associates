@@ -19,81 +19,6 @@ const empanelmentSchema = {
   },
 };
 
-const initialEmpanelments = [
-  {
-    id: "initial_1",
-    title: "Public Sector Banks — Concurrent & Revenue Audit Empanelment (FY 2026-27)",
-    category: "bank",
-    categoryLabel: "Commercial & Co-op Banks",
-    date: "02 Nov 2026",
-    closingDate: "28 Nov 2026",
-    status: "open",
-    statusLabel: "Applications Open",
-    link: "https://www.casansaar.com/empanelment.html",
-    desc: "Empanelment of experienced Chartered Accountant partnership firms and sole practitioners for concurrent audit and revenue leakage inspection across regional branches in Gujarat and western zones."
-  },
-  {
-    id: "initial_2",
-    title: "State Co-operative Banks & Credit Societies — Statutory & Information System Audit",
-    category: "bank",
-    categoryLabel: "Commercial & Co-op Banks",
-    date: "01 Nov 2026",
-    closingDate: "24 Nov 2026",
-    status: "open",
-    statusLabel: "Applications Open",
-    link: "https://www.casansaar.com/empanelment.html",
-    desc: "Inviting applications from qualified CA firms for conducting statutory audit and Information System (IS) security audits for district central co-operative banks and urban co-operative credit societies."
-  },
-  {
-    id: "initial_3",
-    title: "Power & Infrastructure Public Corporation — Internal Audit & Fixed Asset Physical Verification",
-    category: "psu",
-    categoryLabel: "PSU & Municipal Body",
-    date: "28 Oct 2026",
-    closingDate: "20 Nov 2026",
-    status: "open",
-    statusLabel: "Applications Open",
-    link: "https://www.casansaar.com/empanelment.html",
-    desc: "Appointment of CA/CMA firms for internal audit, fixed asset tagging, and physical inventory verification across multiple regional operational substations for FY 2026-27."
-  },
-  {
-    id: "initial_4",
-    title: "Commercial Banks & Consortiums — Stock & Book Debt Audit Panel for SME & Corporate Borrowers",
-    category: "due-diligence",
-    categoryLabel: "Stock Audit & Due Diligence",
-    date: "26 Oct 2026",
-    closingDate: "31 Dec 2026",
-    status: "rolling",
-    statusLabel: "Rolling Panel",
-    link: "https://www.casansaar.com/empanelment.html",
-    desc: "Empanelment of independent Chartered Accountants for conducting periodic Stock, Book Debt, and Credit Monitoring Arrangement (CMA) inspections for borrowers with working capital limits above ₹1 Crore."
-  },
-  {
-    id: "initial_5",
-    title: "Municipal Corporation & Urban Development Authorities — Statutory Financial Audit",
-    category: "psu",
-    categoryLabel: "PSU & Municipal Body",
-    date: "25 Oct 2026",
-    closingDate: "18 Nov 2026",
-    status: "open",
-    statusLabel: "Applications Open",
-    link: "https://www.casansaar.com/empanelment.html",
-    desc: "Expressions of Interest (EOI) invited from CA firms for statutory audit of municipal financial statements, accrual-based accounting review, and central/state grant utilization certification."
-  },
-  {
-    id: "initial_6",
-    title: "Insolvency & Restructuring Due Diligence Support Panel (IBC Framework)",
-    category: "due-diligence",
-    categoryLabel: "Stock Audit & Due Diligence",
-    date: "20 Oct 2026",
-    closingDate: "15 Dec 2026",
-    status: "rolling",
-    statusLabel: "Rolling Panel",
-    link: "https://www.casansaar.com/empanelment.html",
-    desc: "Notice inviting experienced CA firms for financial due diligence, forensic transaction audit (PUFE transactions under IBC Section 43, 45, 50, 66), and business valuation of distressed corporate debtors."
-  }
-];
-
 const ITEMS_PER_PAGE = 6;
 
 // Automatically detect if a tender closing date has passed
@@ -148,7 +73,7 @@ function isDateExpired(closingDateStr) {
 }
 
 export default function Empanelment() {
-  const [empanelments, setEmpanelments] = useState(initialEmpanelments);
+  const [empanelments, setEmpanelments] = useState([]);
   const [activeCategory, setActiveCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -228,32 +153,41 @@ export default function Empanelment() {
             className={`${styles.filterPill} ${activeCategory === "all" ? styles.filterPillActive : ""}`}
             onClick={() => handleCategoryChange("all")}
           >
-            All Notices ({activeEmpanelments.length})
+            All Notices {!loading && `(${activeEmpanelments.length})`}
           </button>
           <button 
             className={`${styles.filterPill} ${activeCategory === "bank" ? styles.filterPillActive : ""}`}
             onClick={() => handleCategoryChange("bank")}
           >
-            Bank Audits {bankCount > 0 && `(${bankCount})`}
+            Bank Audits {!loading && bankCount > 0 && `(${bankCount})`}
           </button>
           <button 
             className={`${styles.filterPill} ${activeCategory === "psu" ? styles.filterPillActive : ""}`}
             onClick={() => handleCategoryChange("psu")}
           >
-            PSU &amp; Government {psuCount > 0 && `(${psuCount})`}
+            PSU &amp; Government {!loading && psuCount > 0 && `(${psuCount})`}
           </button>
           <button 
             className={`${styles.filterPill} ${activeCategory === "due-diligence" ? styles.filterPillActive : ""}`}
             onClick={() => handleCategoryChange("due-diligence")}
           >
-            Stock &amp; Due Diligence {ddCount > 0 && `(${ddCount})`}
+            Stock &amp; Due Diligence {!loading && ddCount > 0 && `(${ddCount})`}
           </button>
         </div>
       </div>
 
       {/* Tender List (2-Column Grid) */}
       <div className={styles.tenderList}>
-        {filteredEmpanelments.length === 0 ? (
+        {loading ? (
+          Array.from({ length: 6 }).map((_, idx) => (
+            <div key={idx} className={styles.skeletonCard}>
+              <div className={styles.skeletonLine} style={{ width: "35%", height: "18px" }} />
+              <div className={styles.skeletonLine} style={{ width: "85%", height: "24px", margin: "14px 0 10px" }} />
+              <div className={styles.skeletonLine} style={{ width: "100%", height: "36px" }} />
+              <div className={styles.skeletonLine} style={{ width: "60%", height: "14px", marginTop: "16px" }} />
+            </div>
+          ))
+        ) : filteredEmpanelments.length === 0 ? (
           <div style={{
             gridColumn: "1 / -1",
             padding: "40px 24px",
@@ -309,8 +243,9 @@ export default function Empanelment() {
       </div>
 
       {/* ── Pagination Controls ── */}
-      {totalPages > 1 && (
-        <div className={styles.paginationWrap} aria-label="Empanelment Pagination">
+      {!loading && totalPages > 1 && (
+
+<div className={styles.paginationWrap} aria-label="Empanelment Pagination">
           <button
             className={styles.pageBtn}
             onClick={() => handlePageChange(currentPage - 1)}
