@@ -2,12 +2,20 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import {
+  Landmark,
+  Scale,
+  Calculator,
+  ShieldCheck,
+  FileCode2,
+  Search,
+} from "lucide-react";
 import styles from "./sitemap.module.css";
 
 const SITEMAP_SECTIONS = [
   {
     category: "Corporate & Profile Pages",
-    icon: "🏛️",
+    icon: <Landmark size={22} color="var(--primary-color, #0a2540)" />,
     links: [
       {
         title: "Home",
@@ -58,7 +66,7 @@ const SITEMAP_SECTIONS = [
   },
   {
     category: "Professional Services",
-    icon: "⚖️",
+    icon: <Scale size={22} color="var(--primary-color, #0a2540)" />,
     links: [
       {
         title: "Audit & Assurance",
@@ -94,7 +102,7 @@ const SITEMAP_SECTIONS = [
   },
   {
     category: "Financial Calculators & Utilities",
-    icon: "🧮",
+    icon: <Calculator size={22} color="var(--primary-color, #0a2540)" />,
     links: [
       {
         title: "Tax & Financial Calculators",
@@ -125,7 +133,7 @@ const SITEMAP_SECTIONS = [
   },
   {
     category: "Legal & Regulatory Policies",
-    icon: "🛡️",
+    icon: <ShieldCheck size={22} color="var(--primary-color, #0a2540)" />,
     links: [
       {
         title: "Privacy Policy",
@@ -188,14 +196,16 @@ export default function SitemapClient() {
           className={styles.xmlBadge}
           title="Open raw XML sitemap for search crawlers"
         >
-          <span>📄</span>
+          <FileCode2 size={16} />
           <span>View XML Sitemap ({totalPagesCount} URLs)</span>
         </a>
       </div>
 
       {/* Interactive Search Filter */}
       <div className={styles.searchBarWrapper}>
-        <span className={styles.searchIcon}>🔍</span>
+        <span className={styles.searchIcon}>
+          <Search size={18} />
+        </span>
         <input
           type="text"
           placeholder="Filter pages, services, or tools (e.g., GST, Audit, Loan, Calculators)..."

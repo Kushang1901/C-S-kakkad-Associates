@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Sparkles, Lightbulb } from "lucide-react";
 import InnerPageLayout from "@/components/InnerPageLayout";
 import styles from "./calculators.module.css";
 
@@ -445,8 +446,12 @@ export default function Calculators() {
             <div className={styles.regimeCompareWrapper}>
               {/* Verdict Announcement */}
               <div className={`${styles.verdictBanner} ${taxResult.recommendedRegime === "Old Tax Regime" ? styles.verdictBannerOld : ""}`}>
-                <div style={{ fontSize: "2rem" }}>
-                  {taxResult.recommendedRegime === "New Tax Regime" ? "🎉" : "💡"}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "10px", background: "rgba(255, 255, 255, 0.2)", flexShrink: 0 }}>
+                  {taxResult.recommendedRegime === "New Tax Regime" ? (
+                    <Sparkles size={24} color="#fef08a" />
+                  ) : (
+                    <Lightbulb size={24} color="#fef08a" />
+                  )}
                 </div>
                 <div>
                   <h4 className={`${styles.verdictTitle} ${taxResult.recommendedRegime === "Old Tax Regime" ? styles.verdictTitleOld : ""}`}>
