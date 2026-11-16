@@ -59,18 +59,21 @@ export const metadata = {
     ],
   },
   openGraph: {
-    title: "C S Kakkad & Associates | Chartered Accountants",
+    title: "C S Kakkad & Associates | Chartered Accountants in Dwarka & Gujarat",
     description: "Premier Chartered Accountancy firm in Dwarka, Gujarat providing statutory audit, corporate taxation, GST advisory, and business loan syndication.",
     url: "https://cachintankakkad.in",
     siteName: "C S Kakkad & Associates",
     locale: "en_IN",
+    alternateLocale: ["gu_IN", "hi_IN"],
     type: "website",
     images: [
       {
-        url: "/icon-512.png",
+        url: "https://cachintankakkad.in/icon-512.png",
+        secureUrl: "https://cachintankakkad.in/icon-512.png",
         width: 512,
         height: 512,
         alt: "C S Kakkad & Associates Chartered Accountants Logo",
+        type: "image/png",
       },
     ],
   },
@@ -78,7 +81,12 @@ export const metadata = {
     card: "summary_large_image",
     title: "C S Kakkad & Associates | Chartered Accountants",
     description: "Leading Chartered Accountancy firm in Dwarka, Gujarat offering auditing, taxation, GST, business finance, and consultancy.",
-    images: ["/icon-512.png"],
+    images: ["https://cachintankakkad.in/icon-512.png"],
+  },
+  verification: {
+    other: {
+      "msvalidate.01": "8CA0B8636020035C1FAD4EF19EE7540D",
+    },
   },
   robots: {
     index: true,
@@ -403,6 +411,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
+        {/* Bing Webmaster Tools Site Verification */}
+        <meta name="msvalidate.01" content="8CA0B8636020035C1FAD4EF19EE7540D" />
+
+        {/* Explicit Open Graph Meta Tags for Social & Crawler Verification Tools */}
+        <meta property="og:site_name" content="C S Kakkad & Associates" />
+        <meta property="og:locale" content="en_IN" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://cachintankakkad.in/icon-512.png" />
+        <meta property="og:image:secure_url" content="https://cachintankakkad.in/icon-512.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
+        <meta property="og:image:alt" content="C S Kakkad & Associates Chartered Accountants" />
+
         {/* Machine-readable context for AI and LLM Search Engines */}
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context" />
         <link rel="help" type="text/plain" href="/llms.txt" />
