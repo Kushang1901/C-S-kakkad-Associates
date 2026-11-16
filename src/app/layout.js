@@ -409,12 +409,15 @@ const jsonLdGraph = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" prefix="og: https://ogp.me/ns#" data-scroll-behavior="smooth">
       <head>
         {/* Bing Webmaster Tools Site Verification */}
         <meta name="msvalidate.01" content="8CA0B8636020035C1FAD4EF19EE7540D" />
 
         {/* Explicit Open Graph Meta Tags for Social & Crawler Verification Tools */}
+        <meta property="og:title" content="C S Kakkad & Associates | Chartered Accountants in Dwarka & Gujarat" />
+        <meta property="og:description" content="Premier Chartered Accountancy firm in Dwarka, Gujarat providing statutory audit, corporate taxation, GST advisory, and business loan syndication." />
+        <meta property="og:url" content="https://cachintankakkad.in" />
         <meta property="og:site_name" content="C S Kakkad & Associates" />
         <meta property="og:locale" content="en_IN" />
         <meta property="og:type" content="website" />
@@ -424,6 +427,12 @@ export default function RootLayout({ children }) {
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
         <meta property="og:image:alt" content="C S Kakkad & Associates Chartered Accountants" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="C S Kakkad & Associates | Chartered Accountants" />
+        <meta name="twitter:description" content="Leading Chartered Accountancy firm in Dwarka, Gujarat offering auditing, taxation, GST, business finance, and consultancy." />
+        <meta name="twitter:image" content="https://cachintankakkad.in/icon-512.png" />
 
         {/* Machine-readable context for AI and LLM Search Engines */}
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context" />
