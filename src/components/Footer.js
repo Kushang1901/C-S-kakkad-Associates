@@ -14,7 +14,7 @@ export default function Footer() {
               <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} width="120" height="91" />
               <div className={styles.logoText}>
                 <span className={styles.firmName}>C S Kakkad & Associates</span>
-                <span className={styles.firmTag}>Chartered Accountants</span>
+                <span className={styles.firmTag}>Chartered Accountant</span>
               </div>
             </div>
             <p className={styles.description}>
@@ -80,9 +80,9 @@ export default function Footer() {
           <div className={styles.bottomBarInner}>
             <p className={styles.copyright}>
               © {currentYear} C S Kakkad & Associates. All rights reserved. | Developed by{" "}
-              <a 
-                href="https://kushangacharya.vercel.app" 
-                target="_blank" 
+              <a
+                href="https://kushangacharya.vercel.app"
+                target="_blank"
                 rel="noopener noreferrer"
                 className={styles.creditLink}
               >

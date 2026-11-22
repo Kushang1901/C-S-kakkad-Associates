@@ -141,7 +141,7 @@ export default function Header() {
               <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.logo} width="120" height="91" />
               <div className={styles.brandInfo}>
                 <span className={styles.brandName}>C S Kakkad & Associates</span>
-                <span className={styles.brandTitle}>Chartered Accountants</span>
+                <span className={styles.brandTitle}>Chartered Accountant</span>
               </div>
             </Link>
 
@@ -217,7 +217,7 @@ export default function Header() {
             <img src="/cs-kakkad-logo.png" alt="C S Kakkad & Associates Logo" className={styles.drawerLogo} width="120" height="91" />
             <div className={styles.drawerBrandInfo}>
               <span className={styles.drawerBrandName}>C S Kakkad & Associates</span>
-              <span className={styles.drawerBrandTitle}>CHARTERED ACCOUNTANTS</span>
+              <span className={styles.drawerBrandTitle}>CHARTERED ACCOUNTANT</span>
             </div>
           </div>
           <button
