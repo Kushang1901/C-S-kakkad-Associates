@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import NewsModal from "@/components/NewsModal";
 import EnquiryModal from "@/components/EnquiryModal";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Cache hero slide and news translations across language changes
 const heroSlidesCache = { gu: null, hi: null };
@@ -151,6 +152,22 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  const handlePrevSlide = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const handleNextSlide = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
   // Fetch live tax news circulars for the horizontal updates bar
   useEffect(() => {
     async function fetchNews() {
@@ -260,6 +277,25 @@ export default function Home() {
             />
           ))}
         </div>
+
+        {/* Hero Navigation Arrows */}
+        <button
+          type="button"
+          className={`${styles.heroNavBtn} ${styles.heroNavPrev}`}
+          onClick={handlePrevSlide}
+          aria-label="Previous Slide"
+        >
+          <ChevronLeft size={24} strokeWidth={2.4} />
+        </button>
+
+        <button
+          type="button"
+          className={`${styles.heroNavBtn} ${styles.heroNavNext}`}
+          onClick={handleNextSlide}
+          aria-label="Next Slide"
+        >
+          <ChevronRight size={24} strokeWidth={2.4} />
+        </button>
 
         <div className="container" style={{ position: "relative", zIndex: 10 }}>
           {/* Animated Hero Content */}
